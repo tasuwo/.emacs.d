@@ -1,0 +1,6 @@
+*.el~
+*#
+.cask/*
+ac-comphist.dat
+
+!.gitignore
