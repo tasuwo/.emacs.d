@@ -1,6 +1,8 @@
 (source gnu)
 (source melpa)
 
+(depends-on "ac-slime" :git "https://github.com/purcell/ac-slime")
+(depends-on "popwin" :git "https://github.com/m2ym/popwin-el")
 (depends-on "smooth-scroll")
 (depends-on "markdown-mode")
 (depends-on "flycheck-pos-tip")
