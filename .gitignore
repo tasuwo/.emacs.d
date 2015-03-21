@@ -1,6 +1,7 @@
 *.el~
 *#
 .cask/*
+eshell/*
 ac-comphist.dat
 
 !.gitignore
