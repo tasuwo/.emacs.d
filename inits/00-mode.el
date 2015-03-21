@@ -29,11 +29,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; slime
-;; Clozure CLをデフォルトのCommon Lisp処理系に設定
-;(setq inferior-lisp-program "ccl")
-(setq inferior-lisp-program "clisp")
-;; ~/.emacs.d/slimeをload-pathに追加
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
+;; デフォルトの Common Lisp 処理系
+;(setq inferior-lisp-program "ccl")     ; Clozure CL
+(setq inferior-lisp-program "clisp")   ; CLISP
 ;; SLIMEのロード
 (require 'slime)
 ;; SLIMEからの入力をUTF-8に設定
