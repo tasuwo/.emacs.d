@@ -2,6 +2,22 @@
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; pukiwiki
+(load-library "pukiwiki-mode")
+(setq pukiwiki-auto-insert t)
+(autoload 'pukiwiki-edit
+  "pukiwiki-mode" "pukwiki-mode." t)
+(autoload 'pukiwiki-index
+  "pukiwiki-mode" "pukwiki-mode." t)
+(autoload 'pukiwiki-edit-url
+  "pukiwiki-mode" "pukwiki-mode." t)
+(setq
+ pukiwiki-site-list
+ '(("selab"
+    "http://selpm.cis.ibaraki.ac.jp/~selab/pukiwiki/index.php"
+    nil euc-jp-dos)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; markdown
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
