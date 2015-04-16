@@ -1151,9 +1151,9 @@ SELECT-SITE が non-nil の時は、SITE名も指定する。"
   (pukiwiki-mode-set-font-lock 'pukiwiki-view-mode)
   ;; hooks
   (progn
-    (make-local-hook 'post-command-hook)
+    ;(make-local-hook 'post-command-hook)
     (add-hook 'post-command-hook 'pukiwiki-view-post-command-function nil t)
-    (make-local-hook 'pukiwiki-view-post-command-hook)
+    ;(make-local-hook 'pukiwiki-view-post-command-hook)
     (add-hook 'pukiwiki-view-post-command-hook
               (function
                (lambda ()
@@ -1268,9 +1268,9 @@ If you want to set up your own key bindings, use `pukiwiki-edit-mode-hook'."
   (pukiwiki-index-setup-keys)
   ;; hooks
   (progn
-    (make-local-hook 'post-command-hook)
+    ;(make-local-hook 'post-command-hook)
     (add-hook 'post-command-hook 'pukiwiki-index-post-command-function nil t)
-    (make-local-hook 'pukiwiki-index-post-command-hook)
+    ;(make-local-hook 'pukiwiki-index-post-command-hook)
     (add-hook 'pukiwiki-index-post-command-hook
               (function
                (lambda ()
@@ -3160,6 +3160,8 @@ WIDTH に満たない場合は、末尾に空白がパディングされる。"
 
 ;;; Util (http-*)
 
+
+;;; ここが怪しいらしい
 (defun http-url-unhexify-string (str coding)
   "Unescape characters in a string."
   (save-match-data
@@ -3176,9 +3178,9 @@ WIDTH に満たない場合は、末尾に空白がパディングされる。"
                        (eval (read (concat "?\\x"
                                            (match-string 1 result)))))
                t t result)))
-       (decode-coding-string (eval (cons 'unibyte-string
-       (string-to-list result)))
-       coding))))
+      (decode-coding-string (eval (cons 'unibyte-string
+      (string-to-list result)))
+      coding))))
 
 (defun http-url-hexify-alist (alist coding)
   (mapcar
@@ -6012,8 +6014,8 @@ If error, return a cons cell (ERRCODE . DESCRIPTION)."
   (pukiwiki-server-setup-keys)
   ;; hooks
   (progn
-    (make-local-hook 'post-command-hook)
-    (make-local-hook 'pukiwiki-server-post-command-hook)
+    ;(make-local-hook 'post-command-hook)
+    ;(make-local-hook 'pukiwiki-server-post-command-hook)
     (add-hook 'pukiwiki-server-post-command-hook
               (function
                (lambda ()
@@ -6171,7 +6173,7 @@ If error, return a cons cell (ERRCODE . DESCRIPTION)."
   (pukiwiki-history-setup-keys)
   ;; hooks
   (progn
-    (make-local-hook 'post-command-hook)
+    ;(make-local-hook 'post-command-hook)
   (run-hooks 'pukiwiki-history-mode-hook)))
 
 (defun pukiwiki-history-setup-keys ()

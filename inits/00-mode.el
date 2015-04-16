@@ -11,11 +11,19 @@
   "pukiwiki-mode" "pukwiki-mode." t)
 (autoload 'pukiwiki-edit-url
   "pukiwiki-mode" "pukwiki-mode." t)
+(setq pukiwiki-browser-function 'browse-url)
+(setq pukiwiki-diff-using-ediff t)
 (setq
  pukiwiki-site-list
  '(("selab"
     "http://selpm.cis.ibaraki.ac.jp/~selab/pukiwiki/index.php"
     nil euc-jp-dos)))
+;; *post-character-set* : defaultで使う文字コードの設定
+;; *view-character-set* : defaultで使う表示する時の文字コードの設定
+;; 基本的には*view-character-set*と*post-character-set*は同じで良いと思う
+;(setq *post-character-set* *encoding-utf8*)
+;(setq *view-character-set* *encoding-utf8*)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; markdown
