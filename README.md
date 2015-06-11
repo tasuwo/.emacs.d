@@ -33,3 +33,9 @@ $ cask update
 ```
 $ brew install clisp
 ```
+
+###Markdown-mode を利用するために
+
+```
+$ brew install markdown
+```
