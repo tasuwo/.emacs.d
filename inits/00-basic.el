@@ -54,7 +54,7 @@
 (menu-bar-mode -1)
 
 ;; スクロールバーを非表示
-(set-scroll-bar-mode nil)
+;;(set-scroll-bar-mode nil)
 
 ;;; スクロールを一行ずつにする
 (setq scroll-step 1)

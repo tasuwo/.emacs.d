@@ -1,7 +1,10 @@
 ;; Cask 設定
 ;; homebrewで導入したtool用のpathを追加
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-(require 'cask "cask.el")
+;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
+;; (require 'cask "cask.el")
+;; Win + babun 用
+(add-to-list 'load-path "~/.cask")
+(require 'cask)
 (cask-initialize)
 
 ;; init-loader 設定
