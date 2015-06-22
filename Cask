@@ -22,3 +22,4 @@
 (depends-on "smartparens")
 (depends-on "smooth-scroll")
 (depends-on "php-mode" :git "https://github.com/ejmr/php-mode")
+(depends-on "web-mode")
