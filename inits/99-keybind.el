@@ -21,6 +21,9 @@
 ;; 後方削除
 (define-key global-map "\C-h" 'delete-backward-char)
 
+;; 選択範囲をコメントアウト
+(global-set-key "\C-c\C-c" 'comment-region)
+
 ;; ヘルプ
 (define-key global-map "\M-?" 'help-for-help)
 
