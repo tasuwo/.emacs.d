@@ -7,6 +7,10 @@
 (require 'cask "cask.el")
 (cask-initialize)
 
+;; Root Directory
+(setq root-dir (file-name-directory
+               (or (buffer-file-name) load-file-name)))
+
 ;; init-loader 設定
 (require 'init-loader)
 (custom-set-variables
