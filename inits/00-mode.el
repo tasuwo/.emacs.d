@@ -87,7 +87,7 @@
   ;1=auto-close with </
   ;2=auto-close with > and </
   (setq web-mode-enable-auto-closing t)
-  (setq web-mode-auto-close-style 2)
+  ;;(setq web-mode-auto-close-style 2)
   (setq web-mode-tag-auto-close-style 2)
   ;;css,js,php,etc..の範囲をbg色で表示
   (setq web-mode-enable-block-faces t)
