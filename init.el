@@ -1,3 +1,6 @@
+
+;;; Code:
+
 ;; Cask 設定
 ;; homebrewで導入したtool用のpathを追加
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
@@ -10,3 +13,5 @@
   '(init-loader-show-log-after-init 'error-only))
 ;;(setq init-loader-show-lod-after-init "error-only")
 (init-loader-load "~/.emacs.d/inits")
+
+;;; init.el ends here
