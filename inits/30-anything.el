@@ -3,6 +3,10 @@
 
 (require 'anything)
 (require 'anything-config)
-(add-to-list 'anything-sources 'anything-c-source-emacs-commands)
+(setq anything-sources (list anything-c-source-buffers
+                             anything-c-source-bookmarks
+                             anything-c-source-recentf
+                             anything-c-source-file-name-history
+                             anything-c-source-locate))
 
 ;;; 30-anything.el ends here

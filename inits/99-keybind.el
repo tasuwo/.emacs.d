@@ -29,7 +29,7 @@
 
 ;;;;;;;;;;;;;
 ;; Anything
-(define-key global-map (kbd "C-;") 'anything)
+(define-key global-map (kbd "C-x :") 'anything)
 
 ;;;;;;;;;;;;
 ;; js-doc
