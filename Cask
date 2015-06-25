@@ -25,3 +25,4 @@
 (depends-on "web-mode")
 (depends-on "yasnippet")
 (depends-on "anything")
+(depends-on "recentf-ext")
