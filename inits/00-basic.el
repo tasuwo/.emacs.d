@@ -31,7 +31,7 @@
 (defface hlline-face
   '((((class color)
       (background dark))
-     (:background "DarkSlateBlue" t))
+     (:background "RoyalBlue4" t))
     (((class color)
       (background light))
      (:background  "ForestGreen" t))
@@ -40,6 +40,7 @@
   "*Face used by hl-line.")
 (setq hl-line-face 'hlline-face)
 (global-hl-line-mode)
+
 
 ;; スタートアップを非表示
 (setq inhibit-startup-screen t)
