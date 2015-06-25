@@ -5,5 +5,6 @@ eshell/*
 ac-comphist.dat
 
 snippets/yasnippet-snippets
+/recentf
 
 !.gitignore
