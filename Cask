@@ -26,3 +26,4 @@
 (depends-on "yasnippet")
 (depends-on "anything")
 (depends-on "recentf-ext")
+(depends-on "matlab-mode")
