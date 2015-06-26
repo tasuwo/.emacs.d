@@ -4,7 +4,8 @@
 eshell/*
 ac-comphist.dat
 
-snippets/yasnippet-snippets
+snippets/*
+!install-snippets.sh
 /recentf
 .recentf
 
