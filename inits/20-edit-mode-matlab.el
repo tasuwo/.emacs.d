@@ -6,10 +6,10 @@
 (setq auto-mode-alist (cons '("\\.m$" . matlab-mode) auto-mode-alist))
 (add-hook 'matlab-mode-hook
           '(lambda ()
-             (set-buffer-file-coding-system 'sjis-dos))) %M-ファイルはシフトJISで開く
+             (set-buffer-file-coding-system 'sjis-dos))) ;; M-ファイルはシフトJISで開く
 
-(setq matlab-shell-command "/Applications/MATLAB_R2012a_Student.app/bin/matlab"  %bashにパス通しても上手くいかなかったので
-      matlab-indent-level 2  %ここら辺は好みでどうぞ
+(setq matlab-shell-command "/Applications/MATLAB_R2012a_Student.app/bin/matlab"  ;; bashにパス通しても上手くいかなかったので
+      matlab-indent-level 2  ;; ここら辺は好みでどうぞ
       matlab-indent-function-body nil
       matlab-highlight-cross-function-variables t
       matlab-return-add-semicolon t
