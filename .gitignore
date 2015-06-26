@@ -6,5 +6,6 @@ ac-comphist.dat
 
 snippets/yasnippet-snippets
 /recentf
+.recentf
 
 !.gitignore
