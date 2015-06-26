@@ -28,6 +28,13 @@ $ cask install
 $ cask update
 ```
 
+###Snippets
+
+```bash
+$ cd ~/.emacs.d/snippets
+$ ~/.emacs.d/snippets/install.sh
+```
+
 ###SLIME で用いる CLISP 処理系
 
 ```
