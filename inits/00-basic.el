@@ -31,7 +31,7 @@
 (defface hlline-face
   '((((class color)
       (background dark))
-     (:background "RoyalBlue4" t))
+     (:background "gray18" t))
     (((class color)
       (background light))
      (:background  "ForestGreen" t))
