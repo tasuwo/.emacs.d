@@ -119,4 +119,7 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+;; I never use C-x C-c
+(defalias 'exit 'save-buffers-kill-emacs)
+
 ;;; 00-basic.el ends here

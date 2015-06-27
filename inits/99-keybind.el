@@ -29,7 +29,8 @@
 
 ;;;;;;;;;;;;;
 ;; Anything
-(define-key global-map (kbd "C-x :") 'anything)
+;;(define-key global-map (kbd "C-x :") 'anything)
+(global-set-key (kbd "C-x C-c") 'anything)
 
 ;;;;;;;;;;;;
 ;; js-doc
