@@ -22,4 +22,8 @@ css-mode
 EOF
 cecho $blue "Get matlab-snippets..."
 git clone https://github.com/rysk-t/matlab-snippets.git
+cecho $blue "Get java-snippets..."
+git clone https://github.com/nekop/yasnippet-java-mode.git
+cp -r yasnippet-java-mode/snippets/java-mode/* yasnippet-snippets/java-mode/
+rm -Rf yasnippet-java-mode
 cecho $yellow "Done!"
