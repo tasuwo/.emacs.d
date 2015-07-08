@@ -31,7 +31,7 @@
 (defface hlline-face
   '((((class color)
       (background dark))
-     (:background "DarkSlateBlue" t))
+     (:background "gray18" t))
     (((class color)
       (background light))
      (:background  "ForestGreen" t))
@@ -40,6 +40,7 @@
   "*Face used by hl-line.")
 (setq hl-line-face 'hlline-face)
 (global-hl-line-mode)
+
 
 ;; スタートアップを非表示
 (setq inhibit-startup-screen t)
@@ -109,5 +110,16 @@
 
 ;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
+
+;; ファイルが他で編集された場合，
+;; 自動的に buffer を再読み込み
+(global-auto-revert-mode 1)
+
+;; 同名ファイルのバッファにおける識別文字列変更
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+;; I never use C-x C-c
+(defalias 'exit 'save-buffers-kill-emacs)
 
 ;;; 00-basic.el ends here

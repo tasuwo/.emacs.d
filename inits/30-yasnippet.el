@@ -8,7 +8,8 @@
 
 ;; 追加テンプレート
 (setq yas-snippet-dirs
-      '("~/.emacs.d/snipetts/mySnippets"
+      '("~/.emacs.d/snippets/mySnippets"
+        "~/.emacs.d/snippets/matlab-snippets"
         "~/.emacs.d/snippets/yasnippet-snippets"
        ))
 

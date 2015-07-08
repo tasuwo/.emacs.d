@@ -24,3 +24,6 @@
 (depends-on "php-mode" :git "https://github.com/ejmr/php-mode")
 (depends-on "web-mode")
 (depends-on "yasnippet")
+(depends-on "anything")
+(depends-on "recentf-ext")
+(depends-on "matlab-mode")
