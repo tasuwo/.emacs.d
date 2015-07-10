@@ -27,11 +27,6 @@
 ;; ヘルプ
 (define-key global-map "\M-?" 'help-for-help)
 
-;;;;;;;;;;;;;
-;; Anything
-;;(define-key global-map (kbd "C-x :") 'anything)
-(global-set-key (kbd "C-x C-c") 'anything)
-
 ;;;;;;;;;;;;
 ;; js-doc
 (define-key global-map "\C-ci" 'js-doc-insert-function-doc)
