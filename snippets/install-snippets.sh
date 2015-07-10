@@ -16,7 +16,7 @@ cecho $blue "Get yasnippet-snippets..."
 git clone https://github.com/AndreaCrotti/yasnippet-snippets
 cecho $blue "Setting for web-mode! (mkdir web-mode, cat web-mode/.yas-parent)"
 mkdir yasnippet-snippets/web-mode
-cat <<EOF > yasnippet-snippets/web-mode/.yas-parent
+cat <<EOF > yasnippet-snippets/web-mode/.yas-parents
 html-mode
 css-mode
 EOF
