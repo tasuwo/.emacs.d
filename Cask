@@ -26,3 +26,7 @@
 (depends-on "yasnippet")
 (depends-on "recentf-ext")
 (depends-on "matlab-mode")
+
+(depends-on "multiple-cursors")
+(depends-on "expand-region")
+(depends-on "smartrep")
