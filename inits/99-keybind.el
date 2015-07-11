@@ -62,4 +62,9 @@
 (global-set-key (kbd "C-M-l") 'er/contract-region) ;; リージョンを狭める
 (transient-mark-mode t)
 
+;;;;;;;;;;;;
+;; デフォルトから変える
+;; コピーのキーバインドを変える
+(global-set-key (kbd "C-x w") 'kill-ring-save)
+
 ;;; 99-keybind.el ends here
