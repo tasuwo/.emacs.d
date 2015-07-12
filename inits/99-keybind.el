@@ -1,13 +1,13 @@
 
 ;;; Code:
 ;; C-i でタブを入力できるように
-(global-set-key "\C-i" '(lambda ()
-                          (interactive)
-                          (let ((width tab-width)
-                                (str   ""))
-                            (dotimes (i width)
-                              (setq str (concat str " ")))
-                            (insert str))))
+;; (global-set-key "\C-i" '(lambda ()
+;;                           (interactive)
+;;                           (let ((width tab-width)
+;;                                 (str   ""))
+;;                             (dotimes (i width)
+;;                               (setq str (concat str " ")))
+;;                             (insert str))))
 
 ;; カーソル位置のブラウザを開く
 (defun browse-url-at-point ()
@@ -38,9 +38,9 @@
 (declare-function smartrep-define-key "smartrep")
 (global-set-key (kbd "C-M-c") 'mc/edit-lines)
 (global-set-key (kbd "C-M-r") 'mc/mark-all-in-region)
-(global-unset-key "\C-t")
-(smartrep-define-key global-map "C-t"
-                     '(("C-t"      . 'mc/mark-next-like-this)
+(global-unset-key "\C-i")
+(smartrep-define-key global-map "\C-i"
+                     '(("C-i"      . 'mc/mark-next-like-this)
                        ("C-n"      . 'mc/mark-next-like-this)
                        ("C-p"      . 'mc/mark-previous-like-this)
                        ("m"        . 'mc/mark-more-like-this-extended)
