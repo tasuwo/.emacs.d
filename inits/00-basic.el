@@ -122,4 +122,29 @@
 ;; C-x C-f を便利にする
 (ffap-bindings)
 
+;; 現在開いているファイルのパスをクリップボードに保存
+(defun my/get-curernt-path ()
+  (if (equal major-mode 'dired-mode)
+      default-directory
+        (buffer-file-name)))
+(defun my/copy-current-path ()
+  (interactive)
+  (let ((fPath (my/get-curernt-path)))
+    (when fPath
+      (message "stored path: %s" fPath)
+      (kill-new (file-truename fPath)))))
+
+;; クリップボードとkill-ringを共有する
+;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
+(cond (darwin-p
+       (defun copy-from-osx ()
+         (shell-command-to-string "pbpaste"))
+       (defun paste-to-osx (text &optional push)
+         (let ((process-connection-type nil))
+           (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+             (process-send-string proc text)
+             (process-send-eof proc))))))
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
+
 ;;; 00-basic.el ends here

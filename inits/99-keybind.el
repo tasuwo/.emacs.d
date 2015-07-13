@@ -71,4 +71,7 @@
 ;; コピーのキーバインドを変える
 (global-set-key (kbd "C-x w") 'kill-ring-save)
 
+;; ファイルパスの取得
+(global-set-key (kbd "C-c p") 'my/copy-current-path)
+
 ;;; 99-keybind.el ends here
