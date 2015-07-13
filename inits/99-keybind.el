@@ -74,4 +74,8 @@
 ;; ファイルパスの取得
 (global-set-key (kbd "C-c p") 'my/copy-current-path)
 
+;; バッファ幅の変更
+;; h,j,k,l で左右上下に動かせる
+(global-set-key "\C-c\C-r" 'window-resizer)
+
 ;;; 99-keybind.el ends here
