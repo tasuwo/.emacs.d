@@ -63,6 +63,10 @@
 (transient-mark-mode t)
 
 ;;;;;;;;;;;;
+;; smart-newline
+(define-key global-map (kbd "C-m") 'smart-newline)
+
+;;;;;;;;;;;;
 ;; デフォルトから変える
 ;; コピーのキーバインドを変える
 (global-set-key (kbd "C-x w") 'kill-ring-save)
