@@ -4,6 +4,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; web-mode
 (require 'web-mode)
+
 ;;; 適用する拡張子
 (add-to-list 'auto-mode-alist '("\\.phtml$"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . web-mode))
@@ -12,6 +13,23 @@
 (add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php?$"      . web-mode))
+
+(setq web-mode-ac-sources-alist
+  '(("php" . (ac-source-yasnippet ac-source-php-auto-yasnippets))
+    ("html" . (ac-source-emmet-html-aliases ac-source-emmet-html-snippets))
+    ("css" . (ac-source-css-property ac-source-emmet-css-snippets))))
+
+(add-hook 'web-mode-before-auto-complete-hooks
+          '(lambda ()
+             (let ((web-mode-cur-language
+                    (web-mode-language-at-pos)))
+               (if (string= web-mode-cur-language "php")
+                   (yas-activate-extra-mode 'php-mode)
+                 (yas-deactivate-extra-mode 'php-mode))
+               (if (string= web-mode-cur-language "css")
+                   (setq emmet-use-css-transform t)
+                 (setq emmet-use-css-transform nil)))))
+
 (defun web-mode-hook ()
   "Hooks for Web mode."
   ;; インデント
@@ -37,6 +55,7 @@
   )
   (setq web-mode-enable-heredoc-fontification t)
   )
+
 ;; 色の設定
 (custom-set-faces
  '(web-mode-doctype-face
@@ -59,6 +78,5 @@
    ((t (:foreground "#FF7F00"))))                          ; cssのタグ
  )
 (add-hook 'web-mode-hook  'web-mode-hook)
-
 
 ;;; 20-edit-mode-web.el ends here

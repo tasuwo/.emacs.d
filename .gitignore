@@ -10,3 +10,5 @@ snippets/*
 .recentf
 
 !.gitignore
+
+.mc-lists.el

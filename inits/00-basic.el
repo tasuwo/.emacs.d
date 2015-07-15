@@ -119,7 +119,68 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; I never use C-x C-c
-(defalias 'exit 'save-buffers-kill-emacs)
+;; C-x C-f を便利にする
+(ffap-bindings)
+
+;; 現在開いているファイルのパスをクリップボードに保存
+(defun my/get-curernt-path ()
+  (if (equal major-mode 'dired-mode)
+      default-directory
+        (buffer-file-name)))
+(defun my/copy-current-path ()
+  (interactive)
+  (let ((fPath (my/get-curernt-path)))
+    (when fPath
+      (message "stored path: %s" fPath)
+      (kill-new (file-truename fPath)))))
+
+;; クリップボードとkill-ringを共有する
+;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
+(cond (darwin-p
+       (defun copy-from-osx ()
+         (shell-command-to-string "pbpaste"))
+       (defun paste-to-osx (text &optional push)
+         (let ((process-connection-type nil))
+           (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+             (process-send-string proc text)
+             (process-send-eof proc))))))
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
+
+;; バッファ幅の変更
+(defun window-resizer ()
+  "Control window size and position."
+  (interactive)
+  (let ((window-obj (selected-window))
+        (current-width (window-width))
+        (current-height (window-height))
+        (dx (if (= (nth 0 (window-edges)) 0) 1
+              -1))
+        (dy (if (= (nth 1 (window-edges)) 0) 1
+              -1))
+        action c)
+    (catch 'end-flag
+      (while t
+        (setq action
+              (read-key-sequence-vector (format "size[%dx%d]"
+                                                (window-width)
+                                                (window-height))))
+        (setq c (aref action 0))
+        (cond ((= c ?l)
+               (enlarge-window-horizontally dx))
+              ((= c ?h)
+               (shrink-window-horizontally dx))
+              ((= c ?j)
+               (enlarge-window dy))
+              ((= c ?k)
+               (shrink-window dy))
+              ;; otherwise
+              (t
+               (let ((last-command-char (aref action 0))
+                     (command (key-binding action)))
+                 (when command
+                   (call-interactively command)))
+               (message "Quit")
+               (throw 'end-flag t)))))))
 
 ;;; 00-basic.el ends here
