@@ -31,3 +31,4 @@
 (depends-on "smartrep")
 (depends-on "smart-newline")
 (depends-on "elscreen")
+(depends-on "swift-mode")
