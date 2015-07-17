@@ -29,7 +29,7 @@
 
 ;;;;;;;;;;;;
 ;; js-doc
-(define-key global-map "\C-ci" 'js-doc-insert-function-doc)
+; (define-key global-map "\C-ci" 'js-doc-insert-function-doc)
 
 ;;;;;;;;;;;;
 ;; multipule-cursors & smartrep
