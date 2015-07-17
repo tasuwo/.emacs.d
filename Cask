@@ -2,7 +2,6 @@
 (source melpa)
 (source marmalade)
 
-(depends-on "js-doc")
 (depends-on "ac-slime" :git "https://github.com/purcell/ac-slime")
 (depends-on "ace-jump-mode")
 (depends-on "auto-complete")
@@ -30,5 +29,3 @@
 (depends-on "expand-region")
 (depends-on "smartrep")
 (depends-on "smart-newline")
-(depends-on "elscreen")
-(depends-on "swift-mode")
