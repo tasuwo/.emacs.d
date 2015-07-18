@@ -147,6 +147,34 @@
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
 
+;; 分割ウインドウ間の移動
+(windmove-default-keybindings)
+(defun window-move ()
+  "Moving between sepalated windows."
+  (interactive)
+  (let (action c)
+    (catch 'end-flg
+      (while t
+        (setq action
+              (read-key-sequence-vector (format "moving...")))
+        (setq c (aref action 0))
+        (cond ((= c ?l)
+               (windmove-right))
+              ((= c ?h)
+               (windmove-left))
+              ((= c ?j)
+               (windmove-up))
+              ((= c ?k)
+               (windmove-down))
+              ;; otherwise
+              (t
+               (let ((last-command-char (aref action 0))
+                     (command (key-binding action)))
+                 (when command
+                   (call-interactively command)))
+               (message "Quit.")
+               (throw 'end-flag t)))))))
+
 ;; バッファ幅の変更
 (defun window-resizer ()
   "Control window size and position."

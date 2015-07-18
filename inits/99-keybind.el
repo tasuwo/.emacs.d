@@ -77,4 +77,8 @@
 ;; バッファ幅の変更
 ;; h,j,k,l で左右上下に動かせる
 (global-set-key (kbd "C-c r") 'window-resizer)
+
+;; 分割ウインドウ間の移動
+(global-set-key (kbd "C-c m") 'window-move)
+
 ;;; 99-keybind.el ends here
