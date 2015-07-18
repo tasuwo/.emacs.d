@@ -162,9 +162,9 @@
                (windmove-right))
               ((= c ?h)
                (windmove-left))
-              ((= c ?j)
-               (windmove-up))
               ((= c ?k)
+               (windmove-up))
+              ((= c ?j)
                (windmove-down))
               ;; otherwise
               (t
