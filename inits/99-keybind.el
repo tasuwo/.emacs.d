@@ -29,7 +29,7 @@
 
 ;;;;;;;;;;;;
 ;; js-doc
-(define-key global-map "\C-ci" 'js-doc-insert-function-doc)
+; (define-key global-map "\C-ci" 'js-doc-insert-function-doc)
 
 ;;;;;;;;;;;;
 ;; multipule-cursors & smartrep
@@ -41,18 +41,18 @@
 (global-unset-key "\C-t")
 (smartrep-define-key global-map "C-t"
   '(("C-t"      . 'mc/mark-next-like-this)
-    ("C-n"      . 'mc/mark-next-like-this)
-    ("C-p"      . 'mc/mark-previous-like-this)
+    ("n"        . 'mc/mark-next-like-this)
+    ("p"        . 'mc/mark-previous-like-this)
     ("m"        . 'mc/mark-more-like-this-extended)
     ("u"        . 'mc/unmark-next-like-this)
-    ("C-u"      . 'mc/unmark-previous-like-this)
+    ("U"        . 'mc/unmark-previous-like-this)
     ("s"        . 'mc/skip-to-next-like-this)
-    ("C-s"      . 'mc/skip-to-previous-like-this)
+    ("S"        . 'mc/skip-to-previous-like-this)
     ("*"        . 'mc/mark-all-like-this)
     ("d"        . 'mc/mark-all-like-this-dwim)
     ("i"        . 'mc/insert-numbers)
     ("o"        . 'mc/sort-regions)
-    ("O"        . 'm)))
+    ("O"        . 'mc/reverse-regions)))
 
 ;;;;;;;;;;;;
 ;; expand region
@@ -76,6 +76,9 @@
 
 ;; バッファ幅の変更
 ;; h,j,k,l で左右上下に動かせる
-(global-set-key "\C-c\C-r" 'window-resizer)
+(global-set-key (kbd "C-c r") 'window-resizer)
+
+;; 分割ウインドウ間の移動
+(global-set-key (kbd "C-c m") 'window-move)
 
 ;;; 99-keybind.el ends here

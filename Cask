@@ -2,7 +2,6 @@
 (source melpa)
 (source marmalade)
 
-(depends-on "js-doc")
 (depends-on "ac-slime" :git "https://github.com/purcell/ac-slime")
 (depends-on "ace-jump-mode")
 (depends-on "auto-complete")
