@@ -54,6 +54,11 @@
     ("o"        . 'mc/sort-regions)
     ("O"        . 'mc/reverse-regions)))
 
+
+;;;;;;;;;;;;
+;; flycheck
+(global-set-key (kbd "C-x !") 'flycheck-list-errors)
+
 ;;;;;;;;;;;;
 ;; expand region
 (require 'expand-region)
