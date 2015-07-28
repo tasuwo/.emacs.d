@@ -9,12 +9,13 @@
 ;; auto-complete-modeの自動起動
 (add-to-list 'ac-modes 'matlab-mode)
 
-;;(add-hook 'matlab-mode-hook
-;;          '(lambda ()
-;;             (set-buffer-file-coding-system 'sjis-dos))) ;; M-ファイルはシフトJISで開く
+;; M-ファイルはシフトJISで開く
+(add-hook 'matlab-mode-hook
+          '(lambda ()
+             (set-buffer-file-coding-system 'sjis-dos)))
 
-(setq matlab-shell-command "/Applications/MATLAB_R2014a.app/bin/matlab"  ;; bashにパス通しても上手くいかなかったので
-      matlab-indent-level 4  ;; ここら辺は好みでどうぞ
+(setq matlab-shell-command "/Applications/MATLAB_R2014a.app/bin/matlab"
+      matlab-indent-level 4
       matlab-indent-function-body nil
       matlab-highlight-cross-function-variables t
       matlab-return-add-semicolon t
@@ -34,7 +35,6 @@
   '(define-key shell-mode-map [up] 'comint-previous-matching-input-from-input))
 
 ;; flycheck
-;; matlab用の設定
 (flycheck-define-command-checker 'matlab-mlint
   "A Matlab checker based on mlint."
   :command `("/Applications/MATLAB_R2014a.app/bin/maci64/mlint" source)
@@ -42,7 +42,6 @@
   '((warning line-start "L " line " (C " (1+ digit) "): " (message) line-end)
     (warning line-start "L " line " (C " (1+ digit) "-" (1+ digit) "): " (message) line-end))
   :modes '(matlab-mode))
-
 (add-to-list 'flycheck-checkers 'matlab-mlint 'append)
 
 ;;; 30-edit-mode-matlab.el ends here
