@@ -32,3 +32,4 @@
 (depends-on "auto-complete-c-headers")
 (depends-on "auto-complete-clang")
 (depends-on "undo-tree")
+(depends-on "fuzzy")

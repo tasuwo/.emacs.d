@@ -1,4 +1,6 @@
+
 ;;; Code:
+
 (require 'whitespace)
 (setq whitespace-style '(face           ; faceで可視化
                          trailing       ; 行末
@@ -42,4 +44,4 @@
 (set-face-attribute 'whitespace-empty nil
                     :background my/bg-color)
 
-;;;
+;;; 20-whitespace-mode.el ends here
