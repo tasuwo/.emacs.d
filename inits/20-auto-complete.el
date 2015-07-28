@@ -1,7 +1,10 @@
 
 ;;; Code:
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; auto-complete
 (require 'auto-complete)
-(require 'auto-complete-config)    ; 必須ではないですが一応
+(require 'auto-complete-config)
 (global-auto-complete-mode t)
 (ac-config-default)
 

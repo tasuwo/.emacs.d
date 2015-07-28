@@ -12,24 +12,38 @@
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
+;; ヘッダーの補完
+(require 'auto-complete-c-headers)
+(add-hook 'c++-mode-hook '(setq ac-sources (append ac-sources '(ac-source-c-headers))))
+(add-hook 'c-mode-hook '(setq ac-sources (append ac-sources '(ac-source-c-headers))))
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; auto-complete-clang
+;; http://boronology.blogspot.jp/2012/01/auto-complete-clangemacsc.html
+;; http://ochiailab.blogspot.jp/2015/02/auto-complete-clang.html
+(require 'auto-complete)
+(require 'auto-complete-config)
+(require 'auto-complete-clang)
+(defun my-ac-cc-mode-setup ()
+  ;;(setq ac-clang-prefix-header
+  ;;"~/Documents/_Include/heddaa.pch")
+  (setq ac-clang-flags '("-w" "-ferror-limit" "1"))
+  (setq ac-sources (append '(ac-source-clang
+        ac-source-yasnippet)
+      ac-sources)))
+(defun my-ac-config ()
+  (define-key ac-complete-mode-map "\C-n" 'ac-next)
+  (define-key ac-complete-mode-map "\C-p" 'ac-previous)
+  (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
+(my-ac-config)
+;; https://github.com/Sarcasm/irony-mode/issues/119
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+
 ;; http://qiita.com/akisute3@github/items/6fb94c30f92dae2a24ee
 ;; http://futurismo.biz/archives/3071
-(add-hook 'c-mode-common-hook 'flycheck-mode)
-(defmacro flycheck-define-clike-checker (name command modes)
-  `(flycheck-define-checker ,(intern (format "%s" name))
-     ,(format "A %s checker using %s" name (car command))
-     :command (,@command source-inplace)
-     :error-patterns
-     ((warning line-start (file-name) ":" line ":" column ": 警告:" (message) line-end)
-      (error line-start (file-name) ":" line ":" column ": エラー:" (message) line-end))
-     :modes ',modes))
-(flycheck-define-clike-checker c-gcc-ja
-             ("gcc" "-fsyntax-only" "-Wall" "-Wextra")
-             c-mode)
-(add-to-list 'flycheck-checkers 'c-gcc-ja)
-(flycheck-define-clike-checker c++-g++-ja
-             ("g++" "-fsyntax-only" "-Wall" "-Wextra" "-std=c++11")
-             c++-mode)
-(add-to-list 'flycheck-checkers 'c++-g++-ja)
+;; flycheckの設定をあとで書く
 
 ;;; 30-edit-mode-C_C++.el ends here

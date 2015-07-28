@@ -29,3 +29,5 @@
 (depends-on "expand-region")
 (depends-on "smartrep")
 (depends-on "smart-newline")
+(depends-on "auto-complete-c-headers")
+(depends-on "auto-complete-clang")
