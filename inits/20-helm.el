@@ -4,10 +4,6 @@
 (require 'helm-config)
 (helm-mode 1)
 
-;; キーバインド
-(define-key global-map (kbd "M-x")     'helm-M-x)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "C-x C-r") 'helm-recentf)
 ;; 自動補完を無効
 (custom-set-variables '(helm-ff-auto-update-initial-value nil))
 ;; ミニバッファでC-hをバックスペースに割り当て

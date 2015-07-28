@@ -31,7 +31,7 @@
 ;; js-doc
 ; (define-key global-map "\C-ci" 'js-doc-insert-function-doc)
 
-;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; multipule-cursors & smartrep
 (require 'multiple-cursors)
 (require 'smartrep)
@@ -54,6 +54,11 @@
     ("o"        . 'mc/sort-regions)
     ("O"        . 'mc/reverse-regions)))
 
+;;;;;;;;
+;; helm
+(define-key global-map (kbd "M-x")     'helm-M-x)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+(define-key global-map (kbd "C-x C-r") 'helm-recentf)
 
 ;;;;;;;;;;;;
 ;; flycheck
@@ -72,17 +77,24 @@
 (define-key global-map (kbd "C-m") 'smart-newline)
 
 ;;;;;;;;;;;;
-;; デフォルトから変える
-;; コピーのキーバインドを変える
+;; direx
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
+;;(global-unset-key (kbd "C-x C-d"))
+;;(global-set-key (kbd "C-x C-d") 'direx:find-directory)
+
+;;;;;;;;;;;;
+;; コピー
 (global-set-key (kbd "C-x w") 'kill-ring-save)
 
+;;;;;;;;;;;;;;;;;;;;;
 ;; ファイルパスの取得
 (global-set-key (kbd "C-c p") 'my/copy-current-path)
 
-;; バッファ幅の変更
-;; h,j,k,l で左右上下に動かせる
+;;;;;;;;;;;;;;;;;;;
+;; window-resizer
 (global-set-key (kbd "C-c r") 'window-resizer)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 分割ウインドウ間の移動
 (global-set-key (kbd "C-c m") 'window-move)
 
