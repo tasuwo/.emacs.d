@@ -26,7 +26,7 @@
 (set-face-attribute 'linum nil
             :foreground "#a9a9a9"
             :height 0.9)
-(setq linum-format "%4d|")
+(setq linum-format "%4d| ")
 
 ;; 現在行のハイライト
 (defface hlline-face
