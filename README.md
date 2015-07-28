@@ -56,3 +56,17 @@ $ cd snippets
 $ git clone https://github.com/AndreaCrotti/yasnippet-snippets.git
 ```
 >[AndreaCrotti/yasnippet-snippets](https://github.com/AndreaCrotti/yasnippet-snippets)
+
+###matlab-mode
+
+`.emacs.d/inits/30-edit-mode-matlab.el`に，`mlint`までのパスを通す必要がある．
+
+```
+(flycheck-define-command-checker 'matlab-mlint
+  "A Matlab checker based on mlint."
+  :command `("/Applications/MATLAB_R2014a.app/bin/maci64/mlint" source)
+  :error-patterns
+  '((warning line-start "L " line " (C " (1+ digit) "): " (message) line-end)
+    (warning line-start "L " line " (C " (1+ digit) "-" (1+ digit) "): " (message) line-end))
+  :modes '(matlab-mode))
+```
