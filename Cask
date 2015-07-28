@@ -31,3 +31,4 @@
 (depends-on "smart-newline")
 (depends-on "auto-complete-c-headers")
 (depends-on "auto-complete-clang")
+(depends-on "undo-tree")
