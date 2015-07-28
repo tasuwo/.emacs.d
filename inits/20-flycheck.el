@@ -1,6 +1,10 @@
 
 ;;; Code:
 
+(require 'flycheck)
+
+(flycheck-mode t)
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; flycheck-pos-chip の設定
