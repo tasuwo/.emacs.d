@@ -33,3 +33,4 @@
 (depends-on "auto-complete-clang")
 (depends-on "undo-tree")
 (depends-on "fuzzy")
+(depends-on "direx")
