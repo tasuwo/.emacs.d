@@ -10,9 +10,9 @@
 (add-to-list 'ac-modes 'matlab-mode)
 
 ;; M-ファイルはシフトJISで開く
-(add-hook 'matlab-mode-hook
-          '(lambda ()
-             (set-buffer-file-coding-system 'sjis-dos)))
+;(add-hook 'matlab-mode-hook
+;          '(lambda ()
+;             (set-buffer-file-coding-system 'sjis-dos)))
 
 (setq matlab-shell-command "/Applications/MATLAB_R2014a.app/bin/matlab"
       matlab-indent-level 4
