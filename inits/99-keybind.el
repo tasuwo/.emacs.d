@@ -79,8 +79,8 @@
 ;;;;;;;;;;;;
 ;; direx
 (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
-;;(global-unset-key (kbd "C-x C-d"))
-;;(global-set-key (kbd "C-x C-d") 'direx:find-directory)
+(global-unset-key (kbd "C-x C-d"))
+(global-set-key (kbd "C-x C-d") 'direx:jump-to-directory)
 
 ;;;;;;;;;;;;
 ;; コピー
