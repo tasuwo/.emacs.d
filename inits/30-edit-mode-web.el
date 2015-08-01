@@ -7,12 +7,12 @@
 
 ;;; 適用する拡張子
 (add-to-list 'auto-mode-alist '("\\.phtml$"     . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x$"   . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php?$"      . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.php?$"      . web-mode))
 
 (setq web-mode-ac-sources-alist
   '(("php" . (ac-source-yasnippet ac-source-php-auto-yasnippets))
@@ -33,9 +33,9 @@
 (defun web-mode-hook ()
   "Hooks for Web mode."
   ;; インデント
-  (setq web-mode-markup-indent-offset 2) ;; html indent
-  (setq web-mode-css-indent-offset 2)    ;; css indent
-  (setq web-mode-code-indent-offset 2)   ;; script indent(js,php,etc..)
+  (setq web-mode-markup-indent-offset 4) ;; html indent
+  (setq web-mode-css-indent-offset 4)    ;; css indent
+  (setq web-mode-code-indent-offset 4)   ;; script indent(js,php,etc..)
   ;; タグの自動補完
   ;0=no auto-closing
   ;1=auto-close with </
