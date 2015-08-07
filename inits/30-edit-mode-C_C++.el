@@ -12,6 +12,24 @@
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
+;;共通設定(?)
+(setq-default c-basic-offset 4     ;;基本インデント量4
+              tab-width 4          ;;タブ幅4
+              indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
+
+;; C++ style
+(defun add-c++-mode-conf ()
+  (c-set-style "stroustrup")  ;;スタイルはストラウストラップ
+  (show-paren-mode t))        ;;カッコを強調表示する
+(add-hook 'c++-mode-hook 'add-c++-mode-conf)
+
+;; C style
+(defun add-c-mode-common-conf ()
+  (c-set-style "stroustrup")                  ;;スタイルはストラウストラップ
+  (show-paren-mode t)                         ;;カッコを強調表示する
+  )
+(add-hook 'c-mode-common-hook 'add-c-mode-common-conf)
+
 ;; ヘッダーの補完
 (require 'auto-complete-c-headers)
 (add-hook 'c++-mode-hook '(setq ac-sources (append ac-sources '(ac-source-c-headers))))
