@@ -32,10 +32,12 @@ $ cask update
 
 ```bash
 $ cd ~/.emacs.d/snippets
-$ ~/.emacs.d/snippets/install.sh
+$ ~/.emacs.d/snippets/install-snippets.sh
 ```
 
-###SLIME で用いる CLISP 処理系
+##その他
+
+###SLIME で CLISP 処理系を利用するために
 
 ```
 $ brew install clisp
@@ -47,17 +49,7 @@ $ brew install clisp
 $ brew install markdown
 ```
 
-###yasnippet
-
-```
-$ cd ~/.emacs.d
-$ mkdir snippets
-$ cd snippets
-$ git clone https://github.com/AndreaCrotti/yasnippet-snippets.git
-```
->[AndreaCrotti/yasnippet-snippets](https://github.com/AndreaCrotti/yasnippet-snippets)
-
-###matlab-mode
+###matlab-mode を利用するために
 
 `.emacs.d/inits/30-edit-mode-matlab.el`に，`mlint`までのパスを通す必要がある．
 
