@@ -15,5 +15,18 @@
 ;;                                ac-source-php-completion
 ;;                                ac-source-filename
 ;;                                                               ))))
+(require 'php-mode)
+(add-hook 'php-mode-hook
+          '(lambda()
+             (require 'php-completion)
+             (setq tab-width 4)
+             (setq indent-tabs-mode false)
+             (setq c-basic-offset 4)
+             (flymake-mode t)
+             (require 'php-completion)
+             (php-completion-mode t)
+             (make-local-variable 'ac-sources)
+             (add-to-list 'ac-sources 'ac-source-php-completion)
+             (add-to-list 'ac-sources 'ac-source-filename)))
 
-;;; 20-edit-mode-php.el ends here
+;;; 30-edit-mode-php.el ends here

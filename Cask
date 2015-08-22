@@ -34,3 +34,9 @@
 (depends-on "undo-tree")
 (depends-on "fuzzy")
 (depends-on "direx")
+
+;; php-completion
+;; (depends-on "php-completion"
+;;         :git "https://github.com/suzuki/php-completion.git"
+;;         :branch "develop"
+;;         :files ("*.el" "phpcmp-index-of-*"))
