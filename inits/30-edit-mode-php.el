@@ -23,6 +23,7 @@
              (setq indent-tabs-mode false)
              (setq c-basic-offset 4)
              (flymake-mode t)
+             (setq php-mode-force-pear t)
              (require 'php-completion)
              (php-completion-mode t)
              (make-local-variable 'ac-sources)

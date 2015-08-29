@@ -1,12 +1,10 @@
-#.emacs.d
+#What is this?
 
-##これはなに
+This is my personal Emacs configulation.
 
-私用の Emacs の設定ディレクトリ
+##Requirements
 
-##Depend
-
-###最新版のEmacs
+###Latest version of Emacs
 
 ```bash
 $ brew install emacs --cocoa
@@ -15,15 +13,9 @@ $ brew linkapps
 
 ###Cask
 
-Cask を導入していない場合．
 
 ```bash
 $ brew install cask
-```
-
-`.emacs.d` 下で以下により，依存パッケージをインストール．
-
-```bash
 $ cask install
 $ cask update
 ```
@@ -35,23 +27,23 @@ $ cd ~/.emacs.d/snippets
 $ ~/.emacs.d/snippets/install-snippets.sh
 ```
 
-##その他
+##Others
 
-###SLIME で CLISP 処理系を利用するために
+###for Clisp on SLIME
 
 ```
 $ brew install clisp
 ```
 
-###Markdown-mode を利用するために
+###for Markdown-mode
 
 ```
 $ brew install markdown
 ```
 
-###matlab-mode を利用するために
+###for matlab-mode
 
-`.emacs.d/inits/30-edit-mode-matlab.el`に，`mlint`までのパスを通す必要がある．
+Add a mlint to the path in `.emacs.d/inits/30-edit-mode-matlab.el`.
 
 ```
 (flycheck-define-command-checker 'matlab-mlint
@@ -62,3 +54,7 @@ $ brew install markdown
     (warning line-start "L " line " (C " (1+ digit) "-" (1+ digit) "): " (message) line-end))
   :modes '(matlab-mode))
 ```
+
+##Using mouse
+
+>[MouseTerm](https://bitheap.org/mouseterm/)

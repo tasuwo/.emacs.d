@@ -19,6 +19,7 @@
 (prefer-coding-system 'utf-8-unix)
 
 ;; クリップボードを使用
+(set-clipboard-coding-system 'utf-8)
 (setq x-select-enable-clipboard t)
 
 ;; 行番号表示
@@ -215,5 +216,21 @@
                    (call-interactively command)))
                (message "Quit")
                (throw 'end-flag t)))))))
+
+;; マウス操作設定
+;; @see https://bitheap.org/mouseterm/
+(xterm-mouse-mode t)
+(mouse-wheel-mode t)
+(global-set-key   [mouse-4] '(lambda () (interactive) (scroll-down 1)))
+(global-set-key   [mouse-5] '(lambda () (interactive) (scroll-up   1)))
+(unless window-system
+  (xterm-mouse-mode 1)
+  (global-set-key [mouse-4] '(lambda ()
+                               (interactive)
+                               (scroll-down 1)))
+  (global-set-key [mouse-5] '(lambda ()
+                               (interactive)
+                               (scroll-up 1))))
+
 
 ;;; 00-basic.el ends here

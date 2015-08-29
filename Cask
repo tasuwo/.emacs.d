@@ -20,7 +20,7 @@
 (depends-on "slime" :git "https://github.com/slime/slime.git")
 (depends-on "smartparens")
 (depends-on "smooth-scroll")
-(depends-on "php-mode" :git "https://github.com/ejmr/php-mode")
+(depends-on "php-mode")
 (depends-on "web-mode")
 (depends-on "yasnippet")
 (depends-on "recentf-ext")
