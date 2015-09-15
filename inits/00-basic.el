@@ -30,17 +30,17 @@
 (setq linum-format "%4d| ")
 
 ;; 現在行のハイライト
-(defface hlline-face
-  '((((class color)
-      (background dark))
-     (:background "gray18" t))
-    (((class color)
-      (background light))
-     (:background  "ForestGreen" t))
-    (t
-     ()))
-  "*Face used by hl-line.")
-(setq hl-line-face 'hlline-face)
+;; (defface hlline-face
+;;   '((((class color)
+;;       (background dark))
+;;      (:background "gray18" t))
+;;     (((class color)
+;;       (background light))
+;;      (:background  "ForestGreen" t))
+;;     (t
+;;      ()))
+;;   "*Face used by hl-line.")
+;; (setq hl-line-face 'hlline-face)
 (global-hl-line-mode)
 
 
@@ -231,6 +231,5 @@
   (global-set-key [mouse-5] '(lambda ()
                                (interactive)
                                (scroll-up 1))))
-
 
 ;;; 00-basic.el ends here
