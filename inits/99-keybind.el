@@ -1,13 +1,5 @@
 
 ;;; Code:
-;; C-i でタブを入力できるように
-;; (global-set-key "\C-i" '(lambda ()
-;;                           (interactive)
-;;                           (let ((width tab-width)
-;;                                 (str   ""))
-;;                             (dotimes (i width)
-;;                               (setq str (concat str " ")))
-;;                             (insert str))))
 
 ;; カーソル位置のブラウザを開く
 (defun browse-url-at-point ()
@@ -17,6 +9,9 @@
       (browse-url (buffer-substring-no-properties (car url-region)
                                                   (cdr url-region))))))
 (global-set-key "\C-c\C-o" 'browse-url-at-point)
+
+;; スペースを除いた文頭へ移動
+(define-key global-map "\M-a" 'back-to-indentation)
 
 ;; 後方削除
 (define-key global-map "\C-h" 'delete-backward-char)
@@ -59,10 +54,41 @@
 (define-key global-map (kbd "M-x")     'helm-M-x)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "C-x C-r") 'helm-recentf)
+;;;;;;;;;;;;;;;
+;; helm-swoop
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
+;; isearch実行中にhelm-swoopに移行
+(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+;; helm-swoop実行中にhelm-multi-swoop-allに移行
+(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
+;;;;;;;;;;;;;;;;;;
+;; helm-flycheck
+(eval-after-load 'flycheck
+  '(define-key flycheck-mode-map (kbd "C-c !") 'helm-flycheck))
+;;;;;;;;;;;;;;;
+;; helm-gtags
+(add-hook 'helm-gtags-mode-hook
+          '(lambda ()
+             ;;入力されたタグの定義元へジャンプ
+             (local-set-key (kbd "M-t") 'helm-gtags-find-tag)
+             ;;入力タグを参照する場所へジャンプ
+             (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
+             ;;入力したシンボルを参照する場所へジャンプ
+             (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
+             ;;タグ一覧からタグを選択し, その定義元にジャンプする
+             (local-set-key (kbd "M-l") 'helm-gtags-select)
+             ;;ジャンプ前の場所に戻る
+             (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
 
 ;;;;;;;;;;;;
 ;; flycheck
 (global-set-key (kbd "C-x !") 'flycheck-list-errors)
+(smartrep-define-key
+    global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
+                       ("M-p" . 'flymake-goto-prev-error)))
 
 ;;;;;;;;;;;;
 ;; expand region
@@ -97,5 +123,49 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 分割ウインドウ間の移動
 (global-set-key (kbd "C-c m") 'window-move)
+
+;;;;;;;;;;;;;
+;; auto-complete
+;; completion for english words
+(global-set-key (kbd "M-h") 'ac-complete-look)
+;; trigger key
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
+;;;;;;;;;;;;;;
+;; yasnippet
+;; 既存スニペットを挿入する
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+;; 新規スニペットを作成するバッファを用意する
+(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+;; 既存スニペットを閲覧・編集する
+(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+;; Remove Yasnippet's default tab key binding
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+;; Set Yasnippet's key binding to shift+tab
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+;; Alternatively use Control-c + tab
+;; (define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
+
+;;;;;;;;;;;;;;
+;; git-gutter-+
+(global-set-key (kbd "C-x g") 'git-gutter+-mode) ; Turn on/off in the current buffer
+(global-set-key (kbd "C-x G") 'global-git-gutter+-mode) ; Turn on/off globally
+(eval-after-load 'git-gutter+
+  '(progn
+     ;;; Jump between hunks
+     (define-key git-gutter+-mode-map (kbd "C-x n") 'git-gutter+-next-hunk)
+     (define-key git-gutter+-mode-map (kbd "C-x p") 'git-gutter+-previous-hunk)
+     ;;; Act on hunks
+     (define-key git-gutter+-mode-map (kbd "C-x v =") 'git-gutter+-show-hunk)
+     (define-key git-gutter+-mode-map (kbd "C-x r") 'git-gutter+-revert-hunks)
+     ;; Stage hunk at point.
+     ;; If region is active, stage all hunk lines within the region.
+     (define-key git-gutter+-mode-map (kbd "C-x t") 'git-gutter+-stage-hunks)
+     (define-key git-gutter+-mode-map (kbd "C-x c") 'git-gutter+-commit)
+     (define-key git-gutter+-mode-map (kbd "C-x C") 'git-gutter+-stage-and-commit)
+     (define-key git-gutter+-mode-map (kbd "C-x C-y") 'git-gutter+-stage-and-commit-whole-buffer)
+     (define-key git-gutter+-mode-map (kbd "C-x U") 'git-gutter+-unstage-whole-buffer)))
 
 ;;; 99-keybind.el ends here

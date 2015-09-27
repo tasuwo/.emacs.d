@@ -1,8 +1,6 @@
 
 ;;; Code:
 
-;;(electric-indent-mode 0)
-
 ;; 文字コード
 (set-language-environment "Japanese")
 (let ((ws window-system))
@@ -30,19 +28,7 @@
 (setq linum-format "%4d| ")
 
 ;; 現在行のハイライト
-;; (defface hlline-face
-;;   '((((class color)
-;;       (background dark))
-;;      (:background "gray18" t))
-;;     (((class color)
-;;       (background light))
-;;      (:background  "ForestGreen" t))
-;;     (t
-;;      ()))
-;;   "*Face used by hl-line.")
-;; (setq hl-line-face 'hlline-face)
 (global-hl-line-mode)
-
 
 ;; スタートアップを非表示
 (setq inhibit-startup-screen t)
@@ -69,34 +55,14 @@
 (set-face-background 'region "#555")
 
 ;; 行末の空白を強調表示
-;;(setq-default show-trailing-whitespace t)
-;;(set-face-background 'trailing-whitespace "#b14770")
+(setq-default show-trailing-whitespace t)
+(set-face-background 'trailing-whitespace "#b14770")
 
 ;; タブ幅
 (custom-set-variables '(tab-width 4))
 
 ;; インデント整形時，タブの代わりにスペースを用いる
 (setq-default indent-tabs-mode nil)
-
-;; 余計な整形をしない
-;;(setq-default cperl-indent-region-fix-constructs nil)
-;;(setq-default cperl-merge-trailing-else nil)
-
-;; モードラインに行番号表示
-(line-number-mode t)
-
-;; モードラインに列番号表示
-(column-number-mode t)
-
-;;; 現在の関数名をモードラインに表示
-(which-function-mode 1)
-
-;; Emacs の質問を y or n に
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; カーソル位置が何文字目か，何行目かを表示
-(column-number-mode t)
-(line-number-mode t)
 
 ;; 通常のウィンドウで行を折り返さない
 (setq-default truncate-lines t)
@@ -113,8 +79,10 @@
 ;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
 
-;; ファイルが他で編集された場合，
-;; 自動的に buffer を再読み込み
+;; Emacs の質問を y or n に
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; ファイルが他で編集された場合自動的に buffer を再読み込み
 (global-auto-revert-mode 1)
 
 ;; 同名ファイルのバッファにおける識別文字列変更
@@ -231,5 +199,41 @@
   (global-set-key [mouse-5] '(lambda ()
                                (interactive)
                                (scroll-up 1))))
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+;; color theme
+;; http://emacsthemes.caisah.info/
+;;(require 'darcula-theme)
+;; http://aoe-tk.hatenablog.com/entry/20130210/1360506829
+;; (load-theme 'misterioso t)
+(load-theme 'wombat t)
+
+;; 余計な整形をしない
+;;(setq-default cperl-indent-region-fix-constructs nil)
+;;(setq-default cperl-merge-trailing-else nil)
+
+;; モードラインに行番号表示
+;;(line-number-mode t)
+
+;; モードラインに列番号表示
+;;(column-number-mode t)
+
+;;; 現在の関数名をモードラインに表示
+;;(which-function-mode 1)
+
+;; カーソル位置が何文字目か，何行目かを表示
+;;(column-number-mode t)
+;;(line-number-mode t)
+
+;; サーバ設定
+(require 'server)
+(cond (windows-p
+       (defun server-ensure-safe-dir (dir) "Noop" t)))
+;; 複数サーバ起動を防ぐ
+(unless (server-running-p)
+  (server-start))
 
 ;;; 00-basic.el ends here

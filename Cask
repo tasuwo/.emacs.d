@@ -2,41 +2,50 @@
 (source melpa)
 (source marmalade)
 
-(depends-on "ac-slime" :git "https://github.com/purcell/ac-slime")
 (depends-on "ace-jump-mode")
-(depends-on "auto-complete")
-(depends-on "cl-lib")
-(depends-on "color")
-(depends-on "darcula-theme")
-(depends-on "flycheck")
-(depends-on "flycheck-pos-tip")
-(depends-on "helm")
-(depends-on "init-loader")
-(depends-on "markdown-mode")
-(depends-on "pallet")
-(depends-on "popup")
-(depends-on "popwin" :git "https://github.com/m2ym/popwin-el")
-(depends-on "rainbow-delimiters")
-(depends-on "slime" :git "https://github.com/slime/slime.git")
-(depends-on "smartparens")
-(depends-on "smooth-scroll")
-(depends-on "php-mode")
-(depends-on "web-mode")
 (depends-on "yasnippet")
+(depends-on "darcula-theme")
+(depends-on "smart-mode-line")
+(depends-on "migemo")
+(depends-on "quickrun")
+(depends-on "ace-isearch")
+(depends-on "cl-lib")
+(depends-on "git-gutter+")
+(depends-on "rainbow-delimiters")
+(depends-on "smartparens")
 (depends-on "recentf-ext")
-(depends-on "matlab-mode")
-(depends-on "multiple-cursors")
-(depends-on "expand-region")
-(depends-on "smartrep")
+(depends-on "color")
 (depends-on "smart-newline")
-(depends-on "auto-complete-c-headers")
-(depends-on "auto-complete-clang")
 (depends-on "undo-tree")
 (depends-on "fuzzy")
 (depends-on "direx")
+(depends-on "pallet")
+(depends-on "init-loader")
 
-;; php-completion
-;; (depends-on "php-completion"
-;;         :git "https://github.com/suzuki/php-completion.git"
-;;         :branch "develop"
-;;         :files ("*.el" "phpcmp-index-of-*"))
+;; flycheck
+(depends-on "flycheck")
+(depends-on "flycheck-pos-tip")
+
+;; select region
+(depends-on "multiple-cursors")
+(depends-on "expand-region")
+(depends-on "smartrep")
+
+;; helm
+(depends-on "helm")
+(depends-on "helm-swoop")
+(depends-on "helm-flycheck")
+(depends-on "helm-gtags")
+
+;; auto-complete
+(depends-on "auto-complete")
+(depends-on "auto-complete-c-headers")
+(depends-on "auto-complete-clang")
+(depends-on "popup")
+
+;; major/minor mode
+(depends-on "swift-mode")
+(depends-on "markdown-mode")
+(depends-on "php-mode")
+(depends-on "web-mode")
+(depends-on "matlab-mode")

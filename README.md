@@ -27,6 +27,14 @@ $ cd ~/.emacs.d/snippets
 $ ~/.emacs.d/snippets/install-snippets.sh
 ```
 
+###Migemo
+
+for using megemo
+
+```migemo
+$ brew install cmigemo
+```
+
 ##Others
 
 ###for Clisp on SLIME

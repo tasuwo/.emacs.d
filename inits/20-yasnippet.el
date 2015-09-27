@@ -15,4 +15,24 @@
 
 (yas-global-mode 1)
 
-;;; 10-yasnippet.el ends here
+;; add syntaxes for lisp function
+(add-to-list 'yas/key-syntaxes "(w_.)" t)
+
+;; save position before yasnippet execution
+(defun yas/my-save-marker ()
+  (setq yas/my-pre-marker (point-marker))
+  (setq yas/my-post-marker (set-marker (make-marker) (1+ (point)))))
+
+(add-hook 'yas/before-expand-snippet-hook 'yas/my-save-marker)
+
+;; swap ac-source-yasnippet and ac-source-functions
+(defun ac-emacs-lisp-mode-setup ()
+  (setq ac-sources (append
+                    '(ac-source-features
+                      ac-source-yasnippet
+                      ac-source-functions
+                      ac-source-variables
+                      ac-source-symbols)
+                    ac-sources)))
+
+;;; 20-yasnippet.el ends here
