@@ -60,4 +60,19 @@
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 
+;;;;;;;;;;;;;;;;;;
+;; clang-complete
+;; (require 'auto-complete-clang-async)
+
+;; (defun ac-cc-mode-setup ()
+;;   (setq ac-clang-complete-executable "~/.emacs.d/el-get/repo/clang-complete-async/clang-complete")
+;;   (setq ac-sources (append ac-sources '(ac-source-clang-async)))
+;;   (ac-clang-launch-completion-process))
+
+;; (defun my-ac-config ()
+;;   (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+;;   (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+;;   (global-auto-complete-mode t))
+;;   (my-ac-config)
+
 ;;; 30-edit-mode-C_C++.el ends here

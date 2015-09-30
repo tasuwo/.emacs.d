@@ -21,6 +21,7 @@
 (depends-on "direx")
 (depends-on "pallet")
 (depends-on "init-loader")
+(depends-on "bind-key")
 
 ;; flycheck
 (depends-on "flycheck")
@@ -36,11 +37,13 @@
 (depends-on "helm-swoop")
 (depends-on "helm-flycheck")
 (depends-on "helm-gtags")
+(depends-on "helm-descbinds")
 
 ;; auto-complete
 (depends-on "auto-complete")
 (depends-on "auto-complete-c-headers")
 (depends-on "auto-complete-clang")
+(depends-on "auto-complete-clang-async")
 (depends-on "popup")
 
 ;; major/minor mode

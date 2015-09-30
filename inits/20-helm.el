@@ -1,4 +1,4 @@
-  
+
 ;;; Code:
 
 (require 'helm-config)
@@ -28,5 +28,7 @@
 
 (require 'helm-gtags)
 (add-hook 'php-mode-hook 'helm-gtags-mode)
+
+(helm-descbinds-install)
 
 ;;; 20-helm.el ends here
