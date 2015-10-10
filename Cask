@@ -22,6 +22,7 @@
 (depends-on "pallet")
 (depends-on "init-loader")
 (depends-on "bind-key")
+(depends-on "jedi")
 
 ;; flycheck
 (depends-on "flycheck")

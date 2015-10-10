@@ -12,3 +12,5 @@ snippets/*
 !.gitignore
 
 .mc-lists.el
+
+.python-environments/*

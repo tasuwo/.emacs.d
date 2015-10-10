@@ -66,3 +66,19 @@ Add a mlint to the path in `.emacs.d/inits/30-edit-mode-matlab.el`.
 ##Using mouse
 
 >[MouseTerm](https://bitheap.org/mouseterm/)
+
+##python env
+
+```bash
+$ pip install virtualenv
+$ pip install virtualenvwrapper
+$ mkdir ~/.virtualenvs
+```
+
+in `.zshrc`
+
+```bash
+export WORKON_HOME=$HOME/.virtualenvs
+```
+
+and `M-x jedi:install-server`
