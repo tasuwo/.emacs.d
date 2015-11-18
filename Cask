@@ -21,6 +21,7 @@
 (depends-on "direx")
 (depends-on "pallet")
 (depends-on "init-loader")
+(depends-on "use-package")
 (depends-on "bind-key")
 (depends-on "jedi")
 
@@ -39,6 +40,7 @@
 (depends-on "helm-flycheck")
 (depends-on "helm-gtags")
 (depends-on "helm-descbinds")
+(depends-on "helm-bind-key")
 
 ;; auto-complete
 (depends-on "auto-complete")
