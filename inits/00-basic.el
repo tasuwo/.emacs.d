@@ -10,15 +10,11 @@
          (setq file-name-coding-system 'sjis)
          (setq locale-coding-system 'utf-8))
         ((eq ws 'ns)
-         (require 'ucs-normalize)
+         (use-package ucs-normalize)
          (prefer-coding-system 'utf-8-hfs)
          (setq file-name-coding-system 'utf-8-hfs)
      (setq locale-coding-system 'utf-8-hfs))))
 (prefer-coding-system 'utf-8-unix)
-
-;; クリップボードを使用
-(set-clipboard-coding-system 'utf-8)
-(setq x-select-enable-clipboard t)
 
 ;; 行番号表示
 (global-linum-mode t)
@@ -86,7 +82,7 @@
 (global-auto-revert-mode 1)
 
 ;; 同名ファイルのバッファにおける識別文字列変更
-(require 'uniquify)
+(use-package uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; C-x C-f を便利にする
@@ -106,20 +102,19 @@
 
 ;; クリップボードとkill-ringを共有する
 ;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
-(cond (darwin-p
-       (defun copy-from-osx ()
-         (shell-command-to-string "pbpaste"))
-       (defun paste-to-osx (text &optional push)
-         (let ((process-connection-type nil))
-           (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-             (process-send-string proc text)
-             (process-send-eof proc))))
-       (setq interprogram-cut-function 'paste-to-osx)
-       (setq interprogram-paste-function 'copy-from-osx))
-      (windows-p
-       ;; その内な...
-       ))
-
+;; (cond (darwin-p
+;;        (defun copy-from-osx ()
+;;          (shell-command-to-string "pbpaste"))
+;;        (defun paste-to-osx (text &optional push)
+;;          (let ((process-connection-type nil))
+;;            (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+;;              (process-send-string proc text)
+;;              (process-send-eof proc))))
+;;        (setq interprogram-cut-function 'paste-to-osx)
+;;        (setq interprogram-paste-function 'copy-from-osx))
+;;       (windows-p
+;;        ;; その内な...
+;;        ))
 
 ;; 分割ウインドウ間の移動
 (windmove-default-keybindings)
@@ -206,7 +201,7 @@
 
 ;; color theme
 ;; http://emacsthemes.caisah.info/
-;;(require 'darcula-theme)
+;;(use-package darcula-theme)
 ;; http://aoe-tk.hatenablog.com/entry/20130210/1360506829
 ;; (load-theme 'misterioso t)
 (load-theme 'wombat t)
@@ -280,5 +275,36 @@ Version 2015-06-11"
           'face (list :background (match-string-no-properties 0)))))))
   (font-lock-fontify-buffer))
 (add-hook 'emacs-lisp-mode 'xah-syntax-color-hex)
+
+;; カーソル位置のブラウザを開く
+(defun browse-url-at-point ()
+  (interactive)
+  (let ((url-region (bounds-of-thing-at-point 'url)))
+    (when url-region
+      (browse-url (buffer-substring-no-properties (car url-region)
+                                                  (cdr url-region))))))
+
+;; クリップボードを使用
+(set-clipboard-coding-system 'utf-8)
+(setq x-select-enable-clipboard t)
+
+;; (defun copy-from-osx ()
+;;   (shell-command-to-string "pbpaste"))
+;; (defun paste-to-osx (text &optional push)
+;;   (let ((process-connection-type nil))
+;;     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+;;       (process-send-string proc text)
+;;       (process-send-eof proc)))) 
+
+;; cmigemo 等パスの問題を修正
+;; http://iriya-ufo.net/2014/03/19/368.html
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
+   This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+(set-exec-path-from-shell-PATH)
 
 ;;; 00-basic.el ends here

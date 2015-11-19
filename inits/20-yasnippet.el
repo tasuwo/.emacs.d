@@ -1,7 +1,7 @@
 
 ;;; Code:
 
-(require 'yasnippet)
+(use-package yasnippet)
 
 ;; パスを通す
 (yas-load-directory (concat root-dir "snippets"))

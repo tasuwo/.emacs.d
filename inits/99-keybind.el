@@ -1,31 +1,25 @@
 
 ;;; Code:
 
-(require 'bind-key)
+(use-package bind-key)
 
 ;; カーソル位置のブラウザを開く
-(defun browse-url-at-point ()
-  (interactive)
-  (let ((url-region (bounds-of-thing-at-point 'url)))
-    (when url-region
-      (browse-url (buffer-substring-no-properties (car url-region)
-                                                  (cdr url-region))))))
 (bind-key "C-c C-o" 'browse-url-at-point)
 ;; スペースを除いた文頭へ移動
-(bind-key "M-a" 'back-to-indentation global-map)
+(bind-key "M-a" 'back-to-indentation)
 ;; 後方削除
-(bind-key "C-h" 'delete-backward-char global-map)
+(bind-key "C-h" 'delete-backward-char)
 ;; 選択範囲をコメントアウト
 (bind-key "C-c C-c" 'comment-region)
 ;; ヘルプ
 (bind-key "M-?" 'help-for-help)
 ;;;;;;;;;;;;
 ;; js-doc
-(bind-key "C-c C-j" 'js-doc-insert-function-doc)
+;;(bind-key "C-c C-j" 'js-doc-insert-function-doc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; multipule-cursors & smartrep
-(require 'multiple-cursors)
-(require 'smartrep)
+(use-package multiple-cursors)
+(use-package smartrep)
 (declare-function smartrep-define-key "smartrep")
 (bind-key (kbd "C-M-c") 'mc/edit-lines)
 (bind-key (kbd "C-M-r") 'mc/mark-all-in-region)
@@ -80,7 +74,7 @@
                        ("M-p" . 'flymake-goto-prev-error)))
 ;;;;;;;;;;;;
 ;; expand region
-(require 'expand-region)
+(use-package expand-region)
 (global-unset-key "\C-l")
 (bind-key "C-l" 'er/expand-region)
 (bind-key "C-M-l" 'er/contract-region) ;; リージョンを狭める

@@ -1,7 +1,7 @@
 
 ;;; Code:
 
-(require 'popwin)
+(use-package popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 
 (setq popwin:popup-window-position 'bottom)

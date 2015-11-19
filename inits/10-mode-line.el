@@ -3,7 +3,7 @@
 ;; http://blog.shibayu36.org/entry/2014/04/01/094543
 
 ;; smart-mode-line
-(require 'smart-mode-line)
+(use-package smart-mode-line)
 (setq sml/theme 'dark)
 (sml/setup)
 

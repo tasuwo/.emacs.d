@@ -1,7 +1,7 @@
 
 ;;; Code:
 
-(require 'ace-jump-mode)
+(use-package ace-jump-mode)
 (autoload
   'ace-jump-mode
   "ace-jump-mode"

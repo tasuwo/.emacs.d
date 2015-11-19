@@ -3,29 +3,40 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; auto-complete
-(require 'auto-complete)
-(require 'auto-complete-config)
+(use-package auto-complete)
+(use-package auto-complete-config)
 (global-auto-complete-mode t)
 (ac-config-default)
 
+;; 適用するメジャーモード
 (add-to-list 'ac-modes 'text-mode)
 (add-to-list 'ac-modes 'fundamental-mode)
 (add-to-list 'ac-modes 'org-mode)
 (add-to-list 'ac-modes 'yatex-mode)
+(add-to-list 'ac-modes 'web-mode)
+
 ;; Start automatically completion when you typed one or more character
 (setq ac-auto-start 3)
+
 ;; use C-n/C-p on the menu
 (setq ac-use-menu-map t)
+
 ;; fuzzy match
 (setq ac-use-fuzzy t)
 (setq ac-dwim t)
-;; Set source of information
+
+;; ベースとなるソースを指定
 (setq-default ac-sources
               '(ac-source-filename
                 ac-source-yasnippet
                 ac-source-abbrev
                 ac-source-dictionary
                 ac-source-words-in-same-mode-buffers))
+
+;; 個別にソースを指定
+(defun ac-web-mode-setup ()
+  (setq-default ac-sources my-ac-sources))
+(add-hook 'web-mode-hook 'ac-web-mode-setup)
 
 ;; completion for english wards
 (defun my-ac-look ()
@@ -44,6 +55,6 @@
   (auto-complete '(ac-source-look))))
 (defvar ac-source-look
   '((candidates . my-ac-look)
-    (requires . 3)))
+    (use-packages. 3)))
 
 ;;; 20-auto-complete.el ends here

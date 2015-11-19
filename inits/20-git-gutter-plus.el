@@ -1,7 +1,7 @@
 
 ;;; Code:
 
-(require 'git-gutter+)
+(use-package git-gutter+)
 
 (setq git-gutter+-modified-sign " ")
 (setq git-gutter+-added-sign "+")

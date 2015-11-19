@@ -2,12 +2,12 @@
 ;;; Code:
 
 ;; rainbow-delimiters を使うための設定
-(require 'rainbow-delimiters)
+(use-package rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;; 括弧の色を強調する設定
-(require 'cl-lib)
-(require 'color)
+(use-package cl-lib)
+(use-package color)
 (defun rainbow-delimiters-using-stronger-colors ()
   (interactive)
   (cl-loop

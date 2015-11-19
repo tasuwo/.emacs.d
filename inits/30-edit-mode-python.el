@@ -12,7 +12,7 @@
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
-(require 'jedi)
+(use-package jedi)
 (setq jedi:complete-on-dot t)
 
 ;;; 30-edit-mode-python.el ends here

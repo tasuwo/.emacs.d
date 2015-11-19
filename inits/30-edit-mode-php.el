@@ -3,10 +3,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; php
-;; (require 'php-mode)
+;; (use-package php-mode)
 ;; (add-hook 'php-mode-hook
 ;;           (lambda ()
-;;             (require 'php-completion)
+;;             (use-package php-completion)
 ;;             (php-completion-mode t)
 ;;             (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
 ;;             (make-local-variable 'ac-sources)
@@ -15,16 +15,16 @@
 ;;                                ac-source-php-completion
 ;;                                ac-source-filename
 ;;                                                               ))))
-(require 'php-mode)
+(use-package php-mode)
 (add-hook 'php-mode-hook
           '(lambda()
-             (require 'php-completion)
+             (use-package php-completion)
              (setq tab-width 4)
              (setq indent-tabs-mode false)
              (setq c-basic-offset 4)
              (flymake-mode t)
              (setq php-mode-force-pear t)
-             (require 'php-completion)
+             (use-package php-completion)
              (php-completion-mode t)
              (make-local-variable 'ac-sources)
              (add-to-list 'ac-sources 'ac-source-php-completion)

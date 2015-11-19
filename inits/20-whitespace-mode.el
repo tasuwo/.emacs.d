@@ -1,7 +1,7 @@
 
 ;;; Code:
 
-(require 'whitespace)
+(use-package whitespace)
 (setq whitespace-style '(face           ; faceで可視化
                          trailing       ; 行末
                          tabs           ; タブ

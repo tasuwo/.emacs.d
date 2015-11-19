@@ -1,7 +1,7 @@
 
 ;;; Code:
 
-(require 'flycheck)
+(use-package flycheck)
 
 (flycheck-mode t)
 

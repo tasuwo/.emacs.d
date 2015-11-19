@@ -31,7 +31,7 @@
 (add-hook 'c-mode-common-hook 'add-c-mode-common-conf)
 
 ;; ヘッダーの補完
-;;(require 'auto-complete-c-headers)
+;;(use-package auto-complete-c-headers)
 ;;(add-hook 'c++-mode-hook '(setq ac-sources (append ac-sources '(ac-source-c-headers))))
 ;;(add-hook 'c-mode-hook '(setq ac-sources (append ac-sources '(ac-source-c-headers))))
 
@@ -39,9 +39,7 @@
 ;; auto-complete-clang
 ;; http://boronology.blogspot.jp/2012/01/auto-complete-clangemacsc.html
 ;; http://ochiailab.blogspot.jp/2015/02/auto-complete-clang.html
-(require 'auto-complete)
-(require 'auto-complete-config)
-(require 'auto-complete-clang)
+(use-package auto-complete-clang)
 (defun my-ac-cc-mode-setup ()
   ;;(setq ac-clang-prefix-header
   ;;"~/Documents/_Include/heddaa.pch")
@@ -62,7 +60,7 @@
 
 ;;;;;;;;;;;;;;;;;;
 ;; clang-complete
-;; (require 'auto-complete-clang-async)
+;; (use-package auto-complete-clang-async)
 
 ;; (defun ac-cc-mode-setup ()
 ;;   (setq ac-clang-complete-executable "~/.emacs.d/el-get/repo/clang-complete-async/clang-complete")

@@ -2,7 +2,7 @@
 ;;; Code:
 ;;; http://cx4a.blogspot.jp/2011/12/popwineldirexel.html
 
-(require 'direx)
+(use-package direx)
 
 (setq direx:leaf-icon "  "
       direx:open-icon "▾ "
