@@ -1,7 +1,6 @@
 
 ;;; Code:
 
-
 ;; 環境判断用の変数
 (defun x->bool (elt) (not (not elt)))
 ;; system-type predicates

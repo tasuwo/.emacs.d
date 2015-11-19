@@ -18,7 +18,7 @@
 ;; 選択範囲をコメントアウト
 (bind-key "C-c C-c" 'comment-region)
 ;; ヘルプ
-(bind-key "M-?" 'help-for-help)o
+(bind-key "M-?" 'help-for-help)
 ;;;;;;;;;;;;
 ;; js-doc
 (bind-key "C-c C-j" 'js-doc-insert-function-doc)
@@ -29,7 +29,7 @@
 (declare-function smartrep-define-key "smartrep")
 (bind-key (kbd "C-M-c") 'mc/edit-lines)
 (bind-key (kbd "C-M-r") 'mc/mark-all-in-region)
-;;(global-unset-key "C-t")
+(global-unset-key "\C-t")
 (smartrep-define-key global-map "C-t"
   '(("C-t"      . 'mc/mark-next-like-this)
     ("j"        . 'mc/mark-next-like-this)

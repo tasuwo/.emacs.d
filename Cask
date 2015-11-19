@@ -24,6 +24,7 @@
 (depends-on "use-package")
 (depends-on "bind-key")
 (depends-on "jedi")
+(depends-on "popwin")
 
 ;; flycheck
 (depends-on "flycheck")
