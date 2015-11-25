@@ -19,6 +19,9 @@ mkdir yasnippet-snippets/web-mode
 cat <<EOF > yasnippet-snippets/web-mode/.yas-parents
 html-mode
 css-mode
+js2-mode
+js-mode
+php-mode
 EOF
 cecho $blue "Get matlab-snippets..."
 git clone https://github.com/rysk-t/matlab-snippets.git

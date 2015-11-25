@@ -6,15 +6,9 @@
 ;;; https://git.framasoft.org/distopico/distopico-dotemacs/blob/23808ab57054e29e7d71fb3a77af928ce6f59627/emacs/modes/web-mode.el
 (use-package web-mode)
 
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.inc\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.*tpl\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.*tml\\'" . web-mode))
@@ -25,22 +19,15 @@
     ("php" . "\\.phtml\\'")
     ("blade" . "\\.blade\\'")
     ("django" . "\\.[sd]tpl\\'")
-    ("django" . "\\.[sd]tml\\'")
-    )
-)
+    ("django" . "\\.[sd]tml\\'")))
 
 (add-hook 'web-mode-hook
           '(lambda ()
              ;; Auto indent
              (local-set-key (kbd "RET") 'newline-and-indent)
-
              ;; Disabled smartparens in web-mode
-             (setq smartparens-mode nil)
-
-             ;; Enable todo
-             ; (todo-highlight)
-             )
-          )
+             ;; (setq smartparens-mode nil)
+             ))
 
 (setq-default web-mode-enable-auto-pairing t
               web-mode-enable-auto-opening t
@@ -73,11 +60,12 @@
    ((t (:foreground "#FF8A4B"))))
  '(web-mode-current-element-highlight-face
    ((t (:background "#000000"
-                    :foreground "#FF8A4B"))))
- )
+        :foreground "#FF8A4B")))))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; zencoding
+;; html と css では zencoding をつかう
 (use-package emmet-mode)
 (use-package ac-emmet)
 
@@ -90,7 +78,10 @@
 
 (add-hook 'web-mode-hook 'ac-emmet-html-setup)
 (add-hook 'css-mode-hook 'ac-emmet-css-setup)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; js2-mode
 (use-package js2-mode)
 (use-package js2-refactor)
@@ -128,7 +119,7 @@
     (js2-imenu-extras-mode)
     (js2-imenu-extras-setup)
     (rainbow-delimiters-mode t)
-    ;(rainbow-identifiers-mode t)
+    (rainbow-identifiers-mode t)
     ;; Todo Highlighting
     (todo-highlight)
   )
@@ -137,16 +128,14 @@
 ;; Formating beautify
 (eval-after-load 'js2-mode
   '(define-key js2-mode-map (kbd "C-c C-b f") 'web-beautify-js))
-
 (eval-after-load 'json-mode
   '(define-key json-mode-map (kbd "C-c C-b f") 'web-beautify-js))
-
 (eval-after-load 'web-mode
   '(define-key html-mode-map (kbd "C-c C-b f") 'web-beautify-html))
-
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "C-c C-b f") 'web-beautify-css))
 
+;;;;;;;;;;;;;;;;;;;;
 ;; skewer-mode
 (use-package skewer-mode
   :config

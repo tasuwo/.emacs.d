@@ -25,8 +25,6 @@
 (depends-on "bind-key")
 (depends-on "jedi")
 (depends-on "popwin")
-(depends-on "ac-emmet")
-(depends-on "un-define")
 
 ;; flycheck
 (depends-on "flycheck")
@@ -50,6 +48,8 @@
 (depends-on "auto-complete-c-headers")
 (depends-on "auto-complete-clang")
 (depends-on "auto-complete-clang-async")
+(depends-on "ac-emmet")
+(depends-on "ac-js2")
 (depends-on "popup")
 
 ;; major/minor mode

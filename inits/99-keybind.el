@@ -145,4 +145,8 @@
 ;; f1 : description
 ;; f2 : jump to definition
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; zencoding
+(bind-key "C-j" 'emmet-expand-line emmet-mode-keymap)
+
 ;;; 99-keybind.el ends here
