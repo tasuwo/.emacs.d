@@ -42,6 +42,7 @@
 (depends-on "helm-gtags")
 (depends-on "helm-descbinds")
 (depends-on "helm-bind-key")
+(depends-on "helm-pydoc")
 
 ;; auto-complete
 (depends-on "auto-complete")
