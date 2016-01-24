@@ -102,19 +102,19 @@
 
 ;; クリップボードとkill-ringを共有する
 ;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
-;; (cond (darwin-p
-;;        (defun copy-from-osx ()
-;;          (shell-command-to-string "pbpaste"))
-;;        (defun paste-to-osx (text &optional push)
-;;          (let ((process-connection-type nil))
-;;            (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-;;              (process-send-string proc text)
-;;              (process-send-eof proc))))
-;;        (setq interprogram-cut-function 'paste-to-osx)
-;;        (setq interprogram-paste-function 'copy-from-osx))
-;;       (windows-p
-;;        ;; その内な...
-;;        ))
+(cond (darwin-p
+       (defun copy-from-osx ()
+         (shell-command-to-string "pbpaste"))
+       (defun paste-to-osx (text &optional push)
+         (let ((process-connection-type nil))
+           (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+             (process-send-string proc text)
+             (process-send-eof proc))))
+       (setq interprogram-cut-function 'paste-to-osx)
+       (setq interprogram-paste-function 'copy-from-osx))
+      (windows-p
+       ;; その内な...
+       ))
 
 ;; 分割ウインドウ間の移動
 (windmove-default-keybindings)
