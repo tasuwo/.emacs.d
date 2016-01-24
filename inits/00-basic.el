@@ -307,4 +307,27 @@ Version 2015-06-11"
     (setq exec-path (split-string path-from-shell path-separator))))
 (set-exec-path-from-shell-PATH)
 
+;; 適切なファイルを開く
+(defun my-x-open (file)
+  "open file by a associated program."
+  (interactive "FOpen File: ")
+  (message "Opening %s..." file)
+  (cond ((not window-system)
+         (find-file file))
+        ((eq system-type 'windows-nt)
+         (call-process "cmd.exe" nil 0 nil "/c" "start" ""
+               (convert-standard-filename file)))
+        ((eq system-type 'darwin)
+         (call-process "open" nil 0 nil file))
+        (t
+         (call-process "xdg-open" nil 0 nil file)))
+  (if (functionp 'recentf-add-file)
+    (recentf-add-file file))
+  (message "Opening %s...done" file))
+
+(defun dired-open-file ()
+  "In dired, open the file named on this line."
+  (interactive)
+  (my-x-open (dired-get-filename)))
+
 ;;; 00-basic.el ends here
