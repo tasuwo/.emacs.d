@@ -28,6 +28,7 @@
 
 ;; flycheck
 (depends-on "flycheck")
+(depends-on "pos-tip")
 (depends-on "flycheck-pos-tip")
 
 ;; select region
@@ -63,3 +64,4 @@
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
 (depends-on "skewer-mode")
+(depends-on "typescript-mode")
