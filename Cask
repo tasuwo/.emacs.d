@@ -29,7 +29,8 @@
 ;; flycheck
 (depends-on "flycheck")
 (depends-on "pos-tip")
-(depends-on "flycheck-pos-tip")
+(depends-on "flycheck-tip")
+;; (depends-on "flycheck-pos-tip")
 
 ;; select region
 (depends-on "multiple-cursors")
