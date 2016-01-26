@@ -13,6 +13,10 @@
 (bind-key "C-c C-c" 'comment-region)
 ;; ヘルプ
 (bind-key "M-?" 'help-for-help)
+;; shell-command
+(bind-key "M-!" nil)
+(bind-key "M-s" 'shell-command)
+
 ;;;;;;;;;;;;
 ;; js-doc
 ;;(bind-key "C-c C-j" 'js-doc-insert-function-doc)
@@ -152,16 +156,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; company
 ;;; C-n, C-pで補完候補を選べるように
-(define-key company-active-map (kbd "M-n") nil)
-(define-key company-active-map (kbd "M-p") nil)
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(bind-key (kbd "M-n") nil)
+(bind-key (kbd "M-p") nil)
+(bind-key (kbd "C-n") 'company-select-next)
+(bind-key (kbd "C-p") 'company-select-previous)
 ;;; C-hがデフォルトでドキュメント表示にmapされているので、文字を消せるようにmapを外す
-(define-key company-active-map (kbd "C-h") nil)
+;; (bind-key (kbd "C-h") nil)
 ;;; 1つしか候補がなかったらtabで補完、複数候補があればtabで次の候補へ行くように
-(define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+(bind-key (kbd "<tab>") 'company-complete-common-or-cycle)
 ;;; ドキュメント表示
-(define-key company-active-map (kbd "M-d") 'company-show-doc-buffer)
-
+(bind-key (kbd "M-d") 'company-show-doc-buffer)
 
 ;;; 99-keybind.el ends here
