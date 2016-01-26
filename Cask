@@ -66,3 +66,5 @@
 (depends-on "js2-refactor")
 (depends-on "skewer-mode")
 (depends-on "typescript-mode")
+(depends-on "tide")
+(depends-on "company")

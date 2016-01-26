@@ -149,4 +149,19 @@
 ;; zencoding
 (bind-key "C-j" 'emmet-expand-line emmet-mode-keymap)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; company
+;;; C-n, C-pで補完候補を選べるように
+(define-key company-active-map (kbd "M-n") nil)
+(define-key company-active-map (kbd "M-p") nil)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+;;; C-hがデフォルトでドキュメント表示にmapされているので、文字を消せるようにmapを外す
+(define-key company-active-map (kbd "C-h") nil)
+;;; 1つしか候補がなかったらtabで補完、複数候補があればtabで次の候補へ行くように
+(define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+;;; ドキュメント表示
+(define-key company-active-map (kbd "M-d") 'company-show-doc-buffer)
+
+
 ;;; 99-keybind.el ends here
