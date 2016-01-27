@@ -127,7 +127,7 @@
 ;; (define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
 ;;;;;;;;;;;;;;
 ;; git-gutter-+
-(bind-key "C-x g" 'git-gutter+-mode) ; Turn on/off in the current buffer
+;;(bind-key "C-x g" 'git-gutter+-mode) ; Turn on/off in the current buffer
 (bind-key "C-x G" 'global-git-gutter+-mode) ; Turn on/off globally
 (eval-after-load 'git-gutter+
   '(progn
@@ -156,15 +156,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; company
 ;;; C-n, C-pで補完候補を選べるように
-(bind-key (kbd "M-n") nil)
-(bind-key (kbd "M-p") nil)
-(bind-key (kbd "C-n") 'company-select-next)
-(bind-key (kbd "C-p") 'company-select-previous)
+;;(bind-key (kbd "M-n") nil)
+;;(bind-key (kbd "M-p") nil)
+;;(bind-key (kbd "C-n") 'company-select-next)
+;;(bind-key (kbd "C-p") 'company-select-previous)
 ;;; C-hがデフォルトでドキュメント表示にmapされているので、文字を消せるようにmapを外す
 ;; (bind-key (kbd "C-h") nil)
 ;;; 1つしか候補がなかったらtabで補完、複数候補があればtabで次の候補へ行くように
-(bind-key (kbd "<tab>") 'company-complete-common-or-cycle)
+;;(bind-key (kbd "<tab>") 'company-complete-common-or-cycle)
 ;;; ドキュメント表示
-(bind-key (kbd "M-d") 'company-show-doc-buffer)
+;;(bind-key (kbd "M-d") 'company-show-doc-buffer)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; magit
+(bind-key (kbd "<f11>") 'magit-status)
+;; (add-hook 'magit-mode-hook
+;;           '(lambda ()
+;;              (local-set-key (kbd "<f10>") 'magit-remote-rename)
+;;              ))
 
 ;;; 99-keybind.el ends here

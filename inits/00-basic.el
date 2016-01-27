@@ -100,22 +100,6 @@
       (message "stored path: %s" fPath)
       (kill-new (file-truename fPath)))))
 
-;; クリップボードとkill-ringを共有する
-;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
-(cond (darwin-p
-       (defun copy-from-osx ()
-         (shell-command-to-string "pbpaste"))
-       (defun paste-to-osx (text &optional push)
-         (let ((process-connection-type nil))
-           (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-             (process-send-string proc text)
-             (process-send-eof proc))))
-       (setq interprogram-cut-function 'paste-to-osx)
-       (setq interprogram-paste-function 'copy-from-osx))
-      (windows-p
-       ;; その内な...
-       ))
-
 ;; 分割ウインドウ間の移動
 (windmove-default-keybindings)
 (defun window-move ()
@@ -234,7 +218,6 @@
 ;;
 ;; open file as root
 ;;______________________________________________________________________
-
 (defun th-rename-tramp-buffer ()
   (when (file-remote-p (buffer-file-name))
     (rename-buffer
@@ -260,7 +243,7 @@
   (set-buffer (find-file (concat "/sudo::" file))))
 
 ;; preview color
-;; Don't wotk x(
+;; Don't work x(
 (defun xah-syntax-color-hex ()
   "Syntax color text of the form 「#ff1100」 in current buffer.
 URL `http://ergoemacs.org/emacs/emacs_CSS_colors.html'
@@ -284,17 +267,37 @@ Version 2015-06-11"
       (browse-url (buffer-substring-no-properties (car url-region)
                                                   (cdr url-region))))))
 
+;; クリップボードとkill-ringを共有する
+;; Emacs.app でうまく動かない
+;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
+(cond (darwin-p
+       (defun copy-from-osx ()
+         (shell-command-to-string "pbpaste"))
+       (defun paste-to-osx (text &optional push)
+         (let ((process-connection-type nil))
+           (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+             (process-send-string proc text)
+             (process-send-eof proc))))
+       (setq interprogram-cut-function 'paste-to-osx)
+       (setq interprogram-paste-function 'copy-from-osx))
+      (windows-p
+       ;; その内な...
+       ))
 ;; クリップボードを使用
 (set-clipboard-coding-system 'utf-8)
 (setq x-select-enable-clipboard t)
-
 ;; (defun copy-from-osx ()
 ;;   (shell-command-to-string "pbpaste"))
 ;; (defun paste-to-osx (text &optional push)
 ;;   (let ((process-connection-type nil))
 ;;     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
 ;;       (process-send-string proc text)
-;;       (process-send-eof proc)))) 
+;;       (process-send-eof proc))))
+
+;; コマンド履歴を残す
+(setq desktop-globals-to-save '(extended-command-history))
+(setq desktop-files-not-to-save "")
+(desktop-save-mode 1)
 
 ;; cmigemo 等パスの問題を修正
 ;; http://iriya-ufo.net/2014/03/19/368.html

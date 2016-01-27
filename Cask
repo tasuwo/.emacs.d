@@ -25,6 +25,7 @@
 (depends-on "bind-key")
 (depends-on "jedi")
 (depends-on "popwin")
+(depends-on "magit")
 
 ;; flycheck
 (depends-on "flycheck")
