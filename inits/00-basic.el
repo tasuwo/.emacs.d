@@ -165,6 +165,7 @@
                (throw 'end-flag t)))))))
 
 ;; マウス操作設定
+;; SIMBLE と MouseTerm をインストールすること
 ;; @see https://bitheap.org/mouseterm/
 (xterm-mouse-mode t)
 (mouse-wheel-mode t)
