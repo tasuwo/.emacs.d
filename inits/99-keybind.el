@@ -88,9 +88,16 @@
 (bind-key "C-m" 'smart-newline)
 ;;;;;;;;;;;;
 ;; direx
-(bind-key "C-x C-j" 'direx:jump-to-directory-other-window)
-(global-unset-key (kbd "C-x C-d"))
-(bind-key "C-x C-d" 'direx:jump-to-directory)
+(bind-key "C-x C-j" 'direx:jump-to-project-directory)
+(add-hook 'direx:direx-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "j") 'direx:next-item)
+             (local-set-key (kbd "k") 'direx:previous-item)
+             (local-set-key (kbd "h") 'direx:up-item)
+             (local-set-key (kbd "l") 'direx:down-item)
+             ))
+;;(global-unset-key (kbd "C-x C-d"))
+;;(bind-key "C-x C-d" 'direx:jump-to-directory)
 ;;;;;;;;;;;;
 ;; コピー
 (bind-key "C-x w" 'kill-ring-save)

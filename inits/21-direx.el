@@ -14,4 +14,14 @@
 (push '(direx:direx-mode :position left :width 30 :dedicated t)
       popwin:special-display-config)
 
+;; プロジェクトの root を考慮して direx を起動
+;; http://blog.shibayu36.org/entry/2013/02/12/191459
+(defun direx:jump-to-project-directory ()
+  (interactive)
+  (let ((result (ignore-errors
+                  (direx-project:jump-to-project-root-other-window)
+                  t)))
+    (unless result
+      (direx:jump-to-directory-other-window))))
+
 ;;; 21-direx.el ends here
