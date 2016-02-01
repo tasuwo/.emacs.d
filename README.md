@@ -63,6 +63,15 @@ Add a mlint to the path in `.emacs.d/inits/30-edit-mode-matlab.el`.
   :modes '(matlab-mode))
 ```
 
+###for pytho-mode
+
+Use a `~/.pylintrc` file to configure Pylint.
+
+```
+[FORMAT]
+indent-string=\t
+```
+
 ##Using mouse
 
 >[MouseTerm](https://bitheap.org/mouseterm/)
