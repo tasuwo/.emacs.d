@@ -37,6 +37,28 @@ $ brew install cmigemo
 
 ##Others
 
+###for js2-mode
+
+```
+npm install -g tern
+```
+
+Create `~/.tern-config` file.
+
+```json
+{
+  "libs": [
+    "browser",
+    "jquery"
+  ],
+  "plugins": {
+     "node": {}
+  }
+}
+```
+
+[EmacsにternをインストールしてjQueryを補完する -- blog.10rane.com](http://blog.10rane.com/2015/08/06/how-to-install-and-setup-tern/)
+
 ###for Clisp on SLIME
 
 ```

@@ -27,6 +27,10 @@
 (depends-on "popwin")
 (depends-on "magit")
 
+;; tern
+(depends-on "tern")
+(depends-on "tern-auto-complete")
+
 ;; flycheck
 (depends-on "flycheck")
 (depends-on "pos-tip")
@@ -63,7 +67,7 @@
 (depends-on "web-mode")
 (depends-on "matlab-mode")
 (depends-on "emmet-mode")
-(depends-on "js2-mode")
+(depends-on "js2-mode" :git "https://github.com/mooz/js2-mode")
 (depends-on "js2-refactor")
 (depends-on "skewer-mode")
 (depends-on "typescript-mode")
