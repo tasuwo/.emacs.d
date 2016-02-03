@@ -296,9 +296,9 @@ Version 2015-06-11"
 ;;       (process-send-eof proc))))
 
 ;; コマンド履歴を残す
-(setq desktop-globals-to-save '(extended-command-history))
-(setq desktop-files-not-to-save "")
-(desktop-save-mode 1)
+;; (setq desktop-globals-to-save '(extended-command-history))
+;; (setq desktop-files-not-to-save "")
+;; (desktop-save-mode 1)
 
 ;; cmigemo 等パスの問題を修正
 ;; http://iriya-ufo.net/2014/03/19/368.html
