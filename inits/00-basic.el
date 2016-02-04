@@ -1,6 +1,17 @@
 
 ;;; Code:
 
+(setq locale-coding-system 'utf-8)
+
+;; font
+(create-fontset-from-ascii-font "Meslo LG S for Powerline:style=RegularForPowerline" nil "powerline")
+(set-fontset-font "fontset-powerline"
+                  'unicode
+                  (font-spec :family "Meslo LG S for Powerline" :size 16)
+                  nil
+                  'append)
+(add-to-list 'default-frame-alist '(font . "fontset-powerline"))
+
 ;; 文字コード
 (set-language-environment "Japanese")
 (let ((ws window-system))
