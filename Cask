@@ -26,6 +26,7 @@
 (depends-on "jedi")
 (depends-on "popwin")
 (depends-on "magit")
+(depends-on "shell-pop")
 
 ;; tern
 (depends-on "tern")

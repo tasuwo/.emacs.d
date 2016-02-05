@@ -182,4 +182,8 @@
 ;;              (local-set-key (kbd "<f10>") 'magit-remote-rename)
 ;;              ))
 
+;;;;;;;;;;;;;;
+;; shell-pop
+(bind-key "M-[" 'shell-pop)
+
 ;;; 99-keybind.el ends here
