@@ -31,6 +31,8 @@
 
 (use-package helm-bind-key)
 
+(helm-migemo-mode 1)
+
 (helm-descbinds-install)
 
 ;;; 20-helm.el ends here
