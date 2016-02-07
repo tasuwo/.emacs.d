@@ -184,6 +184,6 @@
 
 ;;;;;;;;;;;;;;
 ;; shell-pop
-(bind-key "M-[" 'shell-pop)
+(bind-key "C-@" 'shell-pop)
 
 ;;; 99-keybind.el ends here
