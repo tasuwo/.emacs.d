@@ -51,6 +51,7 @@
 (depends-on "helm-descbinds")
 (depends-on "helm-bind-key")
 (depends-on "helm-pydoc")
+(depends-on "browse-kill-ring")
 
 ;; auto-complete
 (depends-on "auto-complete")

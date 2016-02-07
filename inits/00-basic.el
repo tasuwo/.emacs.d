@@ -14,18 +14,15 @@
 
 ;; 文字コード
 (set-language-environment "Japanese")
-(let ((ws window-system))
-  (cond ((eq ws 'w32)
-         (prefer-coding-system 'utf-8-unix)
-         (set-default-coding-systems 'utf-8-unix)
-         (setq file-name-coding-system 'sjis)
-         (setq locale-coding-system 'utf-8))
-        ((eq ws 'ns)
-         (use-package ucs-normalize)
-         (prefer-coding-system 'utf-8-hfs)
-         (setq file-name-coding-system 'utf-8-hfs)
-     (setq locale-coding-system 'utf-8-hfs))))
-(prefer-coding-system 'utf-8-unix)
+(set-language-environment "Japanese")
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
 
 ;; 行番号表示
 (global-linum-mode t)
@@ -60,7 +57,6 @@
 
 ;; 選択領域の色指定
 (set-face-background 'region "#800000")
-
 ;; 行末の空白を強調表示
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
@@ -283,28 +279,27 @@ Version 2015-06-11"
 ;; Emacs.app でうまく動かない
 ;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
 (cond (darwin-p
-       (defun copy-from-osx ()
-         (shell-command-to-string "pbpaste"))
+       (defvar prev-yanked-text nil "*previous yanked text")
        (defun paste-to-osx (text &optional push)
          (let ((process-connection-type nil))
-           (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+           (let ((proc (start-process-shell-command
+                        "paste-to-osx"
+                        "*Messages*"
+                        "pbcopy")))
              (process-send-string proc text)
-             (process-send-eof proc))))
+             (process-send-eof proc)
+             )))
+       (defun copy-from-osx ()
+         (shell-command-to-string "pbpaste"))
        (setq interprogram-cut-function 'paste-to-osx)
-       (setq interprogram-paste-function 'copy-from-osx))
+       (setq interprogram-paste-function 'copy-from-osx)
+       )
       (windows-p
-       ;; その内な...
+       ;; そのうちな...
        ))
 ;; クリップボードを使用
 (set-clipboard-coding-system 'utf-8)
 (setq x-select-enable-clipboard t)
-;; (defun copy-from-osx ()
-;;   (shell-command-to-string "pbpaste"))
-;; (defun paste-to-osx (text &optional push)
-;;   (let ((process-connection-type nil))
-;;     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-;;       (process-send-string proc text)
-;;       (process-send-eof proc))))
 
 ;; コマンド履歴を残す
 ;; (setq desktop-globals-to-save '(extended-command-history))
