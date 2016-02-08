@@ -177,13 +177,51 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; magit
 (bind-key (kbd "<f11>") 'magit-status)
-;; (add-hook 'magit-mode-hook
-;;           '(lambda ()
-;;              (local-set-key (kbd "<f10>") 'magit-remote-rename)
-;;              ))
+(add-hook 'magit-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<f11>") 'magit-remote-rename)
+             ))
+
+(defun get-displayed-buffer-name-list ()
+  ""
+  (interactive)
+  (catch 'displayed-buffer-name-list
+   (let ((base-buffer (window-buffer))
+         (buffer-name-list nil))
+     (if (eq base-buffer nil)
+         (message "no buffer")
+       (let ((target-window (next-window (car (get-buffer-window-list)))))
+         (add-to-list 'buffer-name-list (buffer-name base-buffer))
+         (while (not (eq base-buffer (window-buffer target-window)))
+           (add-to-list 'buffer-name-list
+                        (buffer-name (window-buffer target-window)))
+           (setq target-window (next-window target-window)))
+         (throw 'displayed-buffer-name-list buffer-name-list))))))
+
+(defun get-displayed-buffer-match-pattern (buffer-name-pattern)
+  ""
+  (interactive)
+  (catch 'buffer
+    (let ((buffer-name-list (get-displayed-buffer-name-list))
+          (buffer nil))
+      (dolist (buffer-name buffer-name-list)
+        (if (string-match buffer-name-pattern buffer-name)
+            (throw 'buffer (get-buffer buffer-name))))
+      (throw 'buffer nil))))
+
+(defun toggle-magit-status ()
+  ""
+  (interactive)
+  (let ((buffer (get-displayed-buffer-match-pattern "*magit: \\(.*\\)")))
+    (if buffer
+        (delete-window (car (get-buffer-window-list buffer)))
+      (magit-status))))
+
+(bind-key "<f10>" 'toggle-magit-status)
+
 
 ;;;;;;;;;;;;;;
 ;; shell-pop
-(bind-key "C-@" 'shell-pop)
+(bind-key "<f12>" 'shell-pop)
 
 ;;; 99-keybind.el ends here
