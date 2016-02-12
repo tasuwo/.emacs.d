@@ -94,6 +94,11 @@ Use a `~/.pylintrc` file to configure Pylint.
 indent-string=\t
 ```
 
+###for apples-mode
+
+Add permission to apples-mode installed directory.
+This mode make tmp file there.
+
 ##Using mouse
 
 >[MouseTerm](https://bitheap.org/mouseterm/)

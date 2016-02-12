@@ -75,3 +75,4 @@
 (depends-on "typescript-mode")
 (depends-on "tide")
 (depends-on "company")
+(depends-on "apples-mode")
