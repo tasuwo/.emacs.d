@@ -16,3 +16,5 @@ snippets/*
 .python-environments/*
 *.desktop
 *.desktop.lock
+
+/bookmarks

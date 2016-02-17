@@ -76,3 +76,5 @@
 (depends-on "tide")
 (depends-on "company")
 (depends-on "apples-mode")
+(depends-on "coffee-mode")
+(depends-on "slim-mode")
