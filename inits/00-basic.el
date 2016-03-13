@@ -25,6 +25,11 @@
 (set-buffer-file-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
 
+;; フォントロック
+(global-font-lock-mode 1)
+(setq font-lock-support-mode 'jit-lock-mode)
+(setq font-lock-maximum-decoration t)
+
 ;; 行番号表示
 (global-linum-mode t)
 (set-face-attribute 'linum nil
@@ -33,6 +38,9 @@
 (setq linum-format "%4d| ")
 
 ;; 現在行のハイライト
+;; (global-hl-line-mode)
+;; カーソル行に下線を表示
+(setq hl-line-face 'underline)
 (global-hl-line-mode)
 
 ;; スタートアップを非表示
