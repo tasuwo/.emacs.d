@@ -11,7 +11,11 @@
   "markdown-mode-hook"
   (setq markdown-command-needs-filename t)
     )
-(add-hook 'markdown-mode-hook '(lambda() (markdown-custom)))
+(add-hook 'markdown-mode-hook
+          '(lambda()
+             (define-key markdown-mode-map (kbd "C-i") 'markdown-cycle)
+             (hide-sublevels 2)
+             (markdown-custom)))
 (add-hook 'gfm-mode-hook
           '(lambda ()
              (markdown-custom)
