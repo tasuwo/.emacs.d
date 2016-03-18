@@ -78,3 +78,4 @@
 (depends-on "apples-mode")
 (depends-on "coffee-mode")
 (depends-on "slim-mode")
+(depends-on "twittering-mode")
