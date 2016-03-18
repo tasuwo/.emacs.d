@@ -14,6 +14,7 @@
 (add-to-list 'ac-modes 'org-mode)
 (add-to-list 'ac-modes 'yatex-mode)
 (add-to-list 'ac-modes 'web-mode)
+(add-to-list 'ac-modes 'swift-mode)
 
 ;; Start automatically completion when you typed one or more character
 (setq ac-auto-start 3)

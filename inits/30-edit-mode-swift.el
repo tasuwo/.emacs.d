@@ -8,7 +8,6 @@
 
 (require 'swift-mode)
 (require 'auto-complete-swift)
-(push 'ac-source-swift-complete ac-sources)
 
 (add-to-list 'flycheck-checkers 'swift)
 (add-hook 'swift-mode-hook
@@ -16,6 +15,7 @@
     (local-set-key "\C-c\C-c" 'quickrun)
     (local-set-key "\C-c\C-a" 'quickrun-with-arg)
     (add-to-list 'flycheck-checkers 'swift)
+    (push 'ac-source-swift-complete ac-sources)
   )
 )
 

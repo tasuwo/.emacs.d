@@ -11,9 +11,6 @@
       meadow-p  (featurep 'meadow)
       windows-p (or cygwin-p nt-p meadow-p))    ; Windows の場合
 
-;; load path
-(add-to-list 'load-path "~/.emacs.d/elisp")
-
 ;; Cask 設定
 ;; Mac : homebrewで導入したtool用のpathを追加 (for OS X)
 ;; Win : ホームディレクトリ直下の cask にパスを通す
@@ -25,6 +22,9 @@
        (require 'cask)))
 ;; 初期化
 (cask-initialize)
+
+;; load-path 追加
+(add-to-list 'load-path "~/.emacs.d/elisp")
 
 (package-initialize)
 (require 'use-package)
@@ -49,5 +49,8 @@
  '(tab-width 4))
 ;;(setq init-loader-show-lod-after-init "error-only")
 (init-loader-load "~/.emacs.d/inits")
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;;; init.el ends here
