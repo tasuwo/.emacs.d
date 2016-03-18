@@ -63,7 +63,6 @@
 (depends-on "popup")
 
 ;; major/minor mode
-(depends-on "swift-mode")
 (depends-on "markdown-mode")
 (depends-on "php-mode")
 (depends-on "web-mode")

@@ -11,6 +11,8 @@
       meadow-p  (featurep 'meadow)
       windows-p (or cygwin-p nt-p meadow-p))    ; Windows の場合
 
+;; load path
+(add-to-list 'load-path "~/.emacs.d/elisp")
 
 ;; Cask 設定
 ;; Mac : homebrewで導入したtool用のpathを追加 (for OS X)
