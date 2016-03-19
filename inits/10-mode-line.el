@@ -15,8 +15,8 @@
                 mode-line-modified
                 mode-line-frame-identification
                 mode-line-buffer-identification
-                " "
-                global-mode-string
+                ;;" "
+                ;;global-mode-string
                 "%[("
                 mode-name
                 mode-line-process
@@ -35,19 +35,24 @@
     (yas-minor-mode .         " YS")
     (paredit-mode .           "")
     (eldoc-mode .             "")
-    (smartparens-mode .       " SP")
+    (smartparens-mode .       "")
     (whitespace-mode .        "")
     (global-whitespace-mode . "")
     (undo-tree-mode .         "")
     (elisp-slime-nav-mode .   "")
-    (helm-gtags-mode .        "")
-    (helm-mode .              " HE")
-    (git-gutter+-mode .       " GT")
+    (abbrev-mode .            "")
+    (helm-gtags-mode .        " HeG")
+    (helm-migemo-mode .       " HeM")
+    (helm-mode .              " He")
+    (git-gutter+-mode .       "")
     (ace-isearch-mode .       "")
-    (shell-mode .             " AR")
+    (shell-mode .             "")
     (auto-revert-mode .       "")
-    (helm-migemo-mode .       " HM")
     (lisp-interaction-mode .  "")
+    (semantic-mode .                       " Se")
+    (global-semanticdb-minor-mode .        " SeDB")
+    (global-semantic-idle-scheduler-mode . " SeSC")
+    (company-mode . "CO")
     ;; major mode
     (python-mode     . "Python")
     (ruby-mode       . "Ruby")

@@ -18,3 +18,4 @@ snippets/*
 *.desktop.lock
 
 /bookmarks
+elisp/custom-file.el
