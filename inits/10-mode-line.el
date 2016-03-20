@@ -15,7 +15,7 @@
                 mode-line-modified
                 mode-line-frame-identification
                 mode-line-buffer-identification
-                ;;" "
+                " "
                 ;;global-mode-string
                 "%[("
                 mode-name
@@ -52,7 +52,7 @@
     (semantic-mode .                       " Se")
     (global-semanticdb-minor-mode .        " SeDB")
     (global-semantic-idle-scheduler-mode . " SeSC")
-    (company-mode . "CO")
+    (company-mode . " CO")
     ;; major mode
     (python-mode     . "Python")
     (ruby-mode       . "Ruby")
