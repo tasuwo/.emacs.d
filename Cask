@@ -60,6 +60,7 @@
 (depends-on "smartparens")
 (depends-on "smartrep")
 (depends-on "sr-speedbar")
+(depends-on "srefactor")
 (depends-on "swift-mode")
 (depends-on "tern")
 (depends-on "tern-auto-complete")
