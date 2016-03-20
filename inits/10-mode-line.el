@@ -7,6 +7,12 @@
 (setq sml/theme 'dark)
 (sml/setup)
 
+;; nyan-mode
+(require 'nyan-mode)
+(nyan-mode t)
+(setq nyan-bar-length 12)
+(setq nyan-wavy-trail t)
+
 (line-number-mode t)
 (column-number-mode t)
 (setq-default mode-line-format
@@ -25,7 +31,8 @@
                 (line-number-mode "L%l")
                 ("" (:eval (format "/%s" (line-number-at-pos (point-max)))))
                 (column-number-mode " C%c")
-                "%])"))
+                "%]) "
+                ("" (:eval (list (nyan-create))))))
 
 (defvar mode-line-cleaner-alist
   '(

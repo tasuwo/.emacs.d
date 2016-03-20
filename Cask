@@ -44,6 +44,7 @@
 (depends-on "matlab-mode")
 (depends-on "migemo")
 (depends-on "multiple-cursors")
+(depends-on "nyan-mode")
 (depends-on "pallet")
 (depends-on "php-mode")
 (depends-on "popup")

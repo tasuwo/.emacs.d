@@ -3,38 +3,6 @@
 
 (setq locale-coding-system 'utf-8)
 
-;; font
-;; terminal からの emacs が起動しなくなる
-;; (create-fontset-from-ascii-font "Meslo LG S for Powerline:style=RegularForPowerline" nil "powerline")
-;; (set-fontset-font "fontset-powerline"
-;;                   'unicode
-;;                   (font-spec :family "Meslo LG S for Powerline" :size 16)
-;;                   nil
-;;                   'append)
-;; (add-to-list 'default-frame-alist '(font . "fontset-powerline"))
-(cond (darwin-p
-  (global-set-key [s-mouse-1] 'browse-url-at-mouse)
-  (let* ((size 14)
-         (jpfont "Hiragino Maru Gothic ProN")
-         (asciifont "Monaco")
-         (h (* size 10)))
-    (set-face-attribute 'default nil :family asciifont :height h)
-    (set-fontset-font t 'katakana-jisx0201 jpfont)
-    (set-fontset-font t 'japanese-jisx0208 jpfont)
-    (set-fontset-font t 'japanese-jisx0212 jpfont)
-    (set-fontset-font t 'japanese-jisx0213-1 jpfont)
-    (set-fontset-font t 'japanese-jisx0213-2 jpfont)
-    (set-fontset-font t '(#x0080 . #x024F) asciifont))
-  (setq face-font-rescale-alist
-        '(("^-apple-hiragino.*" . 1.2)
-          (".*-Hiragino Maru Gothic ProN-.*" . 1.2)
-          (".*osaka-bold.*" . 1.2)
-          (".*osaka-medium.*" . 1.2)
-          (".*courier-bold-.*-mac-roman" . 1.0)
-          (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-          (".*monaco-bold-.*-mac-roman" . 0.9)
-          ("-cdac$" . 1.3)))))
-
 ;; 文字コード
 (set-language-environment "Japanese")
 (set-language-environment "Japanese")
@@ -48,9 +16,9 @@
 (set-clipboard-coding-system 'utf-8)
 
 ;; フォントロック
-;; (global-font-lock-mode 1)
-;; (setq font-lock-support-mode 'jit-lock-mode)
-;; (setq font-lock-maximum-decoration t)
+(global-font-lock-mode 1)
+(setq font-lock-support-mode 'jit-lock-mode)
+(setq font-lock-maximum-decoration t)
 
 ;; 行番号表示
 (global-linum-mode t)
@@ -306,31 +274,20 @@ Version 2015-06-11"
       (browse-url (buffer-substring-no-properties (car url-region)
                                                   (cdr url-region))))))
 
-;; クリップボードとkill-ringを共有する
-;; Emacs.app でうまく動かない
-;; http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
-(cond (darwin-p
-       (defvar prev-yanked-text nil "*previous yanked text")
-       (defun paste-to-osx (text &optional push)
-         (let ((process-connection-type nil))
-           (let ((proc (start-process-shell-command
-                        "paste-to-osx"
-                        "*Messages*"
-                        "pbcopy")))
-             (process-send-string proc text)
-             (process-send-eof proc)
-             )))
-       (defun copy-from-osx ()
-         (shell-command-to-string "pbpaste"))
-       (setq interprogram-cut-function 'paste-to-osx)
-       (setq interprogram-paste-function 'copy-from-osx)
-       )
-      (windows-p
-       ;; そのうちな...
-       ))
-;; クリップボードを使用
-(set-clipboard-coding-system 'utf-8)
-(setq x-select-enable-clipboard t)
+;;; Copy and Paste parameters
+;;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Clipboard.html
+;(setq interprogram-cut-function nil)
+;(setq interprogram-paste-function nil)
+(setq x-select-enable-clipboard nil)
+(setq save-interprogram-paste-before-kill nil)
+(setq yank-pop-change-selection nil)
+(setq x-select-enable-clipboard-manager nil)
+(setq x-select-enable-primary t)
+(setq mouse-drag-copy-region t)
+;; Key binding
+(global-set-key [f5] 'clipboard-kill-region)
+(global-set-key [f6] 'clipboard-kill-ring-save)
+(global-set-key [f7] 'clipboard-yank)
 
 ;; コマンド履歴を残す
 ;; (setq desktop-globals-to-save '(extended-command-history))
