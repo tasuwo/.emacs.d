@@ -8,12 +8,12 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;; (use-package flycheck-pos-tip)
+(use-package flycheck-pos-tip)
 ;; flycheck-pos-chip の設定
-;; (with-eval-after-load 'flycheck
-;;   (flycheck-pos-tip-mode))
-;; (setq flycheck-display-errors-function
-;;       'flycheck-display-error-messages-unless-error-list)
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
+(setq flycheck-display-errors-function
+      'flycheck-display-error-messages-unless-error-list)
 
 ;; ;; php-mode
 (add-hook 'php-mode-hook 'flycheck-mode)
