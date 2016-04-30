@@ -13,6 +13,9 @@
     )
 (add-hook 'markdown-mode-hook
           '(lambda()
+             (company-mode nil)
+             (auto-complete-mode nil)
+             (toggle-truncate-lines nil)
              (define-key markdown-mode-map (kbd "C-i") 'markdown-cycle)
              (hide-sublevels 2)
              (markdown-custom)))
