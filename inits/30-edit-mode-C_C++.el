@@ -2,8 +2,8 @@
 ;;; Code:
 
 (defun my-c-c++-mode-init ()
-  (setq-default c-basic-offset 4
-                tab-width 4
+  (setq-default c-basic-offset 2
+                tab-width 2
                 indent-tabs-mode nil)
 )
 (add-hook 'c-mode-hook 'my-c-c++-mode-init)
@@ -21,5 +21,11 @@
   (c-set-style "stroustrup")
   (show-paren-mode t))
 (add-hook 'c-mode-common-hook 'add-c-mode-common-conf)
+
+;; doxymacs
+(require 'doxymacs)
+(setq doxymacs-doxygen-style "JavaDoc")
+(add-hook 'c-mode-hook 'doxymacs-mode)
+(add-hook 'c++-mode-hook 'doxymacs-mode)
 
 ;;; 30-edit-mode-C_C++.el ends here

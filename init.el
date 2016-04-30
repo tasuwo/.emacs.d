@@ -25,6 +25,7 @@
 
 ;; load-path 追加
 (add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/elisp/doxymacs")
 
 (package-initialize)
 (require 'use-package)
