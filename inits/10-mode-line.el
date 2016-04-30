@@ -10,7 +10,7 @@
 ;; nyan-mode
 (require 'nyan-mode)
 (nyan-mode t)
-(setq nyan-bar-length 12)
+(setq nyan-bar-length 14)
 (setq nyan-wavy-trail t)
 
 (line-number-mode t)
@@ -27,12 +27,13 @@
                 mode-name
                 mode-line-process
                 minor-mode-alist
-                ")%]" " " "%[("
+                ")%] "
+                ("" (:eval (list (nyan-create))))
+                 " %[("
                 (line-number-mode "L%l")
                 ("" (:eval (format "/%s" (line-number-at-pos (point-max)))))
                 (column-number-mode " C%c")
-                "%]) "
-                ("" (:eval (list (nyan-create))))))
+                "%])"))
 
 (defvar mode-line-cleaner-alist
   '(
@@ -40,6 +41,7 @@
     (auto-complete-mode .     " AC")
     (flycheck-mode .          " FC")
     (yas-minor-mode .         " YS")
+    (multiple-cursors-mode .  " MC")
     (paredit-mode .           "")
     (eldoc-mode .             "")
     (smartparens-mode .       "")
