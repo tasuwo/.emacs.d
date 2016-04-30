@@ -20,6 +20,7 @@
 (depends-on "color")
 (depends-on "company")
 (depends-on "company-c-headers")
+(depends-on "company-quickhelp")
 (depends-on "darcula-theme")
 (depends-on "direx")
 (depends-on "emmet-mode")
