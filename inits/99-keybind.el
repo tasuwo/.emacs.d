@@ -20,23 +20,7 @@
 ;;;;;;;;;;;;
 ;; js-doc
 ;;(bind-key "C-c C-j" 'js-doc-insert-function-doc)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; multipule-cursors & smartrep
-(use-package multiple-cursors)
-(use-package smartrep)
-(declare-function smartrep-define-key "smartrep")
-(bind-key (kbd "C-M-c") 'mc/edit-lines)
-(bind-key (kbd "C-M-r") 'mc/mark-all-in-region)
-(global-unset-key "\C-t")
-(smartrep-define-key global-map "C-t"
-  '(("C-t"      . 'mc/mark-next-like-this)
-    ("j"        . 'mc/mark-next-like-this)
-    ("k"        . 'mc/mark-previous-like-this)
-    ("u"        . 'mc/unmark-next-like-this)
-    ("U"        . 'mc/unmark-previous-like-this)
-    ("s"        . 'mc/skip-to-next-like-this)
-    ("S"        . 'mc/skip-to-previous-like-this)
-    ("*"        . 'mc/mark-all-like-this)))
+
 ;;;;;;;;
 ;; helm
 (bind-key "M-x"     'helm-M-x)
@@ -67,15 +51,17 @@
              ;;入力したシンボルを参照する場所へジャンプ
              (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
              ;;タグ一覧からタグを選択し, その定義元にジャンプする
-             (local-set-key (kbd "M-l") 'helm-gtags-select)
+             (local-set-key (kbd "C-j") 'helm-gtags-select)
+             (local-set-key (kbd "M-.") 'helm-gtags-dwim)
              ;;ジャンプ前の場所に戻る
-             (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
+             (local-set-key (kbd "M-,") 'helm-gtags-pop-stack)
+             (local-set-key (kbd "C-c <") 'helm-gtags-previous-history)
+             (local-set-key (kbd "C-c >") 'helm-gtags-next-history)))
+
 ;;;;;;;;;;;;
 ;; flycheck
 (bind-key "C-x !" 'flycheck-list-errors)
-(smartrep-define-key
-    global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
-                       ("M-p" . 'flymake-goto-prev-error)))
+
 ;;;;;;;;;;;;
 ;; expand region
 (use-package expand-region)
@@ -162,17 +148,31 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; company
-;;; C-n, C-pで補完候補を選べるように
-;;(bind-key (kbd "M-n") nil)
-;;(bind-key (kbd "M-p") nil)
-;;(bind-key (kbd "C-n") 'company-select-next)
-;;(bind-key (kbd "C-p") 'company-select-previous)
-;;; C-hがデフォルトでドキュメント表示にmapされているので、文字を消せるようにmapを外す
-;; (bind-key (kbd "C-h") nil)
-;;; 1つしか候補がなかったらtabで補完、複数候補があればtabで次の候補へ行くように
-;;(bind-key (kbd "<tab>") 'company-complete-common-or-cycle)
-;;; ドキュメント表示
-;;(bind-key (kbd "M-d") 'company-show-doc-buffer)
+(define-key company-active-map (kbd "M-n") nil)
+(define-key company-active-map (kbd "M-p") nil)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-active-map (kbd "C-h") nil)
+(defun company--insert-candidate2 (candidate)
+  (when (> (length candidate) 0)
+    (setq candidate (substring-no-properties candidate))
+    (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
+        (insert (company-strip-prefix candidate))
+      (if (equal company-prefix candidate)
+          (company-select-next)
+          (delete-region (- (point) (length company-prefix)) (point))
+        (insert candidate))
+      )))
+(defun company-complete-common2 ()
+  (interactive)
+  (when (company-manual-begin)
+    (if (and (not (cdr company-candidates))
+             (equal company-common (car company-candidates)))
+        (company-complete-selection)
+      (company--insert-candidate2 company-common))))
+(define-key company-active-map [tab] 'company-complete-common2)
+(define-key company-active-map [backtab] 'company-select-previous) ; おまけ
+(global-set-key (kbd "C-M-i") 'company-complete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; magit
@@ -223,5 +223,26 @@
 ;;;;;;;;;;;;;;
 ;; shell-pop
 (bind-key "<f12>" 'shell-pop)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; multipule-cursors & smartrep
+(use-package multiple-cursors)
+(use-package smartrep)
+(declare-function smartrep-define-key "smartrep")
+(bind-key (kbd "C-M-c") 'mc/edit-lines)
+(bind-key (kbd "C-M-r") 'mc/mark-all-in-region)
+(global-unset-key "\C-t")
+(smartrep-define-key global-map "C-t"
+  '(("C-t"      . 'mc/mark-next-like-this)
+    ("j"        . 'mc/mark-next-like-this)
+    ("k"        . 'mc/mark-previous-like-this)
+    ("u"        . 'mc/unmark-next-like-this)
+    ("U"        . 'mc/unmark-previous-like-this)
+    ("s"        . 'mc/skip-to-next-like-this)
+    ("S"        . 'mc/skip-to-previous-like-this)
+    ("*"        . 'mc/mark-all-like-this)))
+(smartrep-define-key
+    global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
+                       ("M-p" . 'flymake-goto-prev-error)))
 
 ;;; 99-keybind.el ends here
