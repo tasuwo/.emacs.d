@@ -31,15 +31,15 @@
 (defvar my/bg-color "#232323")
 (set-face-attribute 'whitespace-trailing nil
                     :background my/bg-color
-                    :foreground "DeepPink"
+                    :foreground "red"
                     :underline t)
 (set-face-attribute 'whitespace-tab nil
                     :background my/bg-color
-                    :foreground "LightSkyBlue"
+                    :foreground "color-238"
                     :underline t)
 (set-face-attribute 'whitespace-space nil
                     :background my/bg-color
-                    :foreground "GreenYellow"
+                    :foreground "green"
                     :weight 'bold)
 (set-face-attribute 'whitespace-empty nil
                     :background my/bg-color)
