@@ -16,8 +16,19 @@
 (add-to-list 'ac-modes 'web-mode)
 (add-to-list 'ac-modes 'swift-mode)
 
-;; Start automatically completion when you typed one or more character
-(setq ac-auto-start 3)
+;; 自動補完をoff
+(setq ac-auto-start nil)
+
+;; 補完のソース
+(setq-default ac-sources
+              '(ac-source-filename
+                ac-source-yasnippet
+                ac-source-abbrev
+                ac-source-dictionary
+                ac-source-words-in-same-mode-buffers))
+(defun ac-web-mode-setup ()
+  (setq-default ac-sources my-ac-sources))
+(add-hook 'web-mode-hook 'ac-web-mode-setup)
 
 ;; use C-n/C-p on the menu
 (setq ac-use-menu-map t)
@@ -25,19 +36,6 @@
 ;; fuzzy match
 (setq ac-use-fuzzy t)
 (setq ac-dwim t)
-
-;; ベースとなるソースを指定
-(setq-default ac-sources
-              '(ac-source-filename
-                ac-source-yasnippet
-                ac-source-abbrev
-                ac-source-dictionary
-                ac-source-words-in-same-mode-buffers))
-
-;; 個別にソースを指定
-(defun ac-web-mode-setup ()
-  (setq-default ac-sources my-ac-sources))
-(add-hook 'web-mode-hook 'ac-web-mode-setup)
 
 ;; completion for english wards
 (defun my-ac-look ()

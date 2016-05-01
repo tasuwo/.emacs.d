@@ -96,13 +96,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 分割ウインドウ間の移動
 (bind-key "C-c m" 'window-move)
-;;;;;;;;;;;;;
-;; auto-complete
-;; completion for english words
-(bind-key "M-h" 'ac-complete-look)
-;; trigger key
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
+
 ;;;;;;;;;;;;;;
 ;; yasnippet
 ;; 既存スニペットを挿入する
@@ -118,6 +112,7 @@
 (bind-key "<backtab>" 'yas-expand yas-minor-mode-map)
 ;; Alternatively use Control-c + tab
 ;; (define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
+
 ;;;;;;;;;;;;;;
 ;; git-gutter-+
 ;;(bind-key "C-x g" 'git-gutter+-mode) ; Turn on/off in the current buffer
@@ -137,7 +132,6 @@
      (bind-key "C-x C" 'git-gutter+-stage-and-commit git-gutter+-mode-map)
      (bind-key "C-x C-y" 'git-gutter+-stage-and-commit-whole-buffer git-gutter+-mode-map)
      (bind-key "C-x U" 'git-gutter+-unstage-whole-buffer git-gutter+-mode-map)))
-
 ;; C-x h : describetable
 ;; f1 : description
 ;; f2 : jump to definition
@@ -150,9 +144,12 @@
 ;; company
 (define-key company-active-map (kbd "M-n") nil)
 (define-key company-active-map (kbd "M-p") nil)
+(define-key company-active-map (kbd "C-h") nil)
+;; C-n, C-pで補完候補を次/前の候補を選択
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
-(define-key company-active-map (kbd "C-h") nil)
+;; C-sで絞り込む
+(define-key company-active-map (kbd "C-s") 'company-filter-candidates)
 (defun company--insert-candidate2 (candidate)
   (when (> (length candidate) 0)
     (setq candidate (substring-no-properties candidate))
@@ -171,8 +168,18 @@
         (company-complete-selection)
       (company--insert-candidate2 company-common))))
 (define-key company-active-map [tab] 'company-complete-common2)
-(define-key company-active-map [backtab] 'company-select-previous) ; おまけ
-(global-set-key (kbd "C-M-i") 'company-complete)
+(define-key company-active-map [backtab] 'company-select-previous)
+;; 補完
+(global-set-key (kbd "<C-tab>") 'company-complete)
+;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
+(define-key emacs-lisp-mode-map (kbd "<C-tab>") 'company-complete)
+
+;;;;;;;;;;;;;
+;; auto-complete
+;; completion for english words
+(bind-key "C-c TAB" 'ac-complete-look)
+;; trigger key
+(ac-set-trigger-key "<tab>")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; magit
