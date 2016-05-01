@@ -44,6 +44,7 @@
 (depends-on "markdown-mode")
 (depends-on "matlab-mode")
 (depends-on "migemo")
+(depends-on "multi-term")
 (depends-on "multiple-cursors")
 (depends-on "nyan-mode")
 (depends-on "pallet")
