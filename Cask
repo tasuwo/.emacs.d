@@ -23,6 +23,8 @@
 (depends-on "company-quickhelp")
 (depends-on "darcula-theme")
 (depends-on "direx")
+(depends-on "evil")
+(depends-on "evil-plugins" :git "https://github.com/tarao/evil-plugins.git")
 (depends-on "emmet-mode")
 (depends-on "expand-region")
 (depends-on "flycheck")

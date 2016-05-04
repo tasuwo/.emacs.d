@@ -17,6 +17,16 @@
 (column-number-mode t)
 (setq-default mode-line-format
               '(" "
+                (:eval
+                 (format "<%s>"
+                         (case evil-state
+                           ((normal)  evil-normal-state-msg)
+                           ((insert)  evil-insert-state-msg)
+                           ((visual)  evil-visual-state-msg)
+                           ((replace) evil-replace-state-msg)
+                           ((emacs)   evil-emacs-state-msg)
+                           (t         evil-emacs-state-msg)
+                           ((nil)     evil-emacs-state-msg))))
                 mode-line-mule-info
                 mode-line-modified
                 mode-line-frame-identification
