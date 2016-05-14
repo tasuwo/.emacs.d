@@ -252,9 +252,6 @@
     global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
                        ("M-p" . 'flymake-goto-prev-error)))
 
-;; Exit inser mode by pressing j and j quickly
-(setq key-chord-two-keys-delay 0.3)
-(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
-(key-chord-mode 1)
+(define-key evil-insert-state-map (kbd "C-j") 'evil-normal-state)
 
 ;;; 99-keybind.el ends here
