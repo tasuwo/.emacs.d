@@ -26,6 +26,7 @@
 (depends-on "emmet-mode")
 (depends-on "evil")
 (depends-on "evil-plugins" :git "https://github.com/tarao/evil-plugins.git")
+(depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "flycheck")
 (depends-on "flycheck-tip")
