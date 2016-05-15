@@ -252,6 +252,10 @@
     global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
                        ("M-p" . 'flymake-goto-prev-error)))
 
+;;;;;;;;;;;;;;
+;; evil-mode
 (define-key evil-insert-state-map (kbd "C-j") 'evil-normal-state)
+(define-key evil-insert-state-map (kbd "C-t") nil)
+(define-key evil-normal-state-map (kbd "C-t") nil)
 
 ;;; 99-keybind.el ends here
