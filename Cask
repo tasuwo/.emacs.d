@@ -23,6 +23,7 @@
 (depends-on "company-quickhelp")
 (depends-on "darcula-theme")
 (depends-on "direx")
+(depends-on "dockerfile-mode")
 (depends-on "emmet-mode")
 (depends-on "evil")
 (depends-on "evil-magit")
