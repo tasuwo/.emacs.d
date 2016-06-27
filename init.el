@@ -36,6 +36,7 @@
 
 ;; init-loader 設定
 (use-package init-loader)
+(setq init-loader-show-log-after-init 'error-only)
 (init-loader-load "~/.emacs.d/inits")
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
