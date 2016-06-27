@@ -33,6 +33,7 @@
 (depends-on "flycheck-tip")
 (depends-on "fuzzy")
 (depends-on "git-gutter+")
+(depends-on "git-gutter-fringe+")
 (depends-on "helm")
 (depends-on "helm-bind-key")
 (depends-on "helm-descbinds")
