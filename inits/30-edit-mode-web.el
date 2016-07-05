@@ -1,11 +1,12 @@
-
 ;;; Code:
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; web-mode
 ;;; https://git.framasoft.org/distopico/distopico-dotemacs/blob/23808ab57054e29e7d71fb3a77af928ce6f59627/emacs/modes/web-mode.el
+
 (use-package web-mode)
 
+;; 起動時に設定をロードする
+(autoload 'web-mode "web-mode" nil t)
+
+;; 適用ファイル
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
@@ -14,7 +15,6 @@
 (add-to-list 'auto-mode-alist '("\\.*tml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("/\\(views\\|html\\|templates\\)/.*\\.php\\'" . web-mode))
-
 (setq web-mode-engines-alist '(
     ("php" . "\\.phtml\\'")
     ("blade" . "\\.blade\\'")
@@ -62,7 +62,6 @@
    ((t (:background "#000000"
         :foreground "#FF8A4B")))))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; zencoding
 ;; html と css では zencoding をつかう
@@ -92,72 +91,13 @@
 (add-hook 'css-mode-hook
           '(lambda ()
              (define-key css-mode-map (kbd "M-i") 'helm-css-scss)
-             ;;ac-source-css-property
-             (setq ac-sources (append '(ac-source-emmet-css-snippets ) ac-sources))
-             (rainbow-delimiters-mode t)
-                                        ;(rainbow-identifiers-mode t)
-             )
-          )
-
+             (rainbow-delimiters-mode t)))
 (add-hook 'less-css-mode-hook
           '(lambda ()
              (use-package skewer-less)
              (skewer-less-mode)
              (define-key css-mode-map (kbd "M-i") 'helm-css-scss)
-             ;;ac-source-css-property
-             ;(setq ac-sources (append '(ac-source-emmet-css-snippets ac-source-css-property ) ac-sources))
-             (rainbow-delimiters-mode t)
-                                        ;(rainbow-identifiers-mode t)
-             )
-          )
-
-;; Enabled ac-js2
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-(setq ac-js2-evaluate-calls t)
-;; Autocomplete
-(add-to-list 'ac-modes 'js2-mode)
-(add-to-list 'ac-modes 'web-mode)
-(add-to-list 'ac-modes 'css-mode)
-(add-to-list 'ac-modes 'less-css-mode)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; auto-complete 用の設定
-(setq web-mode-ac-sources-alist
-      '(("php" . (  ac-source-php-auto-yasnippets
-                    ac-source-yasnippet
-                    ac-source-abbrev
-                    ac-source-gtags
-                    ac-source-semantic
-                    ac-source-dictionary
-                    ac-source-words-in-same-mode-buffers
-                    ac-source-words-in-buffer
-                    ac-source-files-in-current-dir
-        ))
-        ("html" . ( ac-source-emmet-html-aliases 
-                    ac-source-emmet-html-snippets
-                    ac-source-yasnippet
-                    ac-source-abbrev
-                    ac-source-gtags
-                    ac-source-semantic
-                    ac-source-dictionary
-                    ac-source-words-in-same-mode-buffers
-                    ac-source-words-in-buffer
-                    ac-source-files-in-current-dir
-                  ))
-        ("css" . (  ac-source-css-property 
-                    ac-source-emmet-css-snippets
-                    ac-source-yasnippet
-                    ac-source-abbrev
-                    ac-source-gtags
-                    ac-source-semantic
-                    ac-source-dictionary
-                    ac-source-words-in-same-mode-buffers
-                    ac-source-words-in-buffer
-                    ac-source-files-in-current-dir
-                  ))
-        )
-)
-
+             (rainbow-delimiters-mode t)))
 (add-hook 'web-mode-before-auto-complete-hooks
           '(lambda ()
              (let ((web-mode-cur-language

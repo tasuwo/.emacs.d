@@ -1,6 +1,10 @@
+;;; 20-pallet.el --- hoge
+
+;;; Commentary:
 
 ;;; Code:
-(use-package pallet)
-(pallet-mode t)
+(use-package pallet
+  :config
+  (pallet-mode t))
 
-;;; 10-pallet.el ends here
+;;; 20-pallet.el ends here

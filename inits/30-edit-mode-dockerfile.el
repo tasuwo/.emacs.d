@@ -1,7 +1,10 @@
+;;; 30-edit-mode-dockerfile.el --- Edit mode for dockerfile
+
+;;; Commentary:
 
 ;;; Code:
 
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'" . dockerfile-mode))
 
 ;;; 30-edit-mode-dockerfile.el ends here

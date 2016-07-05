@@ -1,16 +1,18 @@
 
 ;;; Code:
 
-;; 拡張子が .tex なら yatex-mode に
+;; 起動時に設定をロードする
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+
+;; 適用ファイル
 (setq auto-mode-alist
   (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
 (setq tex-command "platex")
 (setq bibtex-command "pbibtex")
 (setq YaTeX-nervous nil)
+(setq tex-command "platex2pdf")
 
-(setq tex-command "platex2pdf") ;; 自作したコマンドを
 (cond
   ((eq system-type 'gnu/linux)
     (setq dvi2-command "evince"))

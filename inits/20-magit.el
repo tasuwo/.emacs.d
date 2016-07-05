@@ -1,3 +1,6 @@
+;;; 20-magit.el --- Git client for emacs
+
+;;; Commentary:
 
 ;;; Code:
 

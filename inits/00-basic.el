@@ -1,3 +1,6 @@
+;;; 00-basic.el --- Basic settings
+
+;;; Commentary:
 
 ;;; Code:
 
@@ -11,24 +14,29 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
+(setq buffer-file-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
 
+;; フォント
+(set-face-attribute 'default nil
+                    :family "Ricty Discord"
+                    :height 160)
 ;; フォントロック
 (global-font-lock-mode 1)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq font-lock-maximum-decoration t)
+
+;; 行間
+(setq-default line-spacing 3)
 
 ;; 行番号表示
 (global-linum-mode t)
 (set-face-attribute 'linum nil
             :foreground "#a9a9a9"
             :height 0.9)
-(setq linum-format "%4d| ")
+(setq linum-format "%4d ")
 
-;; 現在行のハイライト
-;; (global-hl-line-mode)
 ;; カーソル行に下線を表示
 (setq hl-line-face 'underline)
 (global-hl-line-mode)
@@ -56,6 +64,7 @@
 
 ;; 選択領域の色指定
 (set-face-background 'region "#800000")
+
 ;; 行末の空白を強調表示
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
@@ -191,40 +200,18 @@
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
 ;; color theme
-;; http://emacsthemes.caisah.info/
-;;(use-package darcula-theme)
-;; http://aoe-tk.hatenablog.com/entry/20130210/1360506829
-;; (load-theme 'misterioso t)
 (load-theme 'wombat t)
 
-;; 余計な整形をしない
-;;(setq-default cperl-indent-region-fix-constructs nil)
-;;(setq-default cperl-merge-trailing-else nil)
-
-;; モードラインに行番号表示
-;;(line-number-mode t)
-
-;; モードラインに列番号表示
-;;(column-number-mode t)
-
-;;; 現在の関数名をモードラインに表示
-;;(which-function-mode 1)
-
-;; カーソル位置が何文字目か，何行目かを表示
-;;(column-number-mode t)
-;;(line-number-mode t)
-
 ;; サーバ設定
-(require 'server)
-(cond (windows-p
-       (defun server-ensure-safe-dir (dir) "Noop" t)))
-;; 複数サーバ起動を防ぐ
-(unless (server-running-p)
-  (server-start))
+(use-package server
+  :config
+  (cond (windows-p
+         (defun server-ensure-safe-dir (dir) "Noop" t)))
+  ;; 複数サーバ起動を防ぐ
+  (unless (server-running-p)
+    (server-start)))
 
-;;
 ;; open file as root
-;;______________________________________________________________________
 (defun th-rename-tramp-buffer ()
   (when (file-remote-p (buffer-file-name))
     (rename-buffer
@@ -249,23 +236,6 @@
   (interactive "F")
   (set-buffer (find-file (concat "/sudo::" file))))
 
-;; preview color
-;; Don't work x(
-(defun xah-syntax-color-hex ()
-  "Syntax color text of the form 「#ff1100」 in current buffer.
-URL `http://ergoemacs.org/emacs/emacs_CSS_colors.html'
-Version 2015-06-11"
-  (interactive)
-  (font-lock-add-keywords
-   nil
-   '(("#[abcdef[:digit:]]\\{6\\}"
-      (0 (put-text-property
-          (match-beginning 0)
-          (match-end 0)
-          'face (list :background (match-string-no-properties 0)))))))
-  (font-lock-fontify-buffer))
-(add-hook 'emacs-lisp-mode 'xah-syntax-color-hex)
-
 ;; カーソル位置のブラウザを開く
 (defun browse-url-at-point ()
   (interactive)
@@ -276,8 +246,6 @@ Version 2015-06-11"
 
 ;;; Copy and Paste parameters
 ;;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Clipboard.html
-;(setq interprogram-cut-function nil)
-;(setq interprogram-paste-function nil)
 (setq x-select-enable-clipboard nil)
 (setq save-interprogram-paste-before-kill nil)
 (setq yank-pop-change-selection nil)
@@ -290,19 +258,11 @@ Version 2015-06-11"
 (global-set-key [f7] 'clipboard-yank)
 
 ;; コマンド履歴を残す
-;; (setq desktop-globals-to-save '(extended-command-history))
-;; (setq desktop-files-not-to-save "")
-;; (desktop-save-mode 1)
+(setq desktop-globals-to-save '(extended-command-history))
+(setq desktop-files-not-to-save "")
+(desktop-save-mode 1)
 
 ;; Set path
-;; (defun set-exec-path-from-shell-PATH ()
-;;   "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
-;;    This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
-;;   (interactive)
-;;   (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-;;     (setenv "PATH" path-from-shell)
-;;     (setq exec-path (split-string path-from-shell path-separator))))
-;; (set-exec-path-from-shell-PATH)
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 

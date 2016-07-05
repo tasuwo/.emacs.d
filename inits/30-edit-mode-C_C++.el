@@ -1,31 +1,53 @@
+;;; 30-edit-mode-C_C++.el --- Major mode for C/C++
+
+;;; Commentary:
 
 ;;; Code:
 
-(defun my-c-c++-mode-init ()
-  (setq-default c-basic-offset 2
-                tab-width 2
-                indent-tabs-mode nil)
-)
-(add-hook 'c-mode-hook 'my-c-c++-mode-init)
-(add-hook 'c++-mode-hook 'my-c-c++-mode-init)
+(use-package c-mode
+  :mode (("\\.c\\'" . c-mode))
+  :init
+  (add-hook 'c-mode-hook
+            (lambda ()
+              (setq-default c-basic-offset 4
+                            tab-width 4
+                            indent-tabs-mode nil)
+              (c-set-style "stroustrup")
+              (show-paren-mode t))))
+(use-package c++-mode
+  :mode (("\\.h\\'" . c++-mode)
+         ("\\.cpp\\'" . c++-mode))
+  :init
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              (setq-default c-basic-offset 4
+                            tab-width 4
+                            indent-tabs-mode nil)
+              (c-set-style "stroustrup")
+              (show-paren-mode t))))
 
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; ヘッダーの補完
+(use-package auto-complete-c-headers
+  :requires 'auto-complete
+  :commands (c-mode c++-mode)
+  :config
+  (add-to-list 'ac-sources 'ac-source-c-headers))
 
-;; C++ style
-(defun add-c++-mode-conf ()
-  (c-set-style "stroustrup")
-  (show-paren-mode t))
-(add-hook 'c++-mode-hook 'add-c++-mode-conf)
-;; C style
-(defun add-c-mode-common-conf ()
-  (c-set-style "stroustrup")
-  (show-paren-mode t))
-(add-hook 'c-mode-common-hook 'add-c-mode-common-conf)
+;; clang を使用した補完
+(use-package auto-complete-clang-async
+  :commands (c-mode c++-mode)
+  :config
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (setq ac-clang-complete-executable "/usr/local/bin/clang-complete")
+  (setq ac-sources '(ac-source-clang-async))
+  (ac-clang-launch-completion-process))
 
 ;; doxymacs
-(require 'doxymacs)
-(setq doxymacs-doxygen-style "JavaDoc")
-(add-hook 'c-mode-hook 'doxymacs-mode)
-(add-hook 'c++-mode-hook 'doxymacs-mode)
+(use-package doxymacs
+  :init
+  (add-hook 'c-mode-hook 'doxymacs-mode)
+  (add-hook 'c++-mode-hook 'doxymacs-mode)
+  :config
+  (setq doxymacs-doxygen-style "JavaDoc"))
 
 ;;; 30-edit-mode-C_C++.el ends here

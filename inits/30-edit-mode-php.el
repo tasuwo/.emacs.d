@@ -1,21 +1,14 @@
-
 ;;; Code:
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; php
-;; (use-package php-mode)
-;; (add-hook 'php-mode-hook
-;;           (lambda ()
-;;             (use-package php-completion)
-;;             (php-completion-mode t)
-;;             (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
-;;             (make-local-variable 'ac-sources)
-;;             (setq ac-sources '(
-;;                                ac-source-words-in-same-mode-buffers
-;;                                ac-source-php-completion
-;;                                ac-source-filename
-;;                                                               ))))
 (use-package php-mode)
+
+;; 起動時に設定をロードする
+(autoload 'php-mode "php-mode" nil t)
+
+;; 適用ファイル
+(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
+
+;; タブ幅等設定
 (add-hook 'php-mode-hook
           '(lambda()
              (use-package php-completion)

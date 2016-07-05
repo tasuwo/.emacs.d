@@ -1,6 +1,9 @@
+;;; 20-smart-newline.el --- hoge
+
+;;; Commentary:
 
 ;;; Code:
 
 (smart-newline-mode 1)
 
-;;; 30-smart-newline.el ends here
+;;; 20-smart-newline.el ends here

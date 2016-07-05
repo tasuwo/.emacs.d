@@ -1,100 +1,37 @@
+;;; 30-edit-mode-javascript.el --- Edit mode for javascript
+
+;;; Commentary:
 
 ;;; Code:
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; js2-mode
-(use-package js2-mode)
-(use-package js2-refactor)
-(use-package js2-imenu-extras)
-(use-package tern)
+(use-package js2-mode
+  :mode (("\.js$" . js2-mode))
+  :config
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (setq js2-cleanup-whitespace nil  ;; 行末の空白を保存時に削除しない
+                    js2-mirror-mode nil         ;; 開きかっこ入力の際に閉じかっこを補完しない
+                    js2-bounce-indent-flag nil) ;; c-basic-offset でインデント幅を設定する
+              ;; 改行時の自動インデントをオフにする
+              (define-key js2-mode-map "\C-m" nil)
+              ;; (use-package js2-imenu-extras)
+              (setq js2-basic-offset 2))))
 
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\.js$" . js2-mode))
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (setq js2-basic-offset 2)
-            (tern-mode t)))
+;; ;; JavaScript リファクタリング用ライブラリ
+;; (use-package js2-refactor
+;;   :requires js2-mode
+;;   :commands js2-mode
+;;   :config
+;;   (add-hook 'js2-mode-hook #'js2-refactor-mode)
+;;   (js2r-add-keybindings-with-prefix "C-c C-j"))
 
-(eval-after-load 'tern
-   '(progn
-      (require 'tern-auto-complete)
-      (tern-ac-setup)))
-
-(use-package js-mode)
-(defun my-js2-indent-function ()
-  (interactive)
-  (save-restriction
-    (widen)
-    (let* ((inhibit-point-motion-hooks t)
-           (parse-status (save-excursion (syntax-ppss (point-at-bol))))
-           (offset (- (current-column) (current-indentation)))
-           (indentation (js--proper-indentation parse-status))
-           node)
-      (save-excursion
-        ;; I like to indent case and labels to half of the tab width
-        (back-to-indentation)
-        (if (looking-at "case\\s-")
-            (setq indentation (+ indentation (/ js-indent-level 2))))
-        ;; consecutive declarations in a var statement are nice if
-        ;; properly aligned, i.e:
-        ;; var foo = "bar",
-        ;;     bar = "foo";
-        (setq node (js2-node-at-point))
-        (when (and node
-                   (= js2-NAME (js2-node-type node))
-                   (= js2-VAR (js2-node-type (js2-node-parent node))))
-          (setq indentation (+ 4 indentation))))
-      (indent-line-to indentation)
-      (when (> offset 0) (forward-char offset)))))
-
-(defun my-indent-sexp ()
-  (interactive)
-  (save-restriction
-    (save-excursion
-      (widen)
-      (let* ((inhibit-point-motion-hooks t)
-             (parse-status (syntax-ppss (point)))
-             (beg (nth 1 parse-status))
-             (end-marker (make-marker))
-             (end (progn (goto-char beg) (forward-list) (point)))
-             (ovl (make-overlay beg end)))
-        (set-marker end-marker end)
-        (overlay-put ovl 'face 'highlight)
-        (goto-char beg)
-        (while (< (point) (marker-position end-marker))
-          ;; don't reindent blank lines so we don't set the "buffer
-          ;; modified" property for nothing
-          (beginning-of-line)
-          (unless (looking-at "\\s-*$")
-            (indent-according-to-mode))
-          (forward-line))
-        (run-with-timer 0.5 nil '(lambda(ovl)
-                                   (delete-overlay ovl)) ovl)))))
-(defun my-js2-mode-hook ()
-  (require 'js)
-  (setq js-indent-level 2
-        indent-tabs-mode nil
-        c-basic-offset 2)
-  (c-toggle-auto-state 0)
-  (c-toggle-hungry-state 1)
-  (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
-;  (define-key js2-mode-map [(meta control |)] 'cperl-lineup)
-  (define-key js2-mode-map [(meta control \;)]
-    '(lambda()
-       (interactive)
-       (insert "/* -----[ ")
-       (save-excursion
-         (insert " ]----- */"))
-       ))
-  (define-key js2-mode-map [(return)] 'newline-and-indent)
-  (define-key js2-mode-map [(backspace)] 'c-electric-backspace)
-  (define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
-  (define-key js2-mode-map [(control meta q)] 'my-indent-sexp)
-  (if (featurep 'js2-highlight-vars)
-    (js2-highlight-vars-mode))
-  (message "My JS2 hook"))
-
-(add-hook 'js2-mode-hook 'my-js2-mode-hook)
-
+;; (use-package tern
+;;   :commands js2-mode)
+;; (use-package tern-auto-complete
+;;   :requires tern
+;;   :requires js2-mode
+;;   :config
+;;   (tern-mode t)
+;;   (tern-ac-setup))
 
 ;;; 30-edit-mode-javascript.el ends here

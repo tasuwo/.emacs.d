@@ -1,13 +1,18 @@
+;;; 20-quickrun.el --- Build sources simplly
+
+;;; Commentary:
 
 ;;; Code:
 
-(use-package quickrun)
+(use-package quickrun
+  :config
+  (quickrun-add-command "coffee-compile"
+                        '((:command . "coffee")
+                          (:exec . "%c --compile --print %s")
+                          (:outputter . (lambda () (javascript-generic-mode))))
+                        :default "coffee"))
 
-(quickrun-add-command "coffee-compile"
-                      '((:command . "coffee")
-                        (:exec . "%c --compile --print %s")
-                        (:outputter . (lambda () (javascript-generic-mode))))
-                      :default "coffee")
-(require 'generic-x)
+(use-package generic-x
+  :requires quickrun)
 
 ;;; 20-quickrun.el ends here

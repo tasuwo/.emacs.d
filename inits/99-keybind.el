@@ -142,44 +142,42 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; company
-(define-key company-active-map (kbd "M-n") nil)
-(define-key company-active-map (kbd "M-p") nil)
-(define-key company-active-map (kbd "C-h") nil)
-;; C-n, C-pで補完候補を次/前の候補を選択
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
-;; C-sで絞り込む
-(define-key company-active-map (kbd "C-s") 'company-filter-candidates)
-(defun company--insert-candidate2 (candidate)
-  (when (> (length candidate) 0)
-    (setq candidate (substring-no-properties candidate))
-    (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
-        (insert (company-strip-prefix candidate))
-      (if (equal company-prefix candidate)
-          (company-select-next)
-          (delete-region (- (point) (length company-prefix)) (point))
-        (insert candidate))
-      )))
-(defun company-complete-common2 ()
-  (interactive)
-  (when (company-manual-begin)
-    (if (and (not (cdr company-candidates))
-             (equal company-common (car company-candidates)))
-        (company-complete-selection)
-      (company--insert-candidate2 company-common))))
-(define-key company-active-map [tab] 'company-complete-common2)
-(define-key company-active-map [backtab] 'company-select-previous)
-;; 補完
-(global-set-key (kbd "<C-tab>") 'company-complete)
-;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
-(define-key emacs-lisp-mode-map (kbd "<C-tab>") 'company-complete)
+;; (define-key company-active-map (kbd "M-n") nil)
+;; (define-key company-active-map (kbd "M-p") nil)
+;; (define-key company-active-map (kbd "C-h") nil)
+;; ;; C-n, C-pで補完候補を次/前の候補を選択
+;; (define-key company-active-map (kbd "C-n") 'company-select-next)
+;; (define-key company-active-map (kbd "C-p") 'company-select-previous)
+;; ;; C-sで絞り込む
+;; (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+;; (defun company--insert-candidate2 (candidate)
+;;   (when (> (length candidate) 0)
+;;     (setq candidate (substring-no-properties candidate))
+;;     (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
+;;         (insert (company-strip-prefix candidate))
+;;       (if (equal company-prefix candidate)
+;;           (company-select-next)
+;;           (delete-region (- (point) (length company-prefix)) (point))
+;;         (insert candidate))
+;;       )))
+;; (defun company-complete-common2 ()
+;;   (interactive)
+;;   (when (company-manual-begin)
+;;     (if (and (not (cdr company-candidates))
+;;              (equal company-common (car company-candidates)))
+;;         (company-complete-selection)
+;;       (company--insert-candidate2 company-common))))
+;; (define-key company-active-map [tab] 'company-complete-common2)
+;; (define-key company-active-map [backtab] 'company-select-previous)
+;; ;; 補完
+;; (global-set-key (kbd "<C-tab>") 'company-complete)
+;; ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
+;; (define-key emacs-lisp-mode-map (kbd "<C-tab>") 'company-complete)
 
 ;;;;;;;;;;;;;
 ;; auto-complete
-;; completion for english words
-(bind-key "C-c TAB" 'ac-complete-look)
 ;; trigger key
-(ac-set-trigger-key "<tab>")
+(ac-set-trigger-key "TAB")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; magit

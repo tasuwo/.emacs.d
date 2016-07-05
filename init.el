@@ -26,9 +26,11 @@
 ;; load-path 追加
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/elisp/doxymacs")
+(add-to-list 'load-path "~/.emacs.d/elisp/node-ac")
 
 (package-initialize)
 (require 'use-package)
+(require 'req-package)
 
 ;; Root Directory
 (setq root-dir (file-name-directory

@@ -20,3 +20,6 @@ snippets/*
 /bookmarks
 elisp/custom-file.el
 srecode-map.el
+
+tramp
+semanticdb

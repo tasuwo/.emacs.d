@@ -1,17 +1,17 @@
-#What is this?
+# What is this?
 
 This is my personal Emacs configulation.
 
-##Requirements
+## Requirements
 
-###Latest version of Emacs
+### Latest version of Emacs
 
 ```bash
 $ brew install emacs --cocoa
 $ brew linkapps
 ```
 
-###Cask
+### Cask
 
 
 ```bash
@@ -20,14 +20,14 @@ $ cask install
 $ cask update
 ```
 
-###Snippets
+### Snippets
 
 ```bash
 $ cd ~/.emacs.d/snippets
 $ ~/.emacs.d/snippets/install-snippets.sh
 ```
 
-###Migemo
+### Migemo
 
 for using megemo
 
@@ -35,9 +35,15 @@ for using megemo
 $ brew install cmigemo
 ```
 
-##Others
+## Others
 
-###for js2-mode
+### for C/C++ mode
+
+``` shell
+$ brew install emacs-clang-complete-async
+```
+
+### for js2-mode
 
 ```
 npm install -g tern
@@ -59,19 +65,19 @@ Create `~/.tern-config` file.
 
 [EmacsにternをインストールしてjQueryを補完する -- blog.10rane.com](http://blog.10rane.com/2015/08/06/how-to-install-and-setup-tern/)
 
-###for Clisp on SLIME
+### for Clisp on SLIME
 
 ```
 $ brew install clisp
 ```
 
-###for Markdown-mode
+### for Markdown-mode
 
 ```
 $ brew install markdown
 ```
 
-###for matlab-mode
+### for matlab-mode
 
 Add a mlint to the path in `.emacs.d/inits/30-edit-mode-matlab.el`.
 
@@ -85,7 +91,7 @@ Add a mlint to the path in `.emacs.d/inits/30-edit-mode-matlab.el`.
   :modes '(matlab-mode))
 ```
 
-###for pytho-mode
+### for pytho-mode
 
 Use a `~/.pylintrc` file to configure Pylint.
 
@@ -94,16 +100,16 @@ Use a `~/.pylintrc` file to configure Pylint.
 indent-string=\t
 ```
 
-###for apples-mode
+### for apples-mode
 
 Add permission to apples-mode installed directory.
 This mode make tmp file there.
 
-##Using mouse
+## Using mouse
 
 >[MouseTerm](https://bitheap.org/mouseterm/)
 
-##python env
+## python env
 
 ```bash
 $ pip install virtualenv
