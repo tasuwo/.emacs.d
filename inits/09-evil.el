@@ -1,6 +1,9 @@
-;;; 09-evil.el --- Extensible Vi Layer for Emacs
+;;; 09-evil.el --- Extensible Vi Layer = EViL
 
 ;;; Commentary:
+
+;; Emacs の Vim 風拡張
+;; https://www.emacswiki.org/emacs/Evil
 
 ;;; Code:
 
@@ -13,29 +16,5 @@
         evil-replace-state-msg "REPLAC"
         evil-emacs-state-msg   "EMACS"
         evil-visual-state-msg  "VISUAL"))
-
-(use-package mode-line-mode
-  :config (mode-line-color-mode t))
-
-(use-package evil-mode-line
-  :requires 'evil
-  :requires 'mode-line-mode
-  :config
-  (custom-set-faces
-   '(modeline-evil-normal-state
-     ((t (:background "darkolivegreen"
-          :foreground "black"))))
-   '(modeline-evil-insert-state
-     ((t (:background "#500000"
-          :foreground "black"))))
-   '(modeline-evil-replace-state
-     ((t (:background "chocolate1"
-          :foreground "black"))))
-   '(modeline-evil-visual-state
-     ((t (:background "#55295b"
-          :foreground "black"))))
-   '(modeline-evil-emacs-state
-     ((t (:background "gray50"
-          :foreground "black"))))))
 
 ;;; 09-evil.el ends here

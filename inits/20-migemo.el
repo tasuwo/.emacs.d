@@ -1,4 +1,4 @@
-;;; 20-migemo.el --- Use japanese
+;;; 20-migemo.el --- 検索等で日本語を使用できるようにする
 
 ;;; Commentary:
 

@@ -1,3 +1,6 @@
+;;; 30-edit-mode-slim.el --- Emacs support for editing Slim templates
+
+;;; Commentary:
 
 ;;; Code:
 

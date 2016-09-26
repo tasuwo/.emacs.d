@@ -1,12 +1,13 @@
-;;; 21-direx.el --- Show directory tree
+;;; 24-direx.el --- ディレクトリツリーの表示
 
 ;;; Commentary:
 
+;; ディレクトリツリーを表示する
+;; http://cx4a.blogspot.jp/2011/12/popwineldirexel.html
+
 ;;; Code:
-;;; http://cx4a.blogspot.jp/2011/12/popwineldirexel.html
 
 (use-package direx
-  :requires 'popwin
   :config
   (setq direx:leaf-icon "  "
         direx:open-icon "▾ "
@@ -26,4 +27,4 @@
       (unless result
         (direx:jump-to-directory-other-window)))))
 
-;;; 21-direx.el ends here
+;;; 24-direx.el ends here

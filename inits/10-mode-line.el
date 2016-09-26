@@ -1,25 +1,61 @@
-;;; 10-mode-line.el --- Custom mode line
+;;; 10-mode-line.el --- モードラインのカスタマイズ
 
 ;;; Commentary:
 
-;;; Code:
+;; 参考サイト
 ;; http://blog.shibayu36.org/entry/2014/04/01/094543
-
 ;; smart-mode-line
+;; https://github.com/Malabarba/smart-mode-line
+
+;;; Code:
+
 (use-package smart-mode-line
   :init
+  ;; 行番号と列番号を表示する
   (line-number-mode t)
   (column-number-mode t)
-  (add-hook 'after-change-major-mode-hook 'clean-mode-line)
+
+  ;; 猫を表示する
+  (use-package nyan-mode
+    :config
+    (nyan-mode t)
+    (setq nyan-bar-length 14)
+    (setq nyan-wavy-trail t))
+
+  (use-package mode-line-color
+     :config (mode-line-color-mode t))
+
+  ;; vim モードの表示
+  (use-package evil-mode-line
+    :config
+    (custom-set-faces
+     '(modeline-evil-normal-state
+       ((t (:background "darkolivegreen"
+            :foreground "black"))))
+     '(modeline-evil-insert-state
+       ((t (:background "#500000"
+            :foreground "black"))))
+     '(modeline-evil-replace-state
+       ((t (:background "chocolate1"
+            :foreground "black"))))
+     '(modeline-evil-visual-state
+       ((t (:background "#55295b"
+            :foreground "black"))))
+     '(modeline-evil-emacs-state
+       ((t (:background "gray50"
+            :foreground "black"))))))
+
   :config
+  ;; テーマのロード時に一々確認しない
   (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'dark)
+  ;; アクティベート
   (sml/setup)
+  (setq sml/theme 'dark)
 
   ;; モードラインのフォーマット設定
-  (setq-default
-   mode-line-format
+  (setq-default mode-line-format
    '(" "
+     ;; モード表示(evil-mode)
      (:eval
       (format "<%s>"
               (case evil-state
@@ -35,16 +71,19 @@
      mode-line-frame-identification
      mode-line-buffer-identification
      " "
-     ;;global-mode-string
+     ;; major/minor モード表示
      "%[("
      mode-name
      mode-line-process
      minor-mode-alist
      ")%] "
+     ;; 猫の表示
      ("" (:eval (list (nyan-create))))
      " %[("
+     ;; 行番号表示
      (line-number-mode "L%l")
      ("" (:eval (format "/%s" (line-number-at-pos (point-max)))))
+     ;; 列番号表示
      (column-number-mode " C%c")
      "%])"))
 
@@ -102,13 +141,10 @@
               (setcar old-mode-str mode-str))
             ;; major mode
             (when (eq mode major-mode)
-              (setq mode-name mode-str))))))
+              (setq mode-name mode-str)))))
 
-;; nyan-mode
-(use-package nyan-mode
-  :init (nyan-mode t)
-  :config
-  (setq nyan-bar-length 14)
-  (setq nyan-wavy-trail t))
+  (add-hook 'after-change-major-mode-hook
+            'clean-mode-line))
+
 
 ;;; 10-mode-line.el ends here

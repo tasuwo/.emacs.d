@@ -9,38 +9,100 @@
   :init
   (add-hook 'c-mode-hook
             (lambda ()
+              ;; -------- auto-complete --------
+              (set (make-local-variable 'ac-sources)
+                   (setq ac-sources '(ac-source-filename
+                                      ac-source-words-in-same-mode-buffers
+                                      ac-source-semantic
+                                      ac-source-yasnippet)))
+              ;; ヘッダー補完
+              (use-package auto-complete-c-headers
+                :config
+                (add-to-list 'ac-sources 'ac-source-c-headers))
+              ;; clang 補完
+              (use-package auto-complete-clang-async
+                :config
+                (setq ac-clang-complete-executable "/usr/local/bin/clang-complete")
+                (add-to-list 'ac-sources 'ac-source-clang-async)
+                (ac-clang-launch-completion-process))
+              ;; semantic
+              (add-to-list 'ac-sources 'ac-source-semantic)
+              ;; ------ end auto-complete ------
+
+              (use-package doxymacs
+                :config
+                (setq doxymacs-doxygen-style "JavaDoc"))
+
               (setq-default c-basic-offset 4
                             tab-width 4
                             indent-tabs-mode nil)
               (c-set-style "stroustrup")
               (show-paren-mode t))))
+
 (use-package c++-mode
   :mode (("\\.h\\'" . c++-mode)
          ("\\.cpp\\'" . c++-mode))
   :init
+  ;; This hack fixes indentation for C++11's "enum class" in Emacs.
+  ;; http://stackoverflow.com/questions/6497374/emacs-cc-mode-indentation-problem-with-c0x-enum-class/6550361#6550361
+  (defun inside-class-enum-p (pos)
+    "Checks if POS is within the braces of a C++ \"enum class\"."
+    (ignore-errors
+      (save-excursion
+        (goto-char pos)
+        (up-list -1)
+        (backward-sexp 1)
+        (or (looking-back "enum\\s-+class\\s-+")
+          (looking-back "enum\\s-+class\\s-+\\S-+\\s-*:\\s-*")))))
+
+  (defun align-enum-class (langelem)
+    (if (inside-class-enum-p (c-langelem-pos langelem))
+        0
+      (c-lineup-topmost-intro-cont langelem)))
+
+  (defun align-enum-class-closing-brace (langelem)
+    (if (inside-class-enum-p (c-langelem-pos langelem))
+        '-
+      '+))
+
+  (defun fix-enum-class ()
+    "Setup `c++-mode' to better handle \"class enum\"."
+    (interactive)
+    (add-to-list 'c-offsets-alist '(topmost-intro-cont . align-enum-class))
+    (add-to-list 'c-offsets-alist
+                 '(statement-cont . align-enum-class-closing-brace)))
+
   (add-hook 'c++-mode-hook
             (lambda ()
+              ;; -------- auto-complete --------
+              (set (make-local-variable 'ac-sources)
+                   (setq ac-sources '(ac-source-filename
+                                      ac-source-words-in-same-mode-buffers
+                                      ac-source-semantic
+                                      ac-source-yasnippet)))
+              ;; ヘッダー補完
+              (use-package auto-complete-c-headers
+                :config
+                (add-to-list 'ac-sources 'ac-source-c-headers))
+              ;; clang 補完
+              (use-package auto-complete-clang-async
+                :config
+                (setq ac-clang-complete-executable "/usr/local/bin/clang-complete")
+                (add-to-list 'ac-sources 'ac-source-clang-async)
+                (ac-clang-launch-completion-process))
+              ;; semantic
+              (add-to-list 'ac-sources 'ac-source-semantic)
+              ;; ------ end auto-complete ------
+
+              (use-package doxymacs
+                :config
+                (setq doxymacs-doxygen-style "JavaDoc"))
+
               (setq-default c-basic-offset 4
                             tab-width 4
                             indent-tabs-mode nil)
               (c-set-style "stroustrup")
               (show-paren-mode t))))
-
-;; ヘッダーの補完
-(use-package auto-complete-c-headers
-  :requires 'auto-complete
-  :commands (c-mode c++-mode)
-  :config
-  (add-to-list 'ac-sources 'ac-source-c-headers))
-
-;; clang を使用した補完
-(use-package auto-complete-clang-async
-  :commands (c-mode c++-mode)
-  :config
-  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-  (setq ac-clang-complete-executable "/usr/local/bin/clang-complete")
-  (setq ac-sources '(ac-source-clang-async))
-  (ac-clang-launch-completion-process))
 
 ;; doxymacs
 (use-package doxymacs

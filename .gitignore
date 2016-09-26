@@ -1,25 +1,45 @@
-*.el~
-*#
-.cask/*
-eshell/*
-ac-comphist.dat
-
-snippets/*
-!install-snippets.sh
-/recentf
-.recentf
-
 !.gitignore
 
-.mc-lists.el
+.DS_Store
 
-.python-environments/*
+# backup files
+*.el~
+*#
+
+# Cask
+.cask/*
+
+# Emacs Shell
+eshel/*
+
+# Saving session information in Emacs
 *.desktop
 *.desktop.lock
 
-/bookmarks
-elisp/custom-file.el
+# auto-complete
+ac-comphist.dat
+
+# yasnippet
+snippets/*
+!install-snippets.sh
+
+# recentf
+/recentf
+recentf
+.recentf
+
+# multiple-cursors
+.mc-lists.el
+
+# python
+.python-environments/*
+
+# Semantic
+semanticdb
 srecode-map.el
 
+# Transparent Remote Access
 tramp
-semanticdb
+
+/bookmarks
+elisp/custom-file.el

@@ -1,4 +1,4 @@
-;;; 00-basic.el --- Basic settings
+;;; 00-basic.el --- 基本設定群
 
 ;;; Commentary:
 
@@ -21,14 +21,14 @@
 ;; フォント
 (set-face-attribute 'default nil
                     :family "Ricty Discord"
-                    :height 160)
+                    :height 140)
 ;; フォントロック
 (global-font-lock-mode 1)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq font-lock-maximum-decoration t)
 
 ;; 行間
-(setq-default line-spacing 3)
+(setq-default line-spacing 1)
 
 ;; 行番号表示
 (global-linum-mode t)
@@ -182,10 +182,8 @@
 ;; マウス操作設定
 ;; SIMBLE と MouseTerm をインストールすること
 ;; @see https://bitheap.org/mouseterm/
-(xterm-mouse-mode t)
 (mouse-wheel-mode t)
-(global-set-key   [mouse-4] '(lambda () (interactive) (scroll-down 1)))
-(global-set-key   [mouse-5] '(lambda () (interactive) (scroll-up   1)))
+;; ターミナルから開いている場合
 (unless window-system
   (xterm-mouse-mode 1)
   (global-set-key [mouse-4] '(lambda ()
@@ -194,10 +192,12 @@
   (global-set-key [mouse-5] '(lambda ()
                                (interactive)
                                (scroll-up 1))))
-
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+(global-set-key [wheel-right] '(lambda () (interactive) (scroll-left 1)))
+(global-set-key [wheel-left] '(lambda () (interactive) (scroll-right 1)))
 
 ;; color theme
 (load-theme 'wombat t)

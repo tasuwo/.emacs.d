@@ -1,4 +1,4 @@
-;;; 20-quickrun.el --- Build sources simplly
+;;; 20-quickrun.el --- ソースコードの実行
 
 ;;; Commentary:
 
@@ -6,13 +6,11 @@
 
 (use-package quickrun
   :config
+  ;; coffee script の実行のためのコマンド追加
   (quickrun-add-command "coffee-compile"
                         '((:command . "coffee")
                           (:exec . "%c --compile --print %s")
                           (:outputter . (lambda () (javascript-generic-mode))))
                         :default "coffee"))
-
-(use-package generic-x
-  :requires quickrun)
 
 ;;; 20-quickrun.el ends here

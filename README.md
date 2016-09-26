@@ -1,20 +1,19 @@
-# What is this?
+# これはなに
 
-This is my personal Emacs configulation.
+自分用の Emacs 設定ファイル．
 
 ## Requirements
 
-### Latest version of Emacs
+### 最新バージョンのEmacs
 
-```bash
+```shell
 $ brew install emacs --cocoa
 $ brew linkapps
 ```
 
 ### Cask
 
-
-```bash
+```shell
 $ brew install cask
 $ cask install
 $ cask update
@@ -22,34 +21,30 @@ $ cask update
 
 ### Snippets
 
-```bash
+```shell
 $ cd ~/.emacs.d/snippets
 $ ~/.emacs.d/snippets/install-snippets.sh
 ```
 
 ### Migemo
 
-for using megemo
-
-```migemo
+```shell
 $ brew install cmigemo
 ```
 
-## Others
-
 ### for C/C++ mode
 
-``` shell
+```shell
 $ brew install emacs-clang-complete-async
 ```
 
 ### for js2-mode
 
-```
+```shell
 npm install -g tern
 ```
 
-Create `~/.tern-config` file.
+以下のような`~/.tern-config`を用意する．
 
 ```json
 {
@@ -65,23 +60,40 @@ Create `~/.tern-config` file.
 
 [EmacsにternをインストールしてjQueryを補完する -- blog.10rane.com](http://blog.10rane.com/2015/08/06/how-to-install-and-setup-tern/)
 
+さらに，eslintを使用するために以下を実行する．
+
+``` shell
+$ npm install -g eslint babel-eslint
+```
+
+以下のような`~/.eslintrc`を用意する．
+
+``` javascript
+module.exports = {
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+  },
+  "settings": {
+  }
+};
+```
+
 ### for Clisp on SLIME
 
-```
+```shell
 $ brew install clisp
-```
-
-### for Markdown-mode
-
-```
-$ brew install markdown
 ```
 
 ### for matlab-mode
 
-Add a mlint to the path in `.emacs.d/inits/30-edit-mode-matlab.el`.
+`mlint`へのパスを`.emacs.d/inits/30-edit-mode-matlab.el`に追加する．
 
-```
+```lisp
 (flycheck-define-command-checker 'matlab-mlint
   "A Matlab checker based on mlint."
   :command `("/Applications/MATLAB_R2014a.app/bin/maci64/mlint" source)
@@ -91,36 +103,64 @@ Add a mlint to the path in `.emacs.d/inits/30-edit-mode-matlab.el`.
   :modes '(matlab-mode))
 ```
 
-### for pytho-mode
+### for python-mode
 
-Use a `~/.pylintrc` file to configure Pylint.
+Pylint のために `~/.pylintrc`を用意する．
 
-```
+```json
 [FORMAT]
 indent-string=\t
 ```
 
 ### for apples-mode
 
-Add permission to apples-mode installed directory.
-This mode make tmp file there.
+tmpファイルが作成されるため，apples-modeをインストールしたディレクトリに権限を付加する．
 
-## Using mouse
+### for yatex-mode
+
+MacTeXをインストールし，以下のような`platex2pdf`ファイルを用意する．
+
+``` shell
+#!/bin/sh
+test -n "$1" || echo "usage: platex2pdf [tex-file]"
+test -n "$1" || exit 1 # 引数が無ければ syntax を表示して終了
+TEX=$*
+DVI=`/usr/bin/basename "$TEX" ".tex"`
+THECODE=`nkf -g "$TEX"`
+case $THECODE in # nkf が返す文字コードにあわせる
+    UTF-8) KANJI="-kanji=utf8";;
+    EUC-JP) KANJI="-kanji=euc";;
+    Shift-JIS) KANJI="kanji=sjis";;
+    ISO-2022-JP) KANJI="-kanji=jis";;
+esac
+PLATEX="platex"
+CLASS=`sed -n '/documentclass/p' $* | sed '/%.*documentclass/d' | sed -n '1p'`
+case $CLASS in
+    *{u*) PLATEX="uplatex";;
+esac
+$PLATEX $KANJI $TEX # platex コマンドの発行
+dvipdfmx $DVI # dvipdfmx コマンドの発行
+```
+
+[モダンな日本語 TeX 環境を整える - Qiita](http://qiita.com/ynakayama/items/706ae9e59c1b6fd3e3d2)
+
+## マウスを使う
 
 >[MouseTerm](https://bitheap.org/mouseterm/)
 
 ## python env
 
-```bash
+```shell
 $ pip install virtualenv
 $ pip install virtualenvwrapper
 $ mkdir ~/.virtualenvs
 ```
 
-in `.zshrc`
+`.zshrc` に以下を追記する．
 
-```bash
+```shell
 export WORKON_HOME=$HOME/.virtualenvs
 ```
 
-and `M-x jedi:install-server`
+さらに，`M-x jedi:install-server`を実行する
+

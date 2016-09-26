@@ -1,7 +1,9 @@
+;;; 31-line-warning.el --- C系統，Pythonにて1行80文字を超えるとハイライト
+
+;;; Commentary:
 
 ;;; Code:
 
-;;; C系統,Pythonにて1行80文字を超えるとハイライト
 (add-hook 'c-mode-hook
   (lambda ()
     (font-lock-add-keywords nil

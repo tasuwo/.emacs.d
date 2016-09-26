@@ -1,4 +1,4 @@
-;;; 30-edit-mode-typescript.el
+;;; 30-edit-mode-typescript.el --- Typescript mode
 
 ;;; Commentary:
 

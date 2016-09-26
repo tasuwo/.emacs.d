@@ -1,11 +1,11 @@
-;;; 20-magit.el --- Git client for emacs
+;;; 20-magit.el --- Emacs 用 Git client
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package magit)
-
-(use-package evil-magit)
+(use-package magit
+  :init
+  (use-package evil-magit))
 
 ;;; 20-magit.el ends here

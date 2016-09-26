@@ -1,3 +1,6 @@
+;;; 99-keybind.el --- Keybind settings
+
+;;; Commentary:
 
 ;;; Code:
 
@@ -17,15 +20,12 @@
 (bind-key "M-!" nil)
 (bind-key "M-s" 'shell-command)
 
-;;;;;;;;;;;;
-;; js-doc
-;;(bind-key "C-c C-j" 'js-doc-insert-function-doc)
-
 ;;;;;;;;
 ;; helm
 (bind-key "M-x"     'helm-M-x)
 (bind-key "C-x C-f" 'helm-find-files)
 (bind-key "C-x C-r" 'helm-recentf)
+
 ;;;;;;;;;;;;;;;
 ;; helm-swoop
 (bind-key "M-i" 'helm-swoop)
@@ -36,10 +36,12 @@
 (bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
 ;; helm-swoop実行中にhelm-multi-swoop-allに移行
 (bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
+
 ;;;;;;;;;;;;;;;;;;
 ;; helm-flycheck
 (eval-after-load 'flycheck
   '(bind-key "C-c !" 'helm-flycheck flycheck-mode-map))
+
 ;;;;;;;;;;;;;;;
 ;; helm-gtags
 (add-hook 'helm-gtags-mode-hook
@@ -64,14 +66,20 @@
 
 ;;;;;;;;;;;;
 ;; expand region
-(use-package expand-region)
 (global-unset-key "\C-l")
-(bind-key "C-l" 'er/expand-region)
-(bind-key "C-M-l" 'er/contract-region) ;; リージョンを狭める
-(transient-mark-mode t)
+(use-package expand-region
+  :bind (("C-l" . er/expand-region)
+         ("C-M-;" . er/contract-region))
+  :config
+  (transient-mark-mode t))
+
 ;;;;;;;;;;;;
 ;; smart-newline
-(bind-key "C-m" 'smart-newline)
+(use-package smart-newline
+  :bind (("C-m" . smart-newline))
+  :config
+  (smart-newline-mode 1))
+
 ;;;;;;;;;;;;
 ;; direx
 (bind-key "C-x C-j" 'direx:jump-to-project-directory)
@@ -84,15 +92,19 @@
              ))
 ;;(global-unset-key (kbd "C-x C-d"))
 ;;(bind-key "C-x C-d" 'direx:jump-to-directory)
+
 ;;;;;;;;;;;;
 ;; コピー
 (bind-key "C-x w" 'kill-ring-save)
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;; ファイルパスの取得
 (bind-key "C-c p" 'my/copy-current-path)
+
 ;;;;;;;;;;;;;;;;;;;
 ;; window-resizer
 (bind-key "C-c r" 'window-resizer)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 分割ウインドウ間の移動
 (bind-key "C-c m" 'window-move)
@@ -141,47 +153,8 @@
 (bind-key "C-j" 'emmet-expand-line emmet-mode-keymap)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; company
-;; (define-key company-active-map (kbd "M-n") nil)
-;; (define-key company-active-map (kbd "M-p") nil)
-;; (define-key company-active-map (kbd "C-h") nil)
-;; ;; C-n, C-pで補完候補を次/前の候補を選択
-;; (define-key company-active-map (kbd "C-n") 'company-select-next)
-;; (define-key company-active-map (kbd "C-p") 'company-select-previous)
-;; ;; C-sで絞り込む
-;; (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
-;; (defun company--insert-candidate2 (candidate)
-;;   (when (> (length candidate) 0)
-;;     (setq candidate (substring-no-properties candidate))
-;;     (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
-;;         (insert (company-strip-prefix candidate))
-;;       (if (equal company-prefix candidate)
-;;           (company-select-next)
-;;           (delete-region (- (point) (length company-prefix)) (point))
-;;         (insert candidate))
-;;       )))
-;; (defun company-complete-common2 ()
-;;   (interactive)
-;;   (when (company-manual-begin)
-;;     (if (and (not (cdr company-candidates))
-;;              (equal company-common (car company-candidates)))
-;;         (company-complete-selection)
-;;       (company--insert-candidate2 company-common))))
-;; (define-key company-active-map [tab] 'company-complete-common2)
-;; (define-key company-active-map [backtab] 'company-select-previous)
-;; ;; 補完
-;; (global-set-key (kbd "<C-tab>") 'company-complete)
-;; ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
-;; (define-key emacs-lisp-mode-map (kbd "<C-tab>") 'company-complete)
-
-;;;;;;;;;;;;;
-;; auto-complete
-;; trigger key
-(ac-set-trigger-key "TAB")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; magit
-(bind-key (kbd "<f11>") 'magit-status)
+;; (bind-key (kbd "<f11>") 'magit-status)
 (add-hook 'magit-mode-hook
           '(lambda ()
              (local-set-key (kbd "<f11>") 'magit-remote-rename)
@@ -231,29 +204,35 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; multipule-cursors & smartrep
-(use-package multiple-cursors)
-(use-package smartrep)
-(declare-function smartrep-define-key "smartrep")
-(bind-key (kbd "C-M-c") 'mc/edit-lines)
-(bind-key (kbd "C-M-r") 'mc/mark-all-in-region)
-(global-unset-key "\C-t")
-(smartrep-define-key global-map "C-t"
-  '(("C-t"      . 'mc/mark-next-like-this)
-    ("j"        . 'mc/mark-next-like-this)
-    ("k"        . 'mc/mark-previous-like-this)
-    ("u"        . 'mc/unmark-next-like-this)
-    ("U"        . 'mc/unmark-previous-like-this)
-    ("s"        . 'mc/skip-to-next-like-this)
-    ("S"        . 'mc/skip-to-previous-like-this)
-    ("*"        . 'mc/mark-all-like-this)))
-(smartrep-define-key
-    global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
-                       ("M-p" . 'flymake-goto-prev-error)))
+;; (global-unset-key "\C-t")
+;; (use-package multiple-cursors
+;;   :config
+;;   (smartrep-define-key global-map "C-t"
+;;    '(("C-t"      . 'mc/mark-next-like-this)
+;;      ("j"        . 'mc/mark-next-like-this)
+;;      ("k"        . 'mc/mark-previous-like-this)
+;;      ("u"        . 'mc/unmark-next-like-this)
+;;      ("U"        . 'mc/unmark-previous-like-this)
+;;      ("s"        . 'mc/skip-to-next-like-this)
+;;      ("S"        . 'mc/skip-to-previous-like-this)
+;;      ("*"        . 'mc/mark-all-like-this)))
+;;   (smartrep-define-key
+;;    global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
+;;                       ("M-p" . 'flymake-goto-prev-error))))
+;; (use-package smartrep)
+;; (declare-function smartrep-define-key "smartrep")
+;; (bind-key (kbd "C-M-c") 'mc/edit-lines)
+;; (bind-key (kbd "C-M-r") 'mc/mark-all-in-region)
+;; (global-unset-key "\C-t")
 
 ;;;;;;;;;;;;;;
 ;; evil-mode
 (define-key evil-insert-state-map (kbd "C-j") 'evil-normal-state)
 (define-key evil-insert-state-map (kbd "C-t") nil)
 (define-key evil-normal-state-map (kbd "C-t") nil)
+(use-package evil-mc
+  :bind (("C-n" . evil-mc-make-and-goto-next-match)
+         ("C-p" . evil-mc-make-and-goto-prev-match)
+         ("C-*" . evil-mc-make-all-cursors)))
 
 ;;; 99-keybind.el ends here
