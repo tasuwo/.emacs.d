@@ -244,18 +244,10 @@
       (browse-url (buffer-substring-no-properties (car url-region)
                                                   (cdr url-region))))))
 
-;;; Copy and Paste parameters
-;;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Clipboard.html
-(setq x-select-enable-clipboard nil)
-(setq save-interprogram-paste-before-kill nil)
-(setq yank-pop-change-selection nil)
-(setq x-select-enable-clipboard-manager nil)
-(setq x-select-enable-primary t)
-(setq mouse-drag-copy-region t)
-;; Key binding
-(global-set-key [f5] 'clipboard-kill-region)
-(global-set-key [f6] 'clipboard-kill-ring-save)
-(global-set-key [f7] 'clipboard-yank)
+;; クリップボードにkill-ringをはりつけ
+(setq save-interprogram-paste-before-kill t)
+;; クリップボードからはりつけ
+(setq select-enable-clipboard t)
 
 ;; コマンド履歴を残す
 (setq desktop-globals-to-save '(extended-command-history))

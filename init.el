@@ -27,6 +27,15 @@
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/elisp/doxymacs")
 (add-to-list 'load-path "~/.emacs.d/elisp/node-ac")
+(add-to-list 'load-path "~/.emacs.d/elisp/yatex")
+(setq auto-mode-alist
+  (cons (cons "\.tex$" 'yatex-mode) auto-mode-alist))
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+(add-to-list 'load-path "/Applications/Emacs.app/Contents/Resources/site-lisp/yatex")
+(setq tex-command "platex")
+(setq dvi2-command "xdvi")
+
+(setq tex-pdfview-command "xpdf")
 
 (package-initialize)
 (require 'use-package)

@@ -78,7 +78,9 @@
   (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
   (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 
-  (helm-migemo-mode 1)
+  (use-package migemo
+    :config
+    (helm-migemo-mode 1))
 
   (helm-descbinds-install))
 

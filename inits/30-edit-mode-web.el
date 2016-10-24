@@ -62,35 +62,31 @@
                ;; Auto indent
                (local-set-key (kbd "RET") 'newline-and-indent)
                ;; Disabled smartparens in web-mode
-               ;; (setq smartparens-mode nil)
+               (setq smartparens-mode nil)
+
+               (setq-default web-mode-enable-auto-pairing t
+                             web-mode-enable-auto-opening t
+                             web-mode-enable-auto-indentation t
+                             web-mode-enable-block-face t
+                             web-mode-enable-part-face t
+                             web-mode-enable-comment-keywords t
+                             web-mode-enable-css-colorization t
+                             web-mode-enable-current-element-highlight t
+                             web-mode-enable-heredoc-fontification t
+                             web-mode-enable-engine-detection t
+
+                             ;; indent
+                             web-mode-markup-indent-offset 2 ;; html
+                             web-mode-css-indent-offset 2    ;; css
+                             web-mode-code-indent-offset 4   ;; other code (js,php,ruby,...)
+                             indent-tabs-mode nil
+
+                             web-mode-style-padding 2
+                             web-mode-script-padding 2
+                             web-mode-block-padding 0
+                             web-mode-comment-style 2)
                ))
   :config
-  (setq web-mode-engines-alist '(
-    ("php" . "\\.phtml\\'")
-    ("blade" . "\\.blade\\'")
-    ("django" . "\\.[sd]tpl\\'")
-    ("django" . "\\.[sd]tml\\'")))
-
-  (setq-default web-mode-enable-auto-pairing t
-              web-mode-enable-auto-opening t
-              web-mode-enable-auto-indentation t
-              web-mode-enable-block-face t
-              web-mode-enable-part-face t
-              web-mode-enable-comment-keywords t
-              web-mode-enable-css-colorization t
-              web-mode-enable-current-element-highlight t
-              web-mode-enable-heredoc-fontification t
-              web-mode-enable-engine-detection t
-
-              web-mode-markup-indent-offset 2
-              web-mode-css-indent-offset 2
-              web-mode-code-indent-offset 2
-
-              web-mode-style-padding 2
-              web-mode-script-padding 2
-              web-mode-block-padding 0
-              web-mode-comment-style 2)
-
   ;; Custom web-mode colors
   (custom-set-faces
    '(web-mode-html-tag-face
@@ -101,30 +97,8 @@
      ((t (:foreground "#FF8A4B"))))
    '(web-mode-current-element-highlight-face
      ((t (:background "#000000"
-          :foreground "#FF8A4B"))))))
-
-(use-package emmet-mode
-  :init
-  (add-hook 'web-mode-hook 'emmet-mode)
-  (add-hook 'css-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (use-package ac-emmet
-                :config
-                (ac-emmet-html-setup))))
-  (add-hook 'css-mode-hook
-            (lambda ()
-              (use-package ac-emmet
-                :config
-                (ac-emmet-css-setup))))
-  (add-hook 'css-mode-hook
-          '(lambda ()
-             (setq ac-sources (append '(ac-source-emmet-css-snippets) ac-sources))
-             (setq ac-sources (append '(ac-source-emmet-css-snippets ac-source-css-property) ac-sources))))
-  :config
-  (setq emmet-indentation 2)
-  (setq emmet-move-cursor-between-quotes nil)
-  (setq emmet-move-cursor-after-expanding t))
+          :foreground "#FF8A4B")))))
+  )
 
 (add-hook 'css-mode-hook
           '(lambda ()
