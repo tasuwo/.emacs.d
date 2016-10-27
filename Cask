@@ -11,6 +11,7 @@
 (depends-on "auto-complete-clang")
 (depends-on "auto-complete-clang-async")
 (depends-on "bind-key")
+(depends-on "bison-mode")
 (depends-on "browse-kill-ring")
 (depends-on "cl-lib")
 (depends-on "coffee-mode")
