@@ -281,4 +281,15 @@
   (interactive)
   (my-x-open (dired-get-filename)))
 
+;; 日記用
+(defun enjoy-diary ()
+  "現在の日時で日記用の .md ファイルを生成する"
+  (interactive)
+  (message "Enjoy diary!")
+  (setq file-name (concat (format-time-string "%4Y%2m%2d%2H%2M") ".md"))
+  (setq diary-dir (concat "/Users/" (user-real-login-name) "/GoogleDrive/diary/"))
+  (if (file-directory-p diary-dir)
+    (switch-to-buffer (find-file-noselect (concat diary-dir file-name)))
+    (message "There are no directory for diary. Please create \"~/GoogleDrive/diary/\".")))
+
 ;;; 00-basic.el ends here
