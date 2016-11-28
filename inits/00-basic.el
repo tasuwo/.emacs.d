@@ -292,4 +292,17 @@
     (switch-to-buffer (find-file-noselect (concat diary-dir file-name)))
     (message "There are no directory for diary. Please create \"~/GoogleDrive/diary/\".")))
 
+;; TAGS ファイルを生成
+;; c++ - How to use shell magic to create a recursive etags using GNU etags? - Stack Overflow
+;; http://stackoverflow.com/questions/10738219/how-to-use-shell-magic-to-create-a-recursive-etags-using-gnu-etags
+(defun compile-tags ()
+  "compile etags for the emacs lisp"
+  (interactive)
+  (cd "~/.emacs.d")
+  (compile
+   (concat "{ find /usr/local/Cellar/emacs/*/share/emacs/*/lisp -name \"*.el\" -or -name \"*.elc\" -or -name \"*.el.gz\" -print ;"
+           "  find ~/.emacs.d -name \"*.el\" -or -name \"*.elc\" -print }"
+           "| xargs etags --append")))
+(compile-tags)
+
 ;;; 00-basic.el ends here

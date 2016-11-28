@@ -235,4 +235,11 @@
          ("C-p" . evil-mc-make-and-goto-prev-match)
          ("C-*" . evil-mc-make-all-cursors)))
 
+;;;;;;;;;;;;;
+;; TAGS
+;; .el.gz に働かないので
+;; (bind-key "<f9>" 'find-tag)
+(bind-key "<f9>" 'find-tag)
+(bind-key "<f8>" 'pop-tag-mark)
+
 ;;; 99-keybind.el ends here

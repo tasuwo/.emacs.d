@@ -2,6 +2,7 @@
 (source melpa-stable)
 
 (depends-on "ac-emmet")
+(depends-on "ac-etags")
 (depends-on "ac-js2")
 (depends-on "ac-php")
 (depends-on "ant")
@@ -38,7 +39,7 @@
 (depends-on "git-gutter+")
 (depends-on "git-gutter-fringe+")
 (depends-on "gitignore-mode")
-(depends-on "helm")
+(depends-on "helm" :git "https://github.com/tasuwo/helm" :branch "improve-helm-tags")
 (depends-on "helm-bind-key")
 (depends-on "helm-descbinds")
 (depends-on "helm-flycheck")

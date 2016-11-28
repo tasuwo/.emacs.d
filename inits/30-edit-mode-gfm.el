@@ -41,9 +41,10 @@ If SUBMODE is not provided, use `LANG-mode' by default."
     ;; Mode names that derive directly from the language name
     (mapc 'my-mmm-gfm-auto-class
           '("awk" "bibtex" "c" "cpp" "css" "javascript" "html" "latex" "lisp" "makefile"
-            "markdown" "python" "r" "ruby" "sql" "stata" "xml" "emacs-lisp" "java" "json"))
+            "markdown" "python" "r" "ruby" "sql" "stata" "emacs-lisp" "java" "json" "swift"))
     ;; Mode names that differ from the language name
     (my-mmm-gfm-auto-class "fortran" 'f90-mode)
+    (my-mmm-gfm-auto-class "php" 'web-mode)
     (my-mmm-gfm-auto-class "perl" 'cperl-mode)
     (my-mmm-gfm-auto-class "shell" 'shell-script-mode))
 

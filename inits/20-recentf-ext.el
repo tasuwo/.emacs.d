@@ -6,6 +6,9 @@
 
 (use-package recentf
   :config
+  (defadvice recentf-cleanup (around no-message activate)
+    "suppress the output from `message' to minibuffer"
+    (cl-flet ((message (format-string &rest args) ()))))
   (setq recentf-save-file "~/.emacs.d/.recentf")
   (setq recentf-max-saved-items 100)             ;; recentf に保存するファイルの数
   (setq recentf-exclude '(".recentf"))           ;; .recentf自体は含まない
