@@ -30,20 +30,7 @@
                 '(ac-source-filename
                   ac-source-abbrev
                   ac-source-words-in-same-mode-buffers
-                  ac-source-semantic))
-
-  (setq tags-table-list
-       '("~/.emacs.d/TAGS"))
-
-  (use-package ac-etags:
-    :config
-    (custom-set-variables
-     '(ac-etags-requires 1))
-
-    (eval-after-load "etags"
-      '(progn
-         (ac-etags-setup))))
-  )
+                  ac-source-semantic)))
 
 ;;; 21-auto-complete.el ends here
 

@@ -50,7 +50,6 @@
   (setq sml/no-confirm-load-theme t)
   ;; アクティベート
   (sml/setup)
-  (setq sml/theme 'dark)
 
   ;; モードラインのフォーマット設定
   (setq-default mode-line-format
@@ -111,6 +110,7 @@
       (shell-mode .             "")
       (auto-revert-mode .       "")
       (lisp-interaction-mode .  "")
+      (editorconfig-mode .      " EC")
       (semantic-mode .                       " Se")
       (global-semanticdb-minor-mode .        " SeDB")
       (global-semantic-idle-scheduler-mode . " SeSC")
@@ -146,5 +146,18 @@
   (add-hook 'after-change-major-mode-hook
             'clean-mode-line))
 
+(use-package airline-themes
+  :init
+  (setq powerline-utf-8-separator-left        #xe0b0
+        powerline-utf-8-separator-right       #xe0b2
+        airline-utf-glyph-separator-left      #xe0b0
+        airline-utf-glyph-separator-right     #xe0b2
+        airline-utf-glyph-subseparator-left   #xe0b1
+        airline-utf-glyph-subseparator-right  #xe0b3
+        airline-utf-glyph-branch              #xe0a0
+        airline-utf-glyph-readonly            #xe0a2
+        airline-utf-glyph-linenumber          #xe0a1)
+  :config
+  (load-theme 'airline-light))
 
 ;;; 10-mode-line.el ends here
