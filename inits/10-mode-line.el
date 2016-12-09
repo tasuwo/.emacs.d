@@ -15,76 +15,14 @@
   (line-number-mode t)
   (column-number-mode t)
 
-  ;; 猫を表示する
-  (use-package nyan-mode
-    :config
-    (nyan-mode t)
-    (setq nyan-bar-length 14)
-    (setq nyan-wavy-trail t))
-
   (use-package mode-line-color
      :config (mode-line-color-mode t))
-
-  ;; vim モードの表示
-  (use-package evil-mode-line
-    :config
-    (custom-set-faces
-     '(modeline-evil-normal-state
-       ((t (:background "darkolivegreen"
-            :foreground "black"))))
-     '(modeline-evil-insert-state
-       ((t (:background "#500000"
-            :foreground "black"))))
-     '(modeline-evil-replace-state
-       ((t (:background "chocolate1"
-            :foreground "black"))))
-     '(modeline-evil-visual-state
-       ((t (:background "#55295b"
-            :foreground "black"))))
-     '(modeline-evil-emacs-state
-       ((t (:background "gray50"
-            :foreground "black"))))))
 
   :config
   ;; テーマのロード時に一々確認しない
   (setq sml/no-confirm-load-theme t)
   ;; アクティベート
   (sml/setup)
-
-  ;; モードラインのフォーマット設定
-  (setq-default mode-line-format
-   '(" "
-     ;; モード表示(evil-mode)
-     (:eval
-      (format "<%s>"
-              (case evil-state
-                ((normal)  evil-normal-state-msg)
-                ((insert)  evil-insert-state-msg)
-                ((visual)  evil-visual-state-msg)
-                ((replace) evil-replace-state-msg)
-                ((emacs)   evil-emacs-state-msg)
-                (t         evil-emacs-state-msg)
-                ((nil)     evil-emacs-state-msg))))
-     mode-line-mule-info
-     mode-line-modified
-     mode-line-frame-identification
-     mode-line-buffer-identification
-     " "
-     ;; major/minor モード表示
-     "%[("
-     mode-name
-     mode-line-process
-     minor-mode-alist
-     ")%] "
-     ;; 猫の表示
-     ("" (:eval (list (nyan-create))))
-     " %[("
-     ;; 行番号表示
-     (line-number-mode "L%l")
-     ("" (:eval (format "/%s" (line-number-at-pos (point-max)))))
-     ;; 列番号表示
-     (column-number-mode " C%c")
-     "%])"))
 
   ;; 各種モードの文字列定義
   (defvar mode-line-cleaner-alist
@@ -146,18 +84,59 @@
   (add-hook 'after-change-major-mode-hook
             'clean-mode-line))
 
-(use-package airline-themes
-  :init
-  (setq powerline-utf-8-separator-left        #xe0b0
-        powerline-utf-8-separator-right       #xe0b2
-        airline-utf-glyph-separator-left      #xe0b0
-        airline-utf-glyph-separator-right     #xe0b2
-        airline-utf-glyph-subseparator-left   #xe0b1
-        airline-utf-glyph-subseparator-right  #xe0b3
-        airline-utf-glyph-branch              #xe0a0
-        airline-utf-glyph-readonly            #xe0a2
-        airline-utf-glyph-linenumber          #xe0a1)
+(use-package persp-mode
   :config
-  (load-theme 'airline-light))
+  (persp-mode t))
+
+(use-package eyebrowse-mode
+  :init
+  (eyebrowse-mode t))
+
+(use-package window-numbering
+  :config
+  (defun window-numbering-install-mode-line (&optional position)
+    "Do nothing."))
+
+(use-package anzu
+  :config
+  (global-anzu-mode +1)
+  (use-package evil-anzu))
+
+(use-package org-pomodoro)
+
+(use-package pyenv-mode
+  :config
+  (pyenv-mode))
+
+(use-package fancy-battery-mode
+  :config
+  (add-hook 'after-init-hook #'fancy-battery-mode))
+
+(use-package spaceline)
+(use-package spaceline-config
+  :init
+  (setq powerline-height 20)
+  (setq powerline-raw " ")
+  (setq ns-use-srgb-colorspace nil)
+
+  :config
+  (spaceline-helm-mode t)
+  (spaceline-info-mode t)
+  (spaceline-spacemacs-theme)
+
+  (setq powerline-default-separator 'wave)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (spaceline-highlight-face-evil-state)
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-hud-off)
+
+  (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
+  (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
+  (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
+  (set-face-attribute 'spaceline-evil-normal nil :background "#a6e22e")
+  (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
+  (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
+
+  (spaceline-compile))
 
 ;;; 10-mode-line.el ends here
