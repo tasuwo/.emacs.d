@@ -82,6 +82,10 @@
     :config
     (helm-migemo-mode 1))
 
+  (set-face-attribute 'helm-selection nil
+                      :background "yellow"
+                      :foreground "black")
+
   (helm-descbinds-install))
 
 ;;; 25-helm.el ends here

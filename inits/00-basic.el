@@ -51,7 +51,8 @@
 (tool-bar-mode -1)
 
 ;; メニューバーを非表示
-;; (menu-bar-mode -1)
+(if (eq (window-system) nil)
+  (menu-bar-mode -1))
 
 ;; スクロールバーを非表示
 (cond (windows-p
