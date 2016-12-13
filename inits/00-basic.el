@@ -182,7 +182,8 @@
 ;; マウス操作設定
 ;; SIMBLE と MouseTerm をインストールすること
 ;; @see https://bitheap.org/mouseterm/
-(mouse-wheel-mode t)
+(when (require 'mwheel nil 'noerror)
+  (mouse-wheel-mode t))
 ;; ターミナルから開いている場合
 (unless window-system
   (xterm-mouse-mode 1)
