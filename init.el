@@ -19,7 +19,10 @@
        (require 'cask "cask.el"))
       (windows-p
        (add-to-list 'load-path "~/.cask")
-       (require 'cask)))
+       (require 'cask))
+      (linux-p
+       (add-to-list 'load-path "~/.cask")
+       (require 'cask "cask.el")))
 ;; 初期化
 (cask-initialize)
 
