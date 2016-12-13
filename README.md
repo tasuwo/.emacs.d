@@ -89,20 +89,6 @@ module.exports = {
 $ brew install clisp
 ```
 
-### for matlab-mode
-
-`mlint`へのパスを`.emacs.d/inits/30-edit-mode-matlab.el`に追加する．
-
-```lisp
-(flycheck-define-command-checker 'matlab-mlint
-  "A Matlab checker based on mlint."
-  :command `("/Applications/MATLAB_R2014a.app/bin/maci64/mlint" source)
-  :error-patterns
-  '((warning line-start "L " line " (C " (1+ digit) "): " (message) line-end)
-    (warning line-start "L " line " (C " (1+ digit) "-" (1+ digit) "): " (message) line-end))
-  :modes '(matlab-mode))
-```
-
 ### for python-mode
 
 Pylint のために `~/.pylintrc`を用意する．
