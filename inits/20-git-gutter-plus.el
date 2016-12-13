@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(when (require 'git-gutter+ nil 'noerror)
+(when (fboundp 'define-fringe-bitmap)
   (use-package git-gutter+
     :config
     (setq git-gutter+-modified-sign "!")
