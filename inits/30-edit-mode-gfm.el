@@ -69,4 +69,6 @@ If SUBMODE is not provided, use `LANG-mode' by default."
 (walk-windows (lambda (window)
                 (set-window-hscroll window 1)))
 
+(use-package markdown-preview-eww)
+
 ;;; 30-edit-mode-gfm.el ends here

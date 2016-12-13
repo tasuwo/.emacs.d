@@ -238,7 +238,6 @@
 ;;;;;;;;;;;;;
 ;; TAGS
 ;; .el.gz に働かないので
-;; (bind-key "<f9>" 'find-tag)
 (bind-key "<f9>" 'find-tag)
 (bind-key "<f8>" 'pop-tag-mark)
 

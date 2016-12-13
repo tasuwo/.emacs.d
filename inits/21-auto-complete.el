@@ -11,7 +11,7 @@
   (global-auto-complete-mode t)
 
   ;; 自動補完をon
-  (setq ac-auto-start 0)
+  (setq ac-auto-start 10)
 
   ;; 自動でメニュー表示
   (setq ac-auto-show-menu t)
@@ -33,4 +33,3 @@
                   ac-source-semantic)))
 
 ;;; 21-auto-complete.el ends here
-

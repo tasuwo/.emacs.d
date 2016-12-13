@@ -84,33 +84,11 @@
   (add-hook 'after-change-major-mode-hook
             'clean-mode-line))
 
-(use-package persp-mode
-  :config
-  (persp-mode t))
-
-(use-package eyebrowse-mode
-  :init
-  (eyebrowse-mode t))
-
-(use-package window-numbering
-  :config
-  (defun window-numbering-install-mode-line (&optional position)
-    "Do nothing."))
-
+;; 検索時にヒット数を表示
 (use-package anzu
   :config
   (global-anzu-mode +1)
-  (use-package evil-anzu))
-
-(use-package org-pomodoro)
-
-(use-package pyenv-mode
-  :config
-  (pyenv-mode))
-
-(use-package fancy-battery-mode
-  :config
-  (add-hook 'after-init-hook #'fancy-battery-mode))
+  (setq anzu-cons-mode-line-p nil))
 
 (use-package spaceline)
 (use-package spaceline-config

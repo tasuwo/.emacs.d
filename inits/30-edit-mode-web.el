@@ -49,7 +49,9 @@
                    (yas-deactivate-extra-mode 'php-mode))
                  ;; css にカーソルがあれば
                  (if (string= web-mode-cur-language "css")
-                     (setq emmet-use-css-transform t)
+                     '(lambda ()
+                        (setq emmet-use-css-transform t)
+                        'ac-css-mode-setup)
                    (setq emmet-use-css-transform nil)))))
 
   (add-hook 'web-mode-hook
@@ -58,33 +60,33 @@
                (set (make-local-variable 'ac-sources)
                     (setq ac-sources '(ac-source-filename
                                        ac-source-yasnippet)))
-               ;; (sdd-to-list 'ac-sources 'a)
                ;; Auto indent
                (local-set-key (kbd "RET") 'newline-and-indent)
                ;; Disabled smartparens in web-mode
                (setq smartparens-mode nil)
 
-               (setq-default web-mode-enable-auto-pairing t
-                             web-mode-enable-auto-opening t
-                             web-mode-enable-auto-indentation t
-                             web-mode-enable-block-face t
-                             web-mode-enable-part-face t
-                             web-mode-enable-comment-keywords t
-                             web-mode-enable-css-colorization t
-                             web-mode-enable-current-element-highlight t
-                             web-mode-enable-heredoc-fontification t
-                             web-mode-enable-engine-detection t
+               (setq web-mode-enable-auto-pairing t
+                     web-mode-enable-auto-opening t
+                     web-mode-enable-auto-indentation t
+                     web-mode-enable-block-face t
+                     web-mode-enable-part-face t
+                     web-mode-enable-comment-keywords t
+                     web-mode-enable-css-colorization t
+                     web-mode-enable-current-element-highlight t
+                     web-mode-enable-heredoc-fontification t
+                     web-mode-enable-engine-detection t
 
-                             ;; indent
-                             web-mode-markup-indent-offset 2 ;; html
-                             web-mode-css-indent-offset 2    ;; css
-                             web-mode-code-indent-offset 4   ;; other code (js,php,ruby,...)
-                             indent-tabs-mode nil
+                     ;; indent
+                     web-mode-markup-indent-offset 2 ;; html
+                     web-mode-attr-indent-offset 2
+                     web-mode-css-indent-offset 2    ;; css
+                     web-mode-code-indent-offset 4   ;; other code (js,php,ruby,...)
+                     indent-tabs-mode nil
 
-                             web-mode-style-padding 2
-                             web-mode-script-padding 2
-                             web-mode-block-padding 0
-                             web-mode-comment-style 2)
+                     web-mode-style-padding 2
+                     web-mode-script-padding 2
+                     web-mode-block-padding 0
+                     web-mode-comment-style 2)
                ))
   :config
   ;; Custom web-mode colors
