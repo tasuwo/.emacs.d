@@ -4,6 +4,10 @@
 
 ;;; Code:
 
+(use-package gfm-mode
+  :init
+  (add-hook 'gfm-mode-hook 'flycheck-mode))
+
 (use-package markdown-mode
   :mode (("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode))

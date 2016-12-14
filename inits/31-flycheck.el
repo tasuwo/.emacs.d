@@ -14,6 +14,20 @@
   :config
   (global-flycheck-mode)
 
+  ;; ref https://github.com/amperser/proselint/issues/37
+  ;; textlint
+  (flycheck-define-checker textlint
+    "A linter for prose."
+    :command ("textlint" "--format" "unix" source)
+    :error-patterns
+    ((warning line-start (file-name) ":" line ":" column ": "
+              (id (one-or-more (not (any " "))))
+              (message (one-or-more not-newline)
+                       (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+              line-end))
+    :modes (text-mode markdown-mode gfm-mode))
+  (add-to-list 'flycheck-checkers 'textlint 'append)
+
   ;; matlab
   (flycheck-define-command-checker 'matlab-mlint
     "A Matlab checker based on mlint."
@@ -29,7 +43,7 @@
         (replace-regexp-in-string
          "\n+$" "" (shell-command-to-string
                     "xcrun --show-sdk-path --sdk macosx")))
-  (add-to-list 'flycheck-checkers 'swift)
+  (add-to-list 'flycheck-checkers 'swift 'append)
 
   ;; C++
   (setq-default flycheck-clang-language-standard "c++11"
@@ -41,7 +55,7 @@
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint)))
-  (setq flycheck-checkers '(javascript-eslint))
+  (add-to-list 'flycheck-checkers 'javascript-eslint 'append)
   ;; use eslint with web-mode for jsx files
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'js2-mode)
@@ -49,6 +63,10 @@
   ;; disable json-jsonlist checking for json files
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(json-jsonlist))))
+                        '(json-jsonlist)))
+
+  (use-package flycheck-pos-tip
+    :config
+    (flycheck-pos-tip-mode)))
 
 ;;; 31-flycheck.el ends here
