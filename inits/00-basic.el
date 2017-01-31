@@ -28,7 +28,7 @@
 (setq font-lock-maximum-decoration t)
 
 ;; 行間
-(setq-default line-spacing 2)
+(setq-default line-spacing 3)
 
 ;; 行番号表示
 (global-linum-mode t)
@@ -41,8 +41,8 @@
 (setq hl-line-face 'underline)
 (global-hl-line-mode)
 
-;; スタートアップを非表示
-(setq inhibit-startup-screen t)
+;; 起動画面の設定
+(setq fancy-splash-image (expand-file-name "~/.emacs.d/emacs_icon.png"))
 
 ;; scratchの初期メッセージ消去
 (setq initial-scratch-message "")
@@ -306,5 +306,12 @@
            "  find ~/.emacs.d -name \"*.el\" -or -name \"*.elc\" -print }"
            "| xargs etags --append")))
 (compile-tags)
+
+;; シェルの環境変数を引き継ぐ
+(exec-path-from-shell-initialize)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((gnuplot . t)))
 
 ;;; 00-basic.el ends here

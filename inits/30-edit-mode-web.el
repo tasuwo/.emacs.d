@@ -13,57 +13,12 @@
          ("\\.*tpl\\'" . web-mode)
          ("\\.html?\\'" . web-mode)
          ("\\.ctp\\'" . web-mode)
-         ("\\.css\\'" . web-mode))
+         ("\\.css\\'" . css-mode))
   :init
-  ;; 開いたファイルの拡張子に応じて ac-sources を設定
-  (setq web-mode-ac-sources-alist
-      ;; '(("php" . (  ac-source-php-auto-yasnippets
-      ;;               ac-source-gtags
-      ;;               ac-source-words-in-same-mode-buffers
-      ;;               ac-source-words-in-buffer
-      ;;               ac-source-files-in-current-dir
-      ;;  ))
-        '(("html" . ( ac-source-emmet-html-aliases
-                    ac-source-emmet-html-snippets
-                    ac-source-gtags
-                    ac-source-words-in-same-mode-buffers
-                    ac-source-words-in-buffer
-                    ac-source-files-in-current-dir
-                  ))
-        ("css" . (  ac-source-css-property
-                    ac-source-emmet-css-snippets
-                    ac-source-gtags
-                    ac-source-words-in-same-mode-buffers
-                    ac-source-words-in-buffer
-                    ac-source-files-in-current-dir
-                  ))))
-
-  ;; 現在カーソルが存在する言語に適した ac-source をロードする
-  (add-hook 'web-mode-before-auto-complete-hooks
-            '(lambda ()
-               (let ((web-mode-cur-language
-                      (web-mode-language-at-pos)))
-                 ;; php にカーソルがあれば
-                 (if (string= web-mode-cur-language "php")
-                     (yas-activate-extra-mode 'php-mode)
-                   (yas-deactivate-extra-mode 'php-mode))
-                 ;; css にカーソルがあれば
-                 (if (string= web-mode-cur-language "css")
-                     '(lambda ()
-                        (setq emmet-use-css-transform t)
-                        'ac-css-mode-setup)
-                   (setq emmet-use-css-transform nil)))))
-
   (add-hook 'web-mode-hook
             '(lambda ()
-               ;; ----- auto-complete ----- ;;
-               (set (make-local-variable 'ac-sources)
-                    (setq ac-sources '(ac-source-filename
-                                       ac-source-yasnippet)))
                ;; Auto indent
                (local-set-key (kbd "RET") 'newline-and-indent)
-               ;; Disabled smartparens in web-mode
-               (setq smartparens-mode nil)
 
                (setq web-mode-enable-auto-pairing t
                      web-mode-enable-auto-opening t
@@ -105,6 +60,7 @@
 (add-hook 'css-mode-hook
           '(lambda ()
              (define-key css-mode-map (kbd "M-i") 'helm-css-scss)
+             (setq css-indent-offset 2)
              (rainbow-delimiters-mode t)))
 
 (add-hook 'less-css-mode-hook

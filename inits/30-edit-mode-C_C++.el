@@ -9,26 +9,6 @@
   :init
   (add-hook 'c-mode-hook
             (lambda ()
-              ;; -------- auto-complete --------
-              (set (make-local-variable 'ac-sources)
-                   (setq ac-sources '(ac-source-filename
-                                      ac-source-words-in-same-mode-buffers
-                                      ac-source-semantic
-                                      ac-source-yasnippet)))
-              ;; ヘッダー補完
-              (use-package auto-complete-c-headers
-                :config
-                (add-to-list 'ac-sources 'ac-source-c-headers))
-              ;; clang 補完
-              (use-package auto-complete-clang-async
-                :config
-                (setq ac-clang-complete-executable "/usr/local/bin/clang-complete")
-                (add-to-list 'ac-sources 'ac-source-clang-async)
-                (ac-clang-launch-completion-process))
-              ;; semantic
-              (add-to-list 'ac-sources 'ac-source-semantic)
-              ;; ------ end auto-complete ------
-
               (use-package doxymacs
                 :config
                 (setq doxymacs-doxygen-style "JavaDoc"))
@@ -74,26 +54,6 @@
 
   (add-hook 'c++-mode-hook
             (lambda ()
-              ;; -------- auto-complete --------
-              (set (make-local-variable 'ac-sources)
-                   (setq ac-sources '(ac-source-filename
-                                      ac-source-words-in-same-mode-buffers
-                                      ac-source-semantic
-                                      ac-source-yasnippet)))
-              ;; ヘッダー補完
-              (use-package auto-complete-c-headers
-                :config
-                (add-to-list 'ac-sources 'ac-source-c-headers))
-              ;; clang 補完
-              (use-package auto-complete-clang-async
-                :config
-                (setq ac-clang-complete-executable "/usr/local/bin/clang-complete")
-                (add-to-list 'ac-sources 'ac-source-clang-async)
-                (ac-clang-launch-completion-process))
-              ;; semantic
-              (add-to-list 'ac-sources 'ac-source-semantic)
-              ;; ------ end auto-complete ------
-
               (use-package doxymacs
                 :config
                 (setq doxymacs-doxygen-style "JavaDoc"))

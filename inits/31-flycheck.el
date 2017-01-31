@@ -39,6 +39,7 @@
   (add-to-list 'flycheck-checkers 'matlab-mlint 'append)
 
   ;; swift
+  (flycheck-swift-setup)
   (setq flycheck-swift-sdk-path
         (replace-regexp-in-string
          "\n+$" "" (shell-command-to-string
@@ -46,8 +47,11 @@
   (add-to-list 'flycheck-checkers 'swift 'append)
 
   ;; C++
-  (setq-default flycheck-clang-language-standard "c++11"
-                flycheck-gcc-language-standard "c++11")
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              (setq flycheck-clang-language-standard "c++11")))
+  ;; (setq-default flycheck-clang-language-standard "c++11"
+  ;;               flycheck-gcc-language-standard "c++11")
 
   ;; javascript
   (setq-default flycheck-temp-prefix ".")
@@ -65,8 +69,9 @@
                 (append flycheck-disabled-checkers
                         '(json-jsonlist)))
 
-  (use-package flycheck-pos-tip
-    :config
-    (flycheck-pos-tip-mode)))
+  ;; (use-package flycheck-pos-tip
+  ;;   :config
+  ;;   (flycheck-pos-tip-mode))
+  )
 
 ;;; 31-flycheck.el ends here

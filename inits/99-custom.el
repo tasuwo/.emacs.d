@@ -20,4 +20,5 @@
 ;;             (lambda () (whitespace-mode 0) (setq show-trailing-whitespace nil))
 ;;             :append :local))
 
+
 ;;; 99-custom.el ends here

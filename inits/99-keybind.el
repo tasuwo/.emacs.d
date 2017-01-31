@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+
 (use-package bind-key)
 
 ;; カーソル位置のブラウザを開く
@@ -240,5 +241,7 @@
 ;; .el.gz に働かないので
 (bind-key "<f9>" 'find-tag)
 (bind-key "<f8>" 'pop-tag-mark)
+
+
 
 ;;; 99-keybind.el ends here

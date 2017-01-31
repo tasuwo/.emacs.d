@@ -13,11 +13,12 @@
 ;;; Code:
 
 (use-package adaptive-wrap
-  :config
+  :init
   (add-hook 'visual-line-mode-hook
             (lambda ()
               (adaptive-wrap-prefix-mode +1)
               (diminish 'visual-line-mode)))
+  :config
   (setq-default adaptive-wrap-extra-indent 0)
   (global-visual-line-mode +1))
 

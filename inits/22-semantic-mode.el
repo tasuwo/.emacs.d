@@ -6,7 +6,6 @@
 ;; ソースコードをパースし，データベースを作成(SemanticDB) する．
 ;; 作成したデータベースは，補完の他にも，コードナビゲーションや定義元，参照元ジャンプ等に活用できる．
 ;;
-;; auto-complete で使用したい場合は，ac-sources に ac-source-semantic を追加する
 
 ;;; Code:
 
@@ -29,7 +28,6 @@
   (global-set-key (kbd "M-RET o") 'srefactor-lisp-one-line)
   (global-set-key (kbd "M-RET m") 'srefactor-lisp-format-sexp)
   (global-set-key (kbd "M-RET d") 'srefactor-lisp-format-defun)
-  (global-set-key (kbd "M-RET b") 'srefactor-lisp-format-buffer)
-  )
+  (global-set-key (kbd "M-RET b") 'srefactor-lisp-format-buffer))
 
-;;; 20-semantic-mode.el ends here
+;;; 22-semantic-mode.el ends here

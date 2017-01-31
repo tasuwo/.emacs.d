@@ -18,7 +18,7 @@
   ;; recentf の以下の問題点を解消
   ;;  - find-file したファイルしか扱っていない
   ;;  - ディレクトリは扱ってくれいない
-  (use-package recentf-ext))
+  (require 'recentf-ext))
 
 
 ;;; 20-recentf-ext.el ends here
