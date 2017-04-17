@@ -10,6 +10,6 @@
 
 (use-package flyspell
   :config
-  (global-fly))
+  (flyspell-mode 1))
 
 ;;; 20-ispell.el ends here

@@ -48,6 +48,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
             "markdown" "python" "r" "ruby" "sql" "stata" "emacs-lisp" "java" "json" "swift"))
     ;; Mode names that differ from the language name
     (my-mmm-gfm-auto-class "fortran" 'f90-mode)
+    (my-mmm-gfm-auto-class "javascript" 'js2-mode)
     (my-mmm-gfm-auto-class "php" 'web-mode)
     (my-mmm-gfm-auto-class "perl" 'cperl-mode)
     (my-mmm-gfm-auto-class "shell" 'shell-script-mode))
