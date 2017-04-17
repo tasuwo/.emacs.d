@@ -10,16 +10,22 @@
 ;; >  - abcde
 ;; >    fg
 
+;; 折り返しについて
+;; visual-line-mode と longlines-mode というものがあるらしい
+;; - visual-line-mode
+;;   - 画面幅で決めるらしい?
+;; - longlines-mode
+;;   - 変数 fill-column で折り返すらしい？
+
 ;;; Code:
 
 (use-package adaptive-wrap
   :init
-  (add-hook 'visual-line-mode-hook
-            (lambda ()
-              (adaptive-wrap-prefix-mode +1)
-              (diminish 'visual-line-mode)))
-  :config
-  (setq-default adaptive-wrap-extra-indent 0)
-  (global-visual-line-mode +1))
+  (dolist
+      (hook '(
+              gfm-mode-hook
+              ))
+    (setq-default adaptive-wrap-extra-indent 0)
+    (add-hook hook 'adaptive-wrap-prefix-mode)))
 
 ;;; 20-adaptive-wrap.el ends here
