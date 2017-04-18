@@ -21,9 +21,15 @@
     (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
     :config
     (setq ac-js2-evaluate-calls t)
-    (setq js2-cleanup-whitespace nil  ;; 行末の空白を保存時に削除しない
-          js2-mirror-mode nil         ;; 開きかっこ入力の際に閉じかっこを補完しない
-          js2-bounce-indent-flag nil) ;; c-basic-offset でインデント幅を設定する
+    (setq js2-cleanup-whitespace nil          ;; 行末の空白を保存時に削除しない
+          js2-mirror-mode nil                 ;; 開きかっこ入力の際に閉じかっこを補完しない
+          js2-strict-cond-assign-warning nil
+          js2-mode-show-parse-errors nil
+          js2-mode-show-strict-warnings nil
+          js2-include-jslint-globals nil
+          js2-highlight-external-variables nil
+          js2-include-browser-externs nil
+          js2-bounce-indent-flag nil)         ;; c-basic-offset でインデント幅を設定する
     )
 
     ;; 改行時の自動インデントをオフにする

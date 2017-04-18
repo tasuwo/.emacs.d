@@ -54,19 +54,20 @@
   ;;               flycheck-gcc-language-standard "c++11")
 
   ;; javascript
-  (add-hook 'js2-mode-hook 'flycheck-mode)
-  (add-hook 'js2-jsx-mode-hook 'flycheck-mode)
+  (setq flycheck-checkers '(javascript-eslint))
   (setq-default flycheck-temp-prefix ".")
   (setq flycheck-eslintrc "~/.eslintrc")
+  ;; use eslint with web-mode, js2-mode js2-jsx-mode for jsx files
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'js2-mode)
+  (flycheck-add-mode 'javascript-eslint 'js2-jsx-mode)
+  (add-hook 'web-mode-hook 'flycheck-mode)
+  (add-hook 'js2-mode-hook 'flycheck-mode)
+  (add-hook 'js2-jsx-mode-hook 'flycheck-mode)
+  ;; disable jshint since we prefer eslint checking
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint)))
-  (add-to-list 'flycheck-checkers 'javascript-eslint 'append)
-  (flycheck-add-mode 'javascript-eslint 'js2-jsx-mode)
-  ;; use eslint with web-mode for jsx files
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'javascript-eslint 'js2-mode)
-  (flycheck-add-mode 'javascript-eslint 'js-mode)
   ;; disable json-jsonlist checking for json files
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers

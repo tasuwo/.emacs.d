@@ -40,48 +40,18 @@ $ brew install emacs-clang-complete-async
 
 ### for js2-mode
 
+`tern` と `eslint`．
+
 ```shell
-npm install -g tern
-```
-
-以下のような`~/.tern-config`を用意する．
-
-```json
-{
-  "libs": [
-    "browser",
-    "jquery"
-  ],
-  "plugins": {
-     "node": {}
-  }
-}
+$ npm install -g tern eslint babel-eslint eslint-plugin-react
+# インストールチェック
+$ eslint -v
+# 設定ファイルのチェック
+# ここでこけていると，emacs 側で無言で javascript-eslint が disabled になるので注意
+$ eslint --print-config .
 ```
 
 [EmacsにternをインストールしてjQueryを補完する -- blog.10rane.com](http://blog.10rane.com/2015/08/06/how-to-install-and-setup-tern/)
-
-さらに，eslintを使用するために以下を実行する．
-
-``` shell
-$ npm install -g eslint babel-eslint
-```
-
-以下のような`~/.eslintrc`を用意する．
-
-``` javascript
-module.exports = {
-  "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
-  },
-  "rules": {
-  },
-  "settings": {
-  }
-};
-```
 
 ### for Clisp on SLIME
 
@@ -129,6 +99,12 @@ dvipdfmx $DVI # dvipdfmx コマンドの発行
 ```
 
 [モダンな日本語 TeX 環境を整える - Qiita](http://qiita.com/ynakayama/items/706ae9e59c1b6fd3e3d2)
+
+### for text
+
+``` shell
+$ npm install -g textlint
+```
 
 ## マウスを使う
 
