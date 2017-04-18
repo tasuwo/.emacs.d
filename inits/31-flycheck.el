@@ -54,12 +54,15 @@
   ;;               flycheck-gcc-language-standard "c++11")
 
   ;; javascript
+  (add-hook 'js2-mode-hook 'flycheck-mode)
+  (add-hook 'js2-jsx-mode-hook 'flycheck-mode)
   (setq-default flycheck-temp-prefix ".")
   (setq flycheck-eslintrc "~/.eslintrc")
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint)))
   (add-to-list 'flycheck-checkers 'javascript-eslint 'append)
+  (flycheck-add-mode 'javascript-eslint 'js2-jsx-mode)
   ;; use eslint with web-mode for jsx files
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'js2-mode)

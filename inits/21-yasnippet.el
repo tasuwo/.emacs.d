@@ -1,4 +1,4 @@
-;;; 22-yasnippet.el --- Emacs のためのテンプレートシステム
+;;; 21-yasnippet.el --- Emacs のためのテンプレートシステム
 
 ;;; Commentary:
 
@@ -27,4 +27,4 @@
 
   (yas-global-mode))
 
-;;; 22-yasnippet.el ends here
+;;; 21-yasnippet.el ends here

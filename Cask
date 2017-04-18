@@ -19,6 +19,7 @@
 (depends-on "company-php")
 (depends-on "company-quickhelp")
 (depends-on "company-sourcekit")
+(depends-on "company-statistics")
 (depends-on "company-tern")
 (depends-on "company-web")
 (depends-on "darcula-theme")

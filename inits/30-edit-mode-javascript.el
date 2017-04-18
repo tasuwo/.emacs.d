@@ -5,7 +5,8 @@
 ;;; Code:
 
 (use-package js2-mode
-  :mode (("\.js$" . js2-mode))
+  :mode (("\.js$" . js2-mode)
+         ("\.jsx$" . js2-jsx-mode))
   :init
   ;; JavaScript リファクタリング用ライブラリ
   (use-package js2-refactor

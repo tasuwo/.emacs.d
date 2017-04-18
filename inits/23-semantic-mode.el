@@ -1,4 +1,4 @@
-;;; 22-semantinc-mode.el --- 静的解析を利用した補完パッケージ
+;;; 23-semantinc-mode.el --- 静的解析を利用した補完パッケージ
 
 ;;; Commentary:
 
@@ -30,4 +30,4 @@
   (global-set-key (kbd "M-RET d") 'srefactor-lisp-format-defun)
   (global-set-key (kbd "M-RET b") 'srefactor-lisp-format-buffer))
 
-;;; 22-semantic-mode.el ends here
+;;; 23-semantic-mode.el ends here

@@ -17,6 +17,8 @@
 ;; - longlines-mode
 ;;   - 変数 fill-column で折り返すらしい？
 
+;; http://alainmathematics.blogspot.jp/2013/07/emacs.html
+
 ;;; Code:
 
 (use-package adaptive-wrap

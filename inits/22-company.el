@@ -9,23 +9,22 @@
 (use-package company
   :defer t
   :init
-  ;; !!! yasnippet の補完を常に有効にしてしまうと他の候補検索の時に邪魔になる...とりあえずオフにする !!!
   ;; Yasnippet の補完を常に有効にする
   ;; https://github.com/syl20bnr/spacemacs/pull/179
-  ;; (defvar company-mode/enable-yas t
-  ;;   "Enable yasnippet for all backends.")
-  ;; (defun company-mode/backend-with-yas (backend)
-  ;;   (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-  ;;       backend
-  ;;     (append (if (consp backend) backend (list backend))
-  ;;             '(:with company-yasnippet))))
-  ;; ;; TODO: CSS の補完時等に邪魔なのでどうにかしたい...
+  (defvar company-mode/enable-yas t
+    "Enable yasnippet for all backends.")
+  (defun company-mode/backend-with-yas (backend)
+    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
   (add-hook 'after-change-major-mode-hook
             (lambda ()
               ;; config 内ではうまく設定できなかったので，ここでやる
               (setq company-idle-delay 0.1)
-              ;; (if (eq company-mode t)
-              ;;     (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))))
+              ;; メジャーモード切り替え時に，ヤスニペット補完のための backend 追加
+              (if (eq company-mode t)
+                  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
             ))
   :config
   (setq company-idle-delay 0.1)
@@ -76,10 +75,11 @@
            )
           (company-abbrev company-dabbrev)))
 
+  ;; 補完結果のソート
+  (setq company-transformers '(company-sort-by-backend-importance))
   ;; 多く選択したものを候補の上位にもってくる
-  (use-package company-statistics
-    :config
-    (company-statistics-mode))
+  (require 'company-statistics)
+  (company-statistics-mode)
 
   ;; タブ押下で company-completion 開始 ;;
   (define-key company-mode-map [remap indent-for-tab-command]
@@ -185,5 +185,13 @@
             (require 'company-tern)
             (add-to-list (make-local-variable 'company-backends)
                          'company-tern)))
+(add-hook 'js2-jsx-mode-hook
+          (lambda ()
+            (company-mode t)
+            (require 'tern)
+            (tern-mode t)
+            (require 'company-tern)
+            (add-to-list (make-local-variable 'company-backends)
+                         'company-tern)))
 
-;;; 21-company.el ends here
+;;; 22-company.el ends here
