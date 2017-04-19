@@ -308,6 +308,8 @@
 (compile-tags)
 
 ;; シェルの環境変数を引き継ぐ
+(setq explicit-shell-file-name "/usr/local/bin/zsh")
+(setq shell-file-name "/usr/local/bin/zsh")
 (exec-path-from-shell-initialize)
 
 (org-babel-do-load-languages
