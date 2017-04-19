@@ -48,3 +48,5 @@ tramp
 
 /bookmarks
 elisp/custom-file.el
+
+company-statistice-cache.el
