@@ -20,6 +20,11 @@
 (add-hook 'web-mode-hook #'smartparens-mode)
 (add-hook 'js2-mode-hook #'smartparens-mode)
 (add-hook 'gfm-mode-hook #'smartparens-mode)
+(add-hook 'gfm-mode-hook
+          (lambda ()
+            (sp-with-modes 'gfm-mode
+              (sp-local-pair "`" nil :actions nil))
+            ))
 (add-hook 'web-mode-hook
           (lambda ()
             (sp-with-modes 'web-mode
