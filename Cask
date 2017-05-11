@@ -74,6 +74,7 @@
 (depends-on "osx-plist")
 (depends-on "pallet")
 (depends-on "pandoc-mode" :git "https://github.com/joostkremers/pandoc-mode")
+(depends-on "perspective")
 (depends-on "php-mode")
 (depends-on "polymode")
 (depends-on "popup")
