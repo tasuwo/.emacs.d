@@ -252,9 +252,9 @@
 (setq select-enable-clipboard t)
 
 ;; コマンド履歴を残す
-(setq desktop-globals-to-save '(extended-command-history))
-(setq desktop-files-not-to-save "")
-(desktop-save-mode 1)
+;; (setq desktop-globals-to-save '(extended-command-history))
+;; (setq desktop-files-not-to-save "")
+;; (desktop-save-mode 1)
 
 ;; Set path
 (when (memq window-system '(mac ns))

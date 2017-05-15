@@ -4,7 +4,7 @@
 
 (use-package perspective
   :config
-  (persp-mode)
+  (persp-mode 1)
   ;;; モードラインに現在のみのperspective名を表示させるように再定義
   (defun persp-update-modestring ()
     (when persp-show-modestring
