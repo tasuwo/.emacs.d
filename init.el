@@ -31,6 +31,8 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/doxymacs")
 (add-to-list 'load-path "~/.emacs.d/elisp/node-ac")
 (add-to-list 'load-path "~/.emacs.d/elisp/yatex")
+(add-to-list 'load-path "~/.emacs.d/elisp/scala/emacs-sbt-mode")
+(add-to-list 'load-path "~/.emacs.d/elisp/scala/sbt-mode")
 (setq auto-mode-alist
   (cons (cons "\.tex$" 'yatex-mode) auto-mode-alist))
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
