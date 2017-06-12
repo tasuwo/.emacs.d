@@ -194,4 +194,9 @@
             (add-to-list (make-local-variable 'company-backends)
                          'company-tern)))
 
+;; Scala
+(add-hook 'scala-mode-hook
+          (lambda ()
+            (company-mode t)))
+
 ;;; 22-company.el ends here

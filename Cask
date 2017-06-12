@@ -2,6 +2,7 @@
 (source melpa-stable)
 
 (depends-on "ac-php")
+(depends-on "ensime")
 (depends-on "airline-themes")
 (depends-on "ant")
 (depends-on "anzu")

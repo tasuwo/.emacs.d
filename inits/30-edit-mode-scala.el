@@ -4,8 +4,9 @@
 
 ;;; Code:
 
-(use-package scala-mode
-  :mode (("\\.scala\\'" . scala-mode)))
+(use-package ensime
+  :ensure t
+  :pin melpa-stable)
 
 (use-package sbt-mode
   :commands sbt-start sbt-command
@@ -16,3 +17,8 @@
    'minibuffer-complete-word
    'self-insert-command
    minibuffer-local-completion-map))
+
+(use-package scala-mode
+  :mode (("\\.scala\\'" . scala-mode))
+  :init
+  (add-hook 'scala-mode-hook 'ensime-scala-mode-hook))
