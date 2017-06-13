@@ -7,8 +7,7 @@
 ### 最新バージョンのEmacs
 
 ```shell
-$ brew install emacs --cocoa
-$ brew linkapps
+$ brew cask install emacs
 ```
 
 ### Cask
