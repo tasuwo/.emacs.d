@@ -7,7 +7,6 @@
 ;;; Code:
 
 (use-package company
-  :defer t
   :init
   ;; Yasnippet の補完を常に有効にする
   ;; https://github.com/syl20bnr/spacemacs/pull/179
