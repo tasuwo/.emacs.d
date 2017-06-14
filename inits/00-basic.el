@@ -21,7 +21,8 @@
 ;; フォント
 (set-face-attribute 'default nil
                     :family "Ricty Discord"
-                    :height 140)
+                    :weight 'light'
+                    :height 160)
 ;; フォントロック
 (global-font-lock-mode 1)
 (setq font-lock-support-mode 'jit-lock-mode)
@@ -246,9 +247,11 @@
       (browse-url (buffer-substring-no-properties (car url-region)
                                                   (cdr url-region))))))
 
-;; クリップボードにkill-ringをはりつけ
+;; コピーを kill-ring と共有する
+;; https://ayatakesi.github.io/emacs/25.1/Clipboard.html
+;; https://emacs.stackexchange.com/questions/766/add-operating-system-clipboard-to-kill-ring
+(setq gui-select-enable-clipboard t)
 (setq save-interprogram-paste-before-kill t)
-;; クリップボードからはりつけ
 (setq select-enable-clipboard t)
 
 ;; コマンド履歴を残す
