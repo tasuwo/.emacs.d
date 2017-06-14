@@ -110,6 +110,7 @@
 (depends-on "use-package")
 (depends-on "vimrc-mode")
 (depends-on "web-mode")
+(depends-on "yafolding")
 (depends-on "yaml-mode" :git "https://github.com/yoshiki/yaml-mode")
 (depends-on "yasnippet")
 (depends-on "yatex")
