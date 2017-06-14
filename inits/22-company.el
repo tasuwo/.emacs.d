@@ -194,4 +194,12 @@
             (add-to-list (make-local-variable 'company-backends)
                          'company-tern)))
 
+;; Haskell
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (company-mode t)
+            (add-to-list (make-local-variable 'company-backends)
+                         'company-ghc)
+            ))
+
 ;;; 22-company.el ends here
