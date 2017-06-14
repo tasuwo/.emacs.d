@@ -7,7 +7,6 @@
 ;;; Code:
 
 (use-package company
-  :defer t
   :init
   ;; Yasnippet の補完を常に有効にする
   ;; https://github.com/syl20bnr/spacemacs/pull/179
@@ -201,5 +200,10 @@
             (add-to-list (make-local-variable 'company-backends)
                          'company-ghc)
             ))
+
+;; Scala
+(add-hook 'scala-mode-hook
+          (lambda ()
+            (company-mode t)))
 
 ;;; 22-company.el ends here

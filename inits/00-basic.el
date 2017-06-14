@@ -316,4 +316,8 @@
  'org-babel-load-languages
  '((gnuplot . t)))
 
+;; 日本語入力時のちらつきを改善する
+;; http://hylom.net/emacs-25.1-ime-flicker-problem
+(setq redisplay-dont-pause nil)
+
 ;;; 00-basic.el ends here

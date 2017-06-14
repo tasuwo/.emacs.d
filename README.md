@@ -7,8 +7,7 @@
 ### 最新バージョンのEmacs
 
 ```shell
-$ brew install emacs --cocoa
-$ brew linkapps
+$ brew cask install emacs
 ```
 
 ### Cask
@@ -105,6 +104,27 @@ dvipdfmx $DVI # dvipdfmx コマンドの発行
 ``` shell
 $ npm install -g textlint
 ```
+
+### for scala-mode
+
+#### 導入の仕方
+
+sbt で ensime を扱うプラグインを導入する。
+以下のような `~/.sbt/0.13/plugins/plugins.sbt` を用意する。
+
+``` text
+addSbtPlugin("org.ensime" % "sbt-ensime" % "1.12.12")
+```
+
+> [sbt · ENSIME](http://ensime.org/build_tools/sbt/#install)
+
+#### 使い方
+
+`.ensime` ファイルをプロジェクト毎に作成する必要がある。
+
+`sbt` コマンドで対話環境に入った後、`ensimeConfig` によって生成できるようだ。`ensimeConfitProject` というものもあるが違いがよくわからない。
+
+> [sbt · ENSIME](http://ensime.org/build_tools/sbt/#core-commands)
 
 ## マウスを使う
 

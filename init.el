@@ -1,6 +1,8 @@
 
 ;;; Code:
 
+(setq package-check-signature nil)
+
 ;; 環境判断用の変数
 (defun x->bool (elt) (not (not elt)))
 ;; system-type predicates
@@ -15,8 +17,7 @@
 ;; Mac : homebrewで導入したtool用のpathを追加 (for OS X)
 ;; Win : ホームディレクトリ直下の cask にパスを通す
 (cond (darwin-p
-       (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-       (require 'cask "cask.el"))
+       (require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el"))
       (windows-p
        (add-to-list 'load-path "~/.cask")
        (require 'cask))
