@@ -203,7 +203,8 @@
 (global-set-key [wheel-left] '(lambda () (interactive) (scroll-right 1)))
 
 ;; color theme
-(load-theme 'flatland t)
+;; misterioso
+(load-theme 'darktooth t)
 
 ;; サーバ設定
 (use-package server
