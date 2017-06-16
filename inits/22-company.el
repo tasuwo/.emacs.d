@@ -10,21 +10,21 @@
   :init
   ;; Yasnippet の補完を常に有効にする
   ;; https://github.com/syl20bnr/spacemacs/pull/179
-  (defvar company-mode/enable-yas t
-    "Enable yasnippet for all backends.")
-  (defun company-mode/backend-with-yas (backend)
-    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-        backend
-      (append (if (consp backend) backend (list backend))
-              '(:with company-yasnippet))))
+  ;; (defvar company-mode/enable-yas t
+  ;;   "Enable yasnippet for all backends.")
+  ;; (defun company-mode/backend-with-yas (backend)
+  ;;   (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+  ;;       backend
+  ;;     (append (if (consp backend) backend (list backend))
+  ;;             '(:with company-yasnippet))))
+
   (add-hook 'after-change-major-mode-hook
             (lambda ()
-              ;; config 内ではうまく設定できなかったので，ここでやる
-              (setq company-idle-delay 0.1)
               ;; メジャーモード切り替え時に，ヤスニペット補完のための backend 追加
-              (if (eq company-mode t)
-                  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
+              ;; (if (eq company-mode t)
+              ;;     (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
             ))
+
   :config
   (setq company-idle-delay 0.1)
   (setq company-minimum-prefix-length 2) ; デフォルトは4
@@ -64,15 +64,17 @@
   (set-face-attribute 'company-scrollbar-bg nil
                       :background "gray40")
 
+  ;; baddrev がいまいち仕事をしてくれなかったのでデフォルトを使用することにした
   ;; set default `company-backends'
-  (setq company-backends
-        '(
-          (company-files          ; files & directory
-           company-keywords       ; keywords
-           company-capf
-           company-yasnippet
-           )
-          (company-abbrev company-dabbrev)))
+  ;; https://emacs.stackexchange.com/questions/17537/best-company-backends-lists/17548
+  ;; (setq company-backends
+  ;;     '((company-files          ; files & directory
+  ;;        company-keywords       ; keywords
+  ;;        company-capf
+  ;;        company-yasnippet
+  ;;        )
+  ;;       (company-abbrev company-dabbrev)
+  ;;       ))
 
   ;; 補完結果のソート
   (setq company-transformers '(company-sort-by-backend-importance))
@@ -105,7 +107,7 @@
           (lambda()
             (company-mode t)
             (add-to-list (make-local-variable 'company-backends)
-                         'company-elisp)))
+                         '(company-elisp :with company-dabbrev-code))))
 
 ;; Lisp(SLIME)
 (add-hook 'slime-mode-hook
@@ -114,7 +116,7 @@
             (setq company-idle-delay 0.1)
             (use-package company-slime)
             (add-to-list (make-local-variable 'company-backends)
-                         'company-slime)))
+                         '(company-slime :with company-dabbrev-code))))
 
 ;; Python
 (require 'jedi-core)
@@ -125,7 +127,7 @@
             (setq jedi:complete-on-dot t)
             (setq jedi:use-shortcuts t)
             (add-to-list (make-local-variable 'company-backends)
-                         'company-jedi)))
+                         '(company-jedi :with company-dabbrev-code))))
 
 ;; Swift
 (use-package company-sourcekit
@@ -136,7 +138,7 @@
             (lambda()
               (company-mode t)
               (add-to-list (make-local-variable 'company-backends)
-                           'company-sourcekit))))
+                           '(company-sourcekit :with company-dabbrev-code)))))
 
 
 ;; C, C++
@@ -148,12 +150,12 @@
             (lambda ()
               (company-mode t)
               (add-to-list (make-local-variable 'company-backends)
-                           'company-c-headers)))
+                           '(company-c-headers :with company-dabbrev-code))))
   (add-hook 'c++-mode-hook
             (lambda ()
               (company-mode t)
               (add-to-list (make-local-variable 'company-backends)
-                           'company-c-headers))))
+                           '(company-c-headers :with company-dabbrev-code)))))
 
 ;; Web
 (add-hook 'web-mode-hook
@@ -172,7 +174,7 @@
             (company-mode t)
             (require 'company-php)
             (add-to-list (make-local-variable 'company-backends)
-                         'company-ac-php-backend)
+                         '(company-ac-php-backend :with company-dabbrev-code))
             ))
 
 ;; JavaScript
@@ -183,7 +185,7 @@
             (tern-mode t)
             (require 'company-tern)
             (add-to-list (make-local-variable 'company-backends)
-                         'company-tern)))
+                         '(company-tern :with company-dabbrev-code))))
 (add-hook 'js2-jsx-mode-hook
           (lambda ()
             (company-mode t)
@@ -191,19 +193,30 @@
             (tern-mode t)
             (require 'company-tern)
             (add-to-list (make-local-variable 'company-backends)
-                         'company-tern)))
+                         '(company-tern :with company-dabbrev-code))))
 
 ;; Haskell
 (add-hook 'haskell-mode-hook
           (lambda ()
             (company-mode t)
             (add-to-list (make-local-variable 'company-backends)
-                         'company-ghc)
+                         '(company-ghc :with company-dabbrev-code))
             ))
 
 ;; Scala
 (add-hook 'scala-mode-hook
           (lambda ()
             (company-mode t)))
+
+;; Ruby
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (require 'robe)
+            (robe-mode t)
+            (company-mode t)
+            (message "aaa")
+            (add-to-list (make-local-variable 'company-backends)
+                         '(company-robe :with company-dabbrev-code))
+            ))
 
 ;;; 22-company.el ends here

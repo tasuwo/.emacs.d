@@ -126,6 +126,20 @@ addSbtPlugin("org.ensime" % "sbt-ensime" % "1.12.12")
 
 > [sbt · ENSIME](http://ensime.org/build_tools/sbt/#core-commands)
 
+### for ruby-mode
+
+``` shell
+$ gem install rubocop ruby-lint
+```
+
+> [[Emacs] flycheck でrubocopとruby-lintを使う - Qiita](http://qiita.com/aKenjiKato/items/9ff1a153691e947113bb)
+
+``` shell
+$ gem install pry pry-doc method_source
+```
+
+> [dgutov/robe: Code navigation, documentation lookup and completion for Ruby](https://github.com/dgutov/robe)
+
 ## マウスを使う
 
 >[MouseTerm](https://bitheap.org/mouseterm/)

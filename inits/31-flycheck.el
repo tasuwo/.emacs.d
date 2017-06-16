@@ -53,6 +53,14 @@
   ;; (setq-default flycheck-clang-language-standard "c++11"
   ;;               flycheck-gcc-language-standard "c++11")
 
+  ;; Ruby
+  ;; http://qiita.com/aKenjiKato/items/9ff1a153691e947113bb
+  ;; (add-hook 'ruby-mode-hook
+  ;;           (lambda ()
+  ;;             (setq flycheck-checker 'ruby-rubocop)
+  ;;             (flycheck-mode 1)
+  ;;             ))
+
   ;; javascript
   (setq flycheck-checkers '(javascript-eslint))
   (setq-default flycheck-temp-prefix ".")
