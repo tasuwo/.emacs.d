@@ -140,6 +140,14 @@ $ gem install pry pry-doc method_source
 
 > [dgutov/robe: Code navigation, documentation lookup and completion for Ruby](https://github.com/dgutov/robe)
 
+### for swift-mode
+
+``` shell
+$ git clone https://github.com/terhechte/SourceKittenDaemon
+$ cd SourceKittenDaemon
+$ make install
+```
+
 ## マウスを使う
 
 >[MouseTerm](https://bitheap.org/mouseterm/)

@@ -137,8 +137,11 @@
   (add-hook 'swift-mode-hook
             (lambda()
               (company-mode t)
+              (setq sourcekit-verbose t
+                    company-sourcekit-verbose t)
+              (setq sourcekit-sourcekittendaemon-executable "/usr/local/bin/sourcekittendaemon")
               (add-to-list (make-local-variable 'company-backends)
-                           '(company-sourcekit :with company-dabbrev-code)))))
+                           '(company-sourcekit)))))
 
 
 ;; C, C++
@@ -149,6 +152,7 @@
   (add-hook 'c-mode-hook
             (lambda ()
               (company-mode t)
+              (setq sourcekit-available-ports '(44876))
               (add-to-list (make-local-variable 'company-backends)
                            '(company-c-headers :with company-dabbrev-code))))
   (add-hook 'c++-mode-hook
