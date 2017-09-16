@@ -25,33 +25,11 @@
                 '(markdown-header-face-6 ((t (:inherit outline-6  :weight bold))))
                 '(markdown-pre-face ((t (:inherit org-formula))))
                 )
+               (setq markdown-fontify-code-blocks-natively t)
+               (setq markdown-css-paths `(,mkdown-css-file-name)o)
                ))
   :config
-  (use-package mmm-mode
-    :config
-    (setq mmm-global-mode 'maybe)
-    (setq mmm-parse-when-idle 't)
-
-    (defun my-mmm-gfm-auto-class (lang &optional submode)
-      "Define a mmm-mode class for LANG in `gfm-mode' using SUBMODE.
-If SUBMODE is not provided, use `LANG-mode' by default."
-      (let ((class (intern (concat "gfm-" lang)))
-            (submode (or submode (intern (concat lang "-mode"))))
-            (front (concat "^```[\s-]*" lang "[\n\r]+"))
-            (back "^```"))
-        (mmm-add-classes (list (list class :submode submode :front front :back back)))
-        (mmm-add-mode-ext-class 'gfm-mode nil class)))
-
-    ;; Mode names that derive directly from the language name
-    (mapc 'my-mmm-gfm-auto-class
-          '("awk" "bibtex" "c" "cpp" "css" "html" "latex" "lisp" "makefile" "scala" "haskell"
-            "markdown" "python" "r" "ruby" "sql" "stata" "emacs-lisp" "java" "json" "swift"))
-    ;; Mode names that differ from the language name
-    (my-mmm-gfm-auto-class "fortran" 'f90-mode)
-    (my-mmm-gfm-auto-class "javascript" 'js2-mode)
-    (my-mmm-gfm-auto-class "php" 'web-mode)
-    (my-mmm-gfm-auto-class "perl" 'cperl-mode)
-    (my-mmm-gfm-auto-class "shell" 'shell-script-mode))
+  (setq markdown-command "marked")
 
   ;; 改行のために必要
   (add-hook 'visual-line-mode-hook

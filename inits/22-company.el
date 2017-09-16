@@ -119,15 +119,15 @@
                          '(company-slime :with company-dabbrev-code))))
 
 ;; Python
-(require 'jedi-core)
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook
-          (lambda ()
-            (company-mode t)
-            (setq jedi:complete-on-dot t)
-            (setq jedi:use-shortcuts t)
-            (add-to-list (make-local-variable 'company-backends)
-                         '(company-jedi :with company-dabbrev-code))))
+;; (require 'jedi-core)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook
+;;           (lambda ()
+;;             (company-mode t)
+;;             (setq jedi:complete-on-dot t)
+;;             (setq jedi:use-shortcuts t)
+;;             (add-to-list (make-local-variable 'company-backends)
+;;                          '(company-jedi :with company-dabbrev-code))))
 
 ;; Swift
 (use-package company-sourcekit

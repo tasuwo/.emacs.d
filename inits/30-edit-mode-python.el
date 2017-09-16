@@ -17,9 +17,4 @@
     '(progn
        (define-key python-mode-map (kbd "C-c C-d") 'helm-pydoc))))
 
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:setup-keys t)
-;; (use-package jedi)
-;; (setq jedi:complete-on-dot t)
-
 ;;; 30-edit-mode-python.el ends here

@@ -74,6 +74,7 @@
 (depends-on "markdown-preview-eww")
 (depends-on "matlab-mode")
 (depends-on "migemo")
+(depends-on "mkdown")
 (depends-on "mmm-mode")
 (depends-on "multiple-cursors")
 (depends-on "nginx-mode")
