@@ -34,14 +34,14 @@
         evil-emacs-state-msg   "EMACS"
         evil-visual-state-msg  "VISUAL")
 
-  ;; ターミナル上の Emacs でコピペを行う
-  (unless window-system
-    (progn
-      (define-key evil-normal-state-map (kbd "p") 'pasteboard-paste)
-      (define-key evil-visual-state-map (kbd "d") 'pasteboard-cut)
-      (define-key evil-visual-state-map (kbd "c") 'pasteboard-cut)
-      (define-key evil-visual-state-map (kbd "y") 'pasteboard-copy)
-      ))
+  ;; ;; ターミナル上の Emacs でコピペを行う
+  ;; (unless window-system
+  ;;   (progn
+  ;;     (define-key evil-normal-state-map (kbd "p") 'pasteboard-paste)
+  ;;     (define-key evil-visual-state-map (kbd "d") 'pasteboard-cut)
+  ;;     (define-key evil-visual-state-map (kbd "c") 'pasteboard-cut)
+  ;;     (define-key evil-visual-state-map (kbd "y") 'pasteboard-copy)
+  ;;     ))
   )
 
 ;;; 09-evil.el ends here

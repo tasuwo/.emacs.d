@@ -88,6 +88,7 @@
 (depends-on "popwin")
 (depends-on "pos-tip")
 (depends-on "powerline-evil")
+(depends-on "powershell")
 (depends-on "quickrun")
 (depends-on "rainbow-delimiters")
 (depends-on "recentf-ext")

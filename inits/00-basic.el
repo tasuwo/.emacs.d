@@ -252,8 +252,9 @@
 ;; https://ayatakesi.github.io/emacs/25.1/Clipboard.html
 ;; https://emacs.stackexchange.com/questions/766/add-operating-system-clipboard-to-kill-ring
 (setq gui-select-enable-clipboard t)
-(setq save-interprogram-paste-before-kill t)
+(setq save-interprogram-paste-before-kill nil)
 (setq select-enable-clipboard t)
+(setq yank-pop-change-selection t)
 
 ;; コマンド履歴を残す
 ;; (setq desktop-globals-to-save '(extended-command-history))
