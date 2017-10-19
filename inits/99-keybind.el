@@ -235,6 +235,10 @@
   :bind (("C-n" . evil-mc-make-and-goto-next-match)
          ("C-p" . evil-mc-make-and-goto-prev-match)
          ("C-*" . evil-mc-make-all-cursors)))
+;;Exit insert mode by pressing j and then j quickly
+(setq key-chord-two-keys-delay 1.0)
+(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+(key-chord-mode 1)
 
 ;;;;;;;;;;;;;
 ;; TAGS
