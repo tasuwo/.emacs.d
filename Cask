@@ -83,6 +83,7 @@
 (depends-on "pandoc-mode")
 (depends-on "persp-mode")
 (depends-on "php-mode")
+(depends-on "plantuml-mode")
 (depends-on "polymode")
 (depends-on "popup")
 (depends-on "popwin")

@@ -4,10 +4,8 @@
 
 ;;; Code:
 
-(use-package puml-mode
-  :mode (("\\.puml\\'" . puml-mode)
-         ("\\.plantuml\\'" . puml-mode))
-  :config
-  (setq puml-plantuml-jar-path "/Users/tozawa/plantuml.jar"))
+(use-package plantuml-mode
+  :mode (("\\.puml\\'" . plantuml-mode)
+         ("\\.plantuml\\'" . plantuml-mode)))
 
 ;;; 30-edit-mode-puml.el ends here

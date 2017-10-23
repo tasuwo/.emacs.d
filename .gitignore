@@ -52,3 +52,5 @@ elisp/custom-file.el
 company-statistics-cache.el
 network-security.data
 persp-confs/*
+
+abbrev_defs

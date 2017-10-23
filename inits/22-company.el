@@ -223,4 +223,9 @@
                          '(company-robe :with company-dabbrev-code))
             ))
 
+;; PlantUML
+(add-hook 'plantuml-mode-hook
+          (lambda ()
+            (company-mode t)))
+
 ;;; 22-company.el ends here
