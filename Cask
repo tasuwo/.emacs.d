@@ -79,6 +79,7 @@
 (depends-on "mmm-mode")
 (depends-on "multiple-cursors")
 (depends-on "nginx-mode")
+(depends-on "omnisharp")
 (depends-on "osx-plist")
 (depends-on "package-utils")
 (depends-on "pallet")

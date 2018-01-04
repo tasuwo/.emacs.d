@@ -37,6 +37,19 @@ $ brew install cmigemo
 $ brew install emacs-clang-complete-async
 ```
 
+### for C# mode
+
+以下から、.Net Core SDK をインストール。
+
+> https://www.microsoft.com/net/learn/get-started/macos#macos
+
+``` shell
+# .Net にパスを通す
+$ ln -s /usr/local/share/dotnet/dotnet /usr/local/bin
+$ brew install mono
+$ brew install omnisharp/omnisharp-roslyn/omnisharp-mono
+```
+
 ### for js2-mode
 
 `tern` と `eslint`．
