@@ -161,6 +161,14 @@
               (add-to-list (make-local-variable 'company-backends)
                            '(company-c-headers :with company-dabbrev-code)))))
 
+;; C#
+(add-hook 'csharp-mode-hook
+          (lambda ()
+            (add-to-list (make-local-variable 'company-backends)
+                         'company-omnisharp)
+            (company-mode t)
+            ))
+
 ;; Web
 (add-hook 'web-mode-hook
           (lambda ()
