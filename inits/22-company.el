@@ -218,7 +218,6 @@
             (require 'robe)
             (robe-mode t)
             (company-mode t)
-            (message "aaa")
             (add-to-list (make-local-variable 'company-backends)
                          '(company-robe :with company-dabbrev-code))
             ))

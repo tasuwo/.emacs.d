@@ -19,6 +19,6 @@
                (imenu-add-menubar-index)
                ;; GHCi のコマンドを設定
                (setq haskell-program-name "/usr/bin/stack ghci") ;; stack の場合
-               (inf-haskell-mode)
+               (inferior-haskell-mode)
                ;; ghc-mod を使えるように
                (ghc-init))))

@@ -148,6 +148,17 @@ $ cd SourceKittenDaemon
 $ make install
 ```
 
+### for haskell-mode
+
+``` shell
+$ brew install ghc
+$ brew install cabal-install
+$ cabal update
+$ cabal install ghc-mode
+```
+
+> https://qiita.com/taiki45/items/0aaccda69aa1606d445c 
+
 ## マウスを使う
 
 >[MouseTerm](https://bitheap.org/mouseterm/)

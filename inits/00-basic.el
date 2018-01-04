@@ -251,10 +251,35 @@
 ;; コピーを kill-ring と共有する
 ;; https://ayatakesi.github.io/emacs/25.1/Clipboard.html
 ;; https://emacs.stackexchange.com/questions/766/add-operating-system-clipboard-to-kill-ring
+;; Cocoa Emacs だと、以下の設定だけで kill-ring と clipboard が共有される
 (setq gui-select-enable-clipboard t)
 (setq save-interprogram-paste-before-kill nil)
 (setq select-enable-clipboard t)
 (setq yank-pop-change-selection t)
+;; clipboard を利用して明示的にコピペする
+(defun copy-to-clipboard ()
+  "Copies selection to x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (message "Yanked region to x-clipboard!")
+        (call-interactively 'clipboard-kill-ring-save))
+    (if (region-active-p)
+        (progn
+          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+          (message "Yanked region to clipboard!")
+          (deactivate-mark))
+      (message "No region active; can't yank to clipboard!"))))
+(defun paste-from-clipboard ()
+  "Pastes from x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (clipboard-yank)
+        (message "graphics active"))
+    (insert (shell-command-to-string "pbpaste"))))
+(bind-key "C-c C-y" 'copy-to-clipboard)
+(bind-key "C-c C-p" 'paste-from-clipboard)
 
 ;; コマンド履歴を残す
 ;; (setq desktop-globals-to-save '(extended-command-history))
