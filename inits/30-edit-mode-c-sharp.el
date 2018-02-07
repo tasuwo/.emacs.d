@@ -14,10 +14,14 @@
   :init
   (add-hook 'csharp-mode-hook
             (lambda ()
+              (c-set-style "ellemtel")
+              (local-set-key (kbd "C-c C-c") 'recompile)
               (setq-default c-basic-offset 4
                             tab-width 4
+                            c-syntactic-indentation t
+                            truncate-lines t
+                            evil-shift-width 4
                             indent-tabs-mode nil)
-              (c-set-style "stroustrup")
               ;; TODO: Windows には対応していない
               (setq omnisharp-server-executable-path "/usr/local/bin/omnisharp")
               (omnisharp-mode))))

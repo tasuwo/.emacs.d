@@ -164,8 +164,9 @@
 ;; C#
 (add-hook 'csharp-mode-hook
           (lambda ()
-            (add-to-list (make-local-variable 'company-backends)
-                         'company-omnisharp)
+;;            (add-to-list (make-local-variable 'company-backends)
+;;                         'company-omnisharp)
+            (add-to-list 'company-backends 'company-omnisharp)
             (company-mode t)
             ))
 
