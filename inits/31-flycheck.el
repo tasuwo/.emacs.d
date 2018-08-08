@@ -6,11 +6,6 @@
 
 (use-package flycheck
   :init
-  (use-package flycheck-tp
-    :config
-    (define-key your-prog-mode (kbd "C-c C-n") 'flycheck-tip-cycle)
-    ;; To avoid echoing error message on minibuffer (optional)
-    (setq flycheck-display-errors-function 'ignore))
   :config
   (global-flycheck-mode)
 
@@ -81,9 +76,9 @@
                 (append flycheck-disabled-checkers
                         '(json-jsonlist)))
 
-  ;; (use-package flycheck-pos-tip
-  ;;   :config
-  ;;   (flycheck-pos-tip-mode))
+  (use-package flycheck-pos-tip
+    :config
+    (flycheck-pos-tip-mode))
   )
 
 ;;; 31-flycheck.el ends here

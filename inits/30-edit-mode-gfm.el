@@ -4,14 +4,11 @@
 
 ;;; Code:
 
-(use-package gfm-mode
-  :init
-  (add-hook 'gfm-mode-hook 'flycheck-mode))
-
 (use-package markdown-mode
   :mode (("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode))
   :init
+  (add-hook 'gfm-mode-hook 'flycheck-mode)
   (add-hook 'markdown-mode-hook
             '(lambda ()
                ;; ヘッダの色と文字の設定をつける

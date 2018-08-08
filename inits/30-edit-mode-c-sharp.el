@@ -5,10 +5,6 @@
 ;;; code:
 
 
-(use-package omnisharp-mode
-  :init
-  (lambda ()))
-
 (use-package csharp-mode
   :mode (("\\.cs\\'" . csharp-mode))
   :init
