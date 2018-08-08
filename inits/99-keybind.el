@@ -228,6 +228,9 @@
 
 ;;;;;;;;;;;;;;
 ;; evil-mode
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-insert-state-map (kbd "C-j") 'evil-normal-state)
 (define-key evil-insert-state-map (kbd "C-j") 'evil-normal-state)
 (define-key evil-insert-state-map (kbd "C-t") nil)
 (define-key evil-normal-state-map (kbd "C-t") nil)
