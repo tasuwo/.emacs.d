@@ -126,3 +126,4 @@
 (depends-on "yasnippet")
 (depends-on "yatex")
 (depends-on "powerline-evil")
+(depends-on "graphql-mode")
