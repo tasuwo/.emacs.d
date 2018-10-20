@@ -10,20 +10,26 @@
   :init
   ;; Yasnippet の補完を常に有効にする
   ;; https://github.com/syl20bnr/spacemacs/pull/179
-  (defvar company-mode/enable-yas t
-    "Enable yasnippet for all backends.")
-  (defun company-mode/backend-with-yas (backend)
-    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-        backend
-      (append (if (consp backend) backend (list backend))
-              '(:with company-yasnippet))))
+  ;; (defvar company-mode/enable-yas t
+  ;;   "Enable yasnippet for all backends.")
+  ;; (defun company-mode/backend-with-yas (backend)
+  ;;   (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+  ;;       backend
+  ;;     (append (if (consp backend) backend (list backend))
+  ;;             '(:with company-yasnippet))))
+  ;; wantofix
+  ;; 下記のようなエラーが出るので一旦止めておく
+  ;; Company: An error occurred in post-command
+  ;; Company: frontend company-pseudo-tooltip-unless-just-one-frontend error "Company: backend (company-capf :with company-yasnippet) error "Nothing to complete" with args (match tab-always-indent)" on command post-command
+  ;; Company: An error occurred in post-command
+  ;; Company: frontend company-pseudo-tooltip-unless-just-one-frontend error "Company: backend (company-capf :with company-yasnippet) error "Nothing to complete" with args (match tag-lines-already-matched)" on command post-command
 
-  (add-hook 'after-change-major-mode-hook
-            (lambda ()
-              ;; メジャーモード切り替え時に，ヤスニペット補完のための backend 追加
-              (if (eq company-mode t)
-                  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
-            ))
+  ;; (add-hook 'after-change-major-mode-hook
+  ;;           (lambda ()
+  ;;             ;; メジャーモード切り替え時に，ヤスニペット補完のための backend 追加
+  ;;             (if (eq company-mode t)
+  ;;                 (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
+  ;;           ))
 
   :config
   (setq company-idle-delay 0.1)
@@ -103,11 +109,11 @@
   )
 
 ;; Emacs lisp
-(add-hook 'emacs-lisp-mode-hook
-          (lambda()
-            (company-mode t)
-            (add-to-list (make-local-variable 'company-backends)
-                         '(company-elisp :with company-dabbrev-code))))
+;; (add-hook 'emacs-lisp-mode-hook
+;;           (lambda()
+;;             (company-mode t)
+;;             (add-to-list (make-local-variable 'company-backends)
+;;                          '(company-elisp :with company-dabbrev-code))))
 
 ;; Lisp(SLIME)
 (add-hook 'slime-mode-hook

@@ -203,8 +203,8 @@
 (global-set-key [wheel-left] '(lambda () (interactive) (scroll-right 1)))
 
 ;; color theme
-;; misterioso
-(load-theme 'darktooth t)
+;; http://pawelbx.github.io/emacs-theme-gallery/
+(load-theme 'badger t)
 
 ;; サーバ設定
 (use-package server
@@ -324,18 +324,19 @@
     (switch-to-buffer (find-file-noselect (concat diary-dir file-name)))
     (message "There are no directory for diary. Please create \"~/GoogleDrive/diary/\".")))
 
+;; wantofix: TAGS ファイルの生成が遅すぎるので一旦中止
 ;; TAGS ファイルを生成
 ;; c++ - How to use shell magic to create a recursive etags using GNU etags? - Stack Overflow
 ;; http://stackoverflow.com/questions/10738219/how-to-use-shell-magic-to-create-a-recursive-etags-using-gnu-etags
-(defun compile-tags ()
-  "compile etags for the emacs lisp"
-  (interactive)
-  (cd "~/.emacs.d")
-  (compile
-   (concat "{ find /usr/local/Cellar/emacs/*/share/emacs/*/lisp -name \"*.el\" -or -name \"*.elc\" -or -name \"*.el.gz\" -print ;"
-           "  find ~/.emacs.d -name \"*.el\" -or -name \"*.elc\" -print }"
-           "| xargs etags --append")))
-(compile-tags)
+;; (defun compile-tags ()
+;;   "compile etags for the emacs lisp"
+;;   (interactive)
+;;   (cd "~/.emacs.d")
+;;   (compile
+;;    (concat "{ find /usr/local/Cellar/emacs/*/share/emacs/*/lisp -name \"*.el\" -or -name \"*.elc\" -or -name \"*.el.gz\" -print ;"
+;;            "  find ~/.emacs.d -name \"*.el\" -or -name \"*.elc\" -print }"
+;;            "| xargs etags --append")))
+;; (compile-tags)
 
 ;; シェルの環境変数を引き継ぐ
 (setq explicit-shell-file-name "/usr/local/bin/zsh")
@@ -349,5 +350,25 @@
 ;; 日本語入力時のちらつきを改善する
 ;; http://hylom.net/emacs-25.1-ime-flicker-problem
 (setq redisplay-dont-pause nil)
+
+;; hotfix
+;; 下記で switch-to-buffer から切り替えられているが、pop-to-buffer-same-window は必ずしも
+;; 同一 window で buffer を開かないらしく、挙動が変わって使いづらかった
+;; 仕方なくとりあえず過去の実装で上書きしておく
+;; https://github.com/emacs-mirror/emacs/commit/8e394b082bd6ecd9ba212cb3ca07cbace66767a6
+(defun find-file (filename &optional wildcards)
+  "Edit file FILENAME.
+     Switch to a buffer visiting file FILENAME,
+     creating one if none already exists."
+  (interactive
+   (find-file-read-args "Find file: "
+                        (confirm-nonexistent-file-or-buffer)))
+  (let ((value (find-file-noselect filename nil nil wildcards)))
+    (if (listp value)
+        (mapcar 'switch-to-buffer (nreverse value))
+      (switch-to-buffer value))))
+
+;; Compilation バッファを立ち上げ時に表示しないように消す
+(add-hook 'compilation-finish-functions (lambda (buf strg) (kill-buffer buf)))
 
 ;;; 00-basic.el ends here
