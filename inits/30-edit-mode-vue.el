@@ -5,4 +5,4 @@
 ;;; Code:
 
 (use-package vue-mode
-  :mode (("\\.vue\\'" . vue-mode))
+  :mode (("\\.vue\\'" . vue-mode)))

@@ -203,8 +203,8 @@
 (global-set-key [wheel-left] '(lambda () (interactive) (scroll-right 1)))
 
 ;; color theme
-;; misterioso
-(load-theme 'darktooth t)
+;; http://pawelbx.github.io/emacs-theme-gallery/
+(load-theme 'badger t)
 
 ;; サーバ設定
 (use-package server
@@ -349,5 +349,24 @@
 ;; 日本語入力時のちらつきを改善する
 ;; http://hylom.net/emacs-25.1-ime-flicker-problem
 (setq redisplay-dont-pause nil)
+
+;; hotfix
+;; 下記で switch-to-buffer から切り替えられているが、pop-to-buffer-same-window は必ずしも
+;; 同一 window で buffer を開かないらしく、挙動が変わって使いづらかった
+;; 仕方なくとりあえず過去の実装で上書きしておく
+;; https://github.com/emacs-mirror/emacs/commit/8e394b082bd6ecd9ba212cb3ca07cbace66767a6
+(defun find-file (filename &optional wildcards)
+  "Edit file FILENAME.
+     Switch to a buffer visiting file FILENAME,
+     creating one if none already exists."
+  (interactive
+   (find-file-read-args "Find file: "
+                        (confirm-nonexistent-file-or-buffer)))
+  (let ((value (find-file-noselect filename nil nil wildcards)))
+    (if (listp value)
+        (mapcar 'switch-to-buffer (nreverse value))
+      (switch-to-buffer value))))
+
+(add-hook 'compilation-finish-functions (lambda (buf strg) (kill-buffer buf))
 
 ;;; 00-basic.el ends here
